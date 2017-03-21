@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
@@ -63,6 +63,51 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-sort" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/21/sort/" class="article-date">
+  <time datetime="2017-03-21T15:19:21.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/sort/">Sort</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录各种排序算法</p>
+<h2 id="merge-sort"><a href="#merge-sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>Time complexity:<br>T(n) &lt;= 2 <em> T(n / 2) + O(n)<br>   &lt;= 2 </em> (2 <em> T(n / 4) + O(n / 2)) + O(n) = 4 </em> T(n / 4) + 2 <em> O(n)<br>   &lt;= ……<br>   &lt;= 2<sup>k</sup> </em> T(n / 2<sup>k</sup>) + k <em> O(n)<br>So T(n) &lt;= O(n </em> log(n))</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj0jqbdwf0006e4e9eyzjhlpl" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-binary-search" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -82,7 +127,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/21/binary-search/">binary search</a>
+      <a class="article-title" href="/2017/03/21/binary-search/">Binary Search</a>
     </h1>
   
 
@@ -93,13 +138,13 @@
         <p>本文记录关于二分搜索的学习笔记</p>
 <h2 id="对有序数组的二分查找"><a href="#对有序数组的二分查找" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= log(n)</li>
+<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj0jopbwr00005ce91cyiw6un" class="article-share-link">Share</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj0jqbdvp0000e4e9lsl5z9rp" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -171,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj0jopbxm00035ce9g803cu0k" class="article-share-link">Share</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj0jqbdvu0001e4e9vsa12wen" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -188,7 +233,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li></ul>
     </div>
@@ -213,12 +258,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/03/21/binary-search/">binary search</a>
+            <a href="/2017/03/21/sort/">Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/21/binary-search/">Binary Search</a>
           </li>
         
           <li>
@@ -238,7 +287,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Ziliang, Ken, Mo<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
