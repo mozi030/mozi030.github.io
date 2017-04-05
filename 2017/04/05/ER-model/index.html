@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Binary Search | Mozi&#39;s Blog</title>
+  <title>ER model | Mozi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+  <meta name="description" content="本文是对ER model知识点的归纳
+ER modelEntity-Relationship modelEntity是能独立存在的对象。Attribute是entity或relationship的属性。
+Entity type用方框表示；Simple attribute用椭圆表示，并与Entity type相连；Composite attribute也是用椭圆表示，下级attribute与上级at">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Binary Search">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/binary-search/index.html">
+<meta property="og:title" content="ER model">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/05/ER-model/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
-<meta property="og:updated_time" content="2017-03-21T16:02:47.000Z">
+<meta property="og:description" content="本文是对ER model知识点的归纳
+ER modelEntity-Relationship modelEntity是能独立存在的对象。Attribute是entity或relationship的属性。
+Entity type用方框表示；Simple attribute用椭圆表示，并与Entity type相连；Composite attribute也是用椭圆表示，下级attribute与上级at">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/05/ER-model/example1.png">
+<meta property="og:updated_time" content="2017-04-05T06:34:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Binary Search">
-<meta name="twitter:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+<meta name="twitter:title" content="ER model">
+<meta name="twitter:description" content="本文是对ER model知识点的归纳
+ER modelEntity-Relationship modelEntity是能独立存在的对象。Attribute是entity或relationship的属性。
+Entity type用方框表示；Simple attribute用椭圆表示，并与Entity type相连；Composite attribute也是用椭圆表示，下级attribute与上级at">
+<meta name="twitter:image" content="https://mozi030.github.io/2017/04/05/ER-model/example1.png">
   
     <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
   
@@ -66,14 +71,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-binary-search" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-ER-model" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/21/binary-search/" class="article-date">
-  <time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time>
+    <a href="/2017/04/05/ER-model/" class="article-date">
+  <time datetime="2017-04-05T06:32:38.000Z" itemprop="datePublished">2017-04-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
   </div>
 
   </div>
@@ -84,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Binary Search
+      ER model
     </h1>
   
 
@@ -92,16 +97,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文记录关于二分搜索的学习笔记</p>
-<h2 id="对有序数组的二分查找"><a href="#对有序数组的二分查找" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
-</ul>
+        <p>本文是对ER model知识点的归纳</p>
+<h2 id="ER-model"><a href="#ER-model" class="headerlink" title="ER model"></a>ER model</h2><p>Entity-Relationship model<br>Entity是能独立存在的对象。<br>Attribute是entity或relationship的属性。</p>
+<p>Entity type用方框表示；<br>Simple attribute用椭圆表示，并与Entity type相连；<br>Composite attribute也是用椭圆表示，下级attribute与上级attribute相连；<br><img src="/2017/04/05/ER-model/example1.png" alt="This is an example image" title="This is an example image"><br>Multivalued attribute用双椭圆表示；</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj14llshw0004foe974jrb44l" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/ER-model/" data-id="cj14llshf0000foe98mar3jsk" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -110,19 +113,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/03/21/sort/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          Sort
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/21/bitwise/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/04/05/Relational-Algebra/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">位运算归纳</div>
+      <div class="article-nav-title">Relational Algebra</div>
     </a>
   
 </nav>
