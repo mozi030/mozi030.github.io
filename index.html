@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
@@ -64,9 +64,70 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Functional-Dependencies" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Functional-Dependencies-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/05/Functional-Dependencies/" class="article-date">
+    <a href="/2017/04/05/Functional-Dependencies-2/" class="article-date">
+  <time datetime="2017-04-05T08:14:24.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/05/Functional-Dependencies-2/">Functional Dependencies(2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是对Functional Dependency的知识点归纳</p>
+<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>|:———-:|:——–:|:——:|<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。</p>
+<h2 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
+<p>一个好的database design有下列三个属性：</p>
+<h3 id="Lossless-decomposition"><a href="#Lossless-decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
+<h3 id="Dependency-preservation"><a href="#Dependency-preservation" class="headerlink" title="Dependency preservation"></a>Dependency preservation</h3><p>Dependencies should be preserved within each Ri , i.e., otherwise, checking updates for violation of functional dependencies may require computing joins, which is expensive.</p>
+<p>The decomposition is dependency preserving if and only if (F1 ∪ F2 ∪…∪ Fn)+ = F+ (Fi是Ri对应的FD). 若不等，意味着会失去一些FD。</p>
+<h3 id="Good-form"><a href="#Good-form" class="headerlink" title="Good form"></a>Good form</h3><p>The fragments Ri should not involve redundancy. Roughly speaking, a table has redundancy if there is a FD where the LHS is not a key.</p>
+<h4 id="1NF（第一范式）"><a href="#1NF（第一范式）" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
+<p>第一范式是为了要排除重复组的出现，所采用的方法是要求数据库的每个列的值域都是由原子值组成；<br>每个字段的值都只能是单一值。</p>
+<h4 id="2NF（第二范式）"><a href="#2NF（第二范式）" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
+<p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的字段都一定是候选键中每一个字段的函数（可由candidate key的attribute决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""></p>
+<p>e.g. For FD: { {A    →B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
+<h4 id="3NF（第三范式）"><a href="#3NF（第三范式）" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
+<p>In other words, for every FD that does not contain extraneous (useless) attributes, then:<br>(1)the LHS is a candidate key, or<br>(2)the RHS is a prime attribute, i.e., it is an attribute that is part of a candidate key</p>
+<p>e.g.若R=(B,C,E), F = { {E}→{B}, {B,C}→{E} }, candidate key is {C,E} or {B,C}<br>(1)for {E}→{B}, B is a prime attribute;<br>(2)for {B,C}→{E}, {B,C} is a candidate key</p>
+<p>一个数据表匹配第三范式当且仅当<br>(1)它匹配第二范式<br>(2)没有transitive functional dependency<br><img src="/2017/04/05/Functional-Dependencies-2/3NF.png" alt="3NF.png" title=""></p>
+<p>3NF和2NF的不同：<br>2NF allows FDs where X is not part of any candidate key</p>
+<p>3NF still has redundancy</p>
+<h4 id="BCNF-Boyce-Codd-Normal-Form"><a href="#BCNF-Boyce-Codd-Normal-Form" class="headerlink" title="BCNF(Boyce-Codd Normal Form)"></a>BCNF(Boyce-Codd Normal Form)</h4><p>Let R be a relation schema, with the set F of FDs. R is in BCNF if and only if for eachFD: X → A in F+, then<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is a superkey for R</p>
+<p>BCNF tables have no redundancy</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj14pggmv00033ae9oomguxce" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Functional-Dependencies-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/05/Functional-Dependencies-1/" class="article-date">
   <time datetime="2017-04-05T06:40:17.000Z" itemprop="datePublished">2017-04-05</time>
 </a>
     
@@ -82,7 +143,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/05/Functional-Dependencies/">Functional Dependencies</a>
+      <a class="article-title" href="/2017/04/05/Functional-Dependencies-1/">Functional Dependencies(1)</a>
     </h1>
   
 
@@ -93,7 +154,7 @@
         <p>本文是对Functional Dependency的知识点归纳</p>
 <p>A functional dependency is a constraint between two sets of attributes in a relation from a database. In other words, functional dependency is a constraint that describes the relationship between attributes in a relation.</p>
 <p>若R是一种关系表，X和Y都是attribute的集合，那么：<br>若X到Y的functional dependency存在（即X → Y，或X determines Y）等价于：若X适用于R，则Y也一定适用于R。</p>
-<p>e.g.若存在关系表：PGStudent(sid, name, supervisor_id, specialization)，那么：<br>{supervisor_id} → {specialization}意味着（1）若两学生有同一个supervisor，那他们的specialization也相同；（2）反之，若supervisor不同，则specialization也不同。</p>
+<p>e.g.若存在关系表：PGStudent(sid, name, supervisor_id, specialization)，那么：<br>{supervisor_id} → {specialization}意味着<br>（1）若两学生有同一个supervisor，那他们的specialization也相同；<br>（2）但若supervisor不同，那么我们不能确定specialization。</p>
 <h2 id="trivial"><a href="#trivial" class="headerlink" title="trivial"></a>trivial</h2><p>X → Y is trivial if Y is a subset of X. e.g.{A, B}→{A}<br>X → Y is non-trivial if Y ∩ X = ∅, e.g.{A}→{B}</p>
 <h2 id="FD是key的另一种表示"><a href="#FD是key的另一种表示" class="headerlink" title="FD是key的另一种表示"></a>FD是key的另一种表示</h2><p>对PGStudent(sid, name, supervisor_id, specialization)来说，<br>{sid} → {name, supervisor_id, specialization}<br>A set of attributes that determines the entire tuple is a superkey<br>A minimal set of attributes that determines the entire tuple is a candidate key<br>If there are multiple candidate keys, the DB designer designates one as the primary key </p>
 <h2 id="Closure-of-a-set-of-functional-dependency-F"><a href="#Closure-of-a-set-of-functional-dependency-F" class="headerlink" title="Closure of a set of functional dependency(F+)"></a>Closure of a set of functional dependency(F+)</h2><p>The set of all functional dependencies logically implied by F is the closure of F.<br>使用Armstrong’s Axioms找出所有F+<br>(1)if Y ⊆ X, then X → Y (reflexivity)<br>(2)if X → Y, then ZX → ZY (augmentation)<br>(3)if X → Y and Y → Z, then X → Z (transitivity) </p>
@@ -110,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies/" data-id="cj14mrch00000n8e934zwin1u" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-1/" data-id="cj14pggmw00043ae9vhu6hfog" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/ER-model/" data-id="cj14mlcz80001m5e93gic7nsk" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/ER-model/" data-id="cj14pggmp00013ae90mw1jd8z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Relational-Algebra/" data-id="cj14mlczf0004m5e9yy10jymx" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Relational-Algebra/" data-id="cj14pggmz00053ae92hqhgqnd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj14mlcz30000m5e982y2se66" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj14pggmj00003ae9thpxqmph" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj14mlczm0007m5e9p8c4vq5x" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj14pggn700093ae9j8w8bf38" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj14mlczq0009m5e9qz8ts27m" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj14pggnv000i3ae9fwj6xolx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -402,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj14mlczi0005m5e9v602z1vx" class="article-share-link">Partager</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj14pggn300073ae98l95bbik" class="article-share-link">Share</a>
       
       
     </footer>
@@ -419,7 +480,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li></ul>
     </div>
@@ -444,12 +505,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/04/05/Functional-Dependencies/">Functional Dependencies</a>
+            <a href="/2017/04/05/Functional-Dependencies-2/">Functional Dependencies(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/Functional-Dependencies-1/">Functional Dependencies(1)</a>
           </li>
         
           <li>
@@ -462,10 +527,6 @@
         
           <li>
             <a href="/2017/04/05/DataBase-Basic/">DataBase Basic</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/21/sort/">Sort</a>
           </li>
         
       </ul>
@@ -481,7 +542,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Ziliang, Ken, Mo<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

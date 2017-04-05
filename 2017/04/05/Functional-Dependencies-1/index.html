@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Functional Dependencies(1) | Mozi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文是对Functional Dependency的知识点归纳
+A functional dependency is a constraint between two sets of attributes in a relation from a database. In other words, functional dependency is a constraint that describ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Functional Dependencies(1)">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-1/index.html">
+<meta property="og:site_name" content="Mozi's Blog">
+<meta property="og:description" content="本文是对Functional Dependency的知识点归纳
+A functional dependency is a constraint between two sets of attributes in a relation from a database. In other words, functional dependency is a constraint that describ">
+<meta property="og:updated_time" content="2017-04-05T09:15:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Functional Dependencies(1)">
+<meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
+A functional dependency is a constraint between two sets of attributes in a relation from a database. In other words, functional dependency is a constraint that describ">
+  
+    <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mozi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Functional-Dependencies-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/05/Functional-Dependencies-1/" class="article-date">
+  <time datetime="2017-04-05T06:40:17.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Functional Dependencies(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是对Functional Dependency的知识点归纳</p>
+<p>A functional dependency is a constraint between two sets of attributes in a relation from a database. In other words, functional dependency is a constraint that describes the relationship between attributes in a relation.</p>
+<p>若R是一种关系表，X和Y都是attribute的集合，那么：<br>若X到Y的functional dependency存在（即X → Y，或X determines Y）等价于：若X适用于R，则Y也一定适用于R。</p>
+<p>e.g.若存在关系表：PGStudent(sid, name, supervisor_id, specialization)，那么：<br>{supervisor_id} → {specialization}意味着<br>（1）若两学生有同一个supervisor，那他们的specialization也相同；<br>（2）但若supervisor不同，那么我们不能确定specialization。</p>
+<h2 id="trivial"><a href="#trivial" class="headerlink" title="trivial"></a>trivial</h2><p>X → Y is trivial if Y is a subset of X. e.g.{A, B}→{A}<br>X → Y is non-trivial if Y ∩ X = ∅, e.g.{A}→{B}</p>
+<h2 id="FD是key的另一种表示"><a href="#FD是key的另一种表示" class="headerlink" title="FD是key的另一种表示"></a>FD是key的另一种表示</h2><p>对PGStudent(sid, name, supervisor_id, specialization)来说，<br>{sid} → {name, supervisor_id, specialization}<br>A set of attributes that determines the entire tuple is a superkey<br>A minimal set of attributes that determines the entire tuple is a candidate key<br>If there are multiple candidate keys, the DB designer designates one as the primary key </p>
+<h2 id="Closure-of-a-set-of-functional-dependency-F"><a href="#Closure-of-a-set-of-functional-dependency-F" class="headerlink" title="Closure of a set of functional dependency(F+)"></a>Closure of a set of functional dependency(F+)</h2><p>The set of all functional dependencies logically implied by F is the closure of F.<br>使用Armstrong’s Axioms找出所有F+<br>(1)if Y ⊆ X, then X → Y (reflexivity)<br>(2)if X → Y, then ZX → ZY (augmentation)<br>(3)if X → Y and Y → Z, then X → Z (transitivity) </p>
+<p>extend rules：<br>(1)If X → Y holds and X → Z holds, then X → YZ holds (union)<br>(2)If X → YZ holds, then X → Y holds and X → Z holds (decomposition)<br>(3)If X → Y holds and ZY → W holds, then ZX → W holds (pseudotransitivity)</p>
+<h2 id="Closure-of-attribute-set"><a href="#Closure-of-attribute-set" class="headerlink" title="Closure of attribute set"></a>Closure of attribute set</h2><p>The closure of X under F (X+) is the set of attributes that are functionally determined by X under F:<br>X → Y is in F+ ⇔ Y ⊆ X+<br>e.g.若R = {A,B,C,D,E,G}, F = { {A,B}→{C}, {C}→{A}, {B,C}→{D}, {A,C,D}→{B}, {D}→{E,G}, {B,E}→{C}, {C,G}→{B,D}, {C,E}→{A,G}}, 且X = {B,D}<br>迭代求X(n)：由X(n-1)的所有attribute所determine的attribute组成：<br>X(0) = {B,D};<br>X(1) = {B,D,E,G};<br>X(2) = {B,C,D,E,G};<br>X(3) = {A,B,C,D,E,G};<br>X(4) = X(3);<br>故X+ = X(4)</p>
+<h2 id="redundancy-of-FD"><a href="#redundancy-of-FD" class="headerlink" title="redundancy of FD"></a>redundancy of FD</h2><h3 id="redundant-dependencies"><a href="#redundant-dependencies" class="headerlink" title="redundant dependencies:"></a>redundant dependencies:</h3><p>Sets of functional dependencies may have redundant dependencies that can be inferred from the others.<br>{A}→{C} is redundant in:{ {A}→{B}, {B}→{C}, {A}→{C} }</p>
+<h3 id="redundant-attributes"><a href="#redundant-attributes" class="headerlink" title="redundant attributes"></a>redundant attributes</h3><p>There may be extraneous/redundant attributes on the LHS of a dependency:<br>Let α→β be a functional dependency in F. Attribute A is extraneous in α if F logically implies ( F - {α→β} ) ∪ { (α-A)→β }. 缺少A后依然可以用F来imply。<br>e.g. F = { {A}→{B}, {B}→{C}, {A,C}→{D} } can be simplified to { {A}→{B}, {B}→{C}, {A}→{D} }.</p>
+<p>There may be extraneous/redundant attributes on the RHS of a dependency:<br>Let α→β be a functional dependency in F. Attribute A is extraneous in β if (F - {α→β} ) ∪ { α→(β-A) } logically implies F. 缺少A后依然可以imply F。<br>e.g. F = { {A}→{B}, {B}→{C}, {A}→{C,D} } can be simplified to { {A}→{B}, {B}→{C}, {A}→{D} }</p>
+<h2 id="canonical-cover-Fc"><a href="#canonical-cover-Fc" class="headerlink" title="canonical cover(Fc)"></a>canonical cover(Fc)</h2><p>A canonical cover for F is a set of dependencies Fc such that<br>(1)F and Fc are equivalent<br>(2)Fc contains no redundancy<br>(3)Each left side of functional dependency in Fc:<br>    For instance, if we have two FD, X → Y and X → Z, we convert them to X → YZ (union).</p>
+<p>计算Fc：<br>不断迭代直到不再改变：<br>(1)union<br>(2)find redundant attribute and delete it.<br>F(0) = { A→BC, B→C, A→B, AB→C }(union)<br>F(1) = { A→BC, B→C, AB→C }(C is redundant in A→BC)<br>F(2) = { A→B, B→C, AB→C }(B is redundant in AB→C)<br>F(3) = { A→B, B→C, A→C }(union)<br>F(4) = { A→BC, B→C }(C is redundant in A→BC)<br>F(5) = { A→B, B→C }(C is redundant in A→BC)<br>Fc = F(5)</p>
+<h3 id="若要check-if-A-is-redundant-in-α-of-α→β"><a href="#若要check-if-A-is-redundant-in-α-of-α→β" class="headerlink" title="若要check if A is redundant in α of α→β,"></a>若要check if A is redundant in α of α→β,</h3><p>(1)compute ({α} – A)+ using the dependencies in F<br>(2)if ({α} – A)+ contains A, then A is redundant</p>
+<h3 id="若要check-if-B-is-redundant-in-β-of-α→β"><a href="#若要check-if-B-is-redundant-in-β-of-α→β" class="headerlink" title="若要check if B is redundant in β of α→β,"></a>若要check if B is redundant in β of α→β,</h3><p>(1)compute α+ using only the dependencies in F’ = (F - {α→β}) ∪ {α→(β-A)}<br>(2)if α+ contains B, then A is redundant</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-1/" data-id="cj14pggmw00043ae9vhu6hfog" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/05/Functional-Dependencies-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Functional Dependencies(2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/05/ER-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ER model</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/05/Functional-Dependencies-2/">Functional Dependencies(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/Functional-Dependencies-1/">Functional Dependencies(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/ER-model/">ER model</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/Relational-Algebra/">Relational Algebra</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/DataBase-Basic/">DataBase Basic</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ziliang, Ken, Mo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

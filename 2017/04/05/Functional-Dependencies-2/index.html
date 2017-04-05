@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Functional Dependencies(2) | Mozi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文是对Functional Dependency的知识点归纳
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary ||:———-:|:——–:|:——:||      1     |   clerk  |  2000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Functional Dependencies(2)">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/index.html">
+<meta property="og:site_name" content="Mozi's Blog">
+<meta property="og:description" content="本文是对Functional Dependency的知识点归纳
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary ||:———-:|:——–:|:——:||      1     |   clerk  |  2000">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/3NF.png">
+<meta property="og:updated_time" content="2017-04-05T10:32:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Functional Dependencies(2)">
+<meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary ||:———-:|:——–:|:——:||      1     |   clerk  |  2000">
+<meta name="twitter:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mozi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Functional-Dependencies-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/05/Functional-Dependencies-2/" class="article-date">
+  <time datetime="2017-04-05T08:14:24.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Functional Dependencies(2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是对Functional Dependency的知识点归纳</p>
+<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>|:———-:|:——–:|:——:|<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。</p>
+<h2 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
+<p>一个好的database design有下列三个属性：</p>
+<h3 id="Lossless-decomposition"><a href="#Lossless-decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
+<h3 id="Dependency-preservation"><a href="#Dependency-preservation" class="headerlink" title="Dependency preservation"></a>Dependency preservation</h3><p>Dependencies should be preserved within each Ri , i.e., otherwise, checking updates for violation of functional dependencies may require computing joins, which is expensive.</p>
+<p>The decomposition is dependency preserving if and only if (F1 ∪ F2 ∪…∪ Fn)+ = F+ (Fi是Ri对应的FD). 若不等，意味着会失去一些FD。</p>
+<h3 id="Good-form"><a href="#Good-form" class="headerlink" title="Good form"></a>Good form</h3><p>The fragments Ri should not involve redundancy. Roughly speaking, a table has redundancy if there is a FD where the LHS is not a key.</p>
+<h4 id="1NF（第一范式）"><a href="#1NF（第一范式）" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
+<p>第一范式是为了要排除重复组的出现，所采用的方法是要求数据库的每个列的值域都是由原子值组成；<br>每个字段的值都只能是单一值。</p>
+<h4 id="2NF（第二范式）"><a href="#2NF（第二范式）" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
+<p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的字段都一定是候选键中每一个字段的函数（可由candidate key的attribute决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""></p>
+<p>e.g. For FD: { {A    →B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
+<h4 id="3NF（第三范式）"><a href="#3NF（第三范式）" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
+<p>In other words, for every FD that does not contain extraneous (useless) attributes, then:<br>(1)the LHS is a candidate key, or<br>(2)the RHS is a prime attribute, i.e., it is an attribute that is part of a candidate key</p>
+<p>e.g.若R=(B,C,E), F = { {E}→{B}, {B,C}→{E} }, candidate key is {C,E} or {B,C}<br>(1)for {E}→{B}, B is a prime attribute;<br>(2)for {B,C}→{E}, {B,C} is a candidate key</p>
+<p>一个数据表匹配第三范式当且仅当<br>(1)它匹配第二范式<br>(2)没有transitive functional dependency<br><img src="/2017/04/05/Functional-Dependencies-2/3NF.png" alt="3NF.png" title=""></p>
+<p>3NF和2NF的不同：<br>2NF allows FDs where X is not part of any candidate key</p>
+<p>3NF still has redundancy</p>
+<h4 id="BCNF-Boyce-Codd-Normal-Form"><a href="#BCNF-Boyce-Codd-Normal-Form" class="headerlink" title="BCNF(Boyce-Codd Normal Form)"></a>BCNF(Boyce-Codd Normal Form)</h4><p>Let R be a relation schema, with the set F of FDs. R is in BCNF if and only if for eachFD: X → A in F+, then<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is a superkey for R</p>
+<p>BCNF tables have no redundancy</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj14pggmv00033ae9oomguxce" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/05/Functional-Dependencies-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Functional Dependencies(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/05/Functional-Dependencies-2/">Functional Dependencies(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/Functional-Dependencies-1/">Functional Dependencies(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/ER-model/">ER model</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/Relational-Algebra/">Relational Algebra</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/DataBase-Basic/">DataBase Basic</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ziliang, Ken, Mo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
