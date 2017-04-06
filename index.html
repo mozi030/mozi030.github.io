@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
@@ -94,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/" data-id="cj16gd6c40001nee9d1m3363a" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/" data-id="cj16gpjwf0000pze9p9b38v1p" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/06/Computational-Geometry/" data-id="cj16gd6ci0004nee9yhyoosca" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/06/Computational-Geometry/" data-id="cj16gpjws0003pze9bnwze12t" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -176,7 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是对Functional Dependency的知识点归纳</p>
-<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>| ———- | ——– | —— |<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>参数|描述<br>—|—|—<br>width|  设置layout viewport  的宽度，为一个正整数，或字符串”width-device”<br>initial-scale|  设置页面的初始缩放值，为一个数字，可以带小数<br>minimum-scale|  允许用户的最小缩放值，为一个数字，可以带小数<br>maximum-scale|  允许用户的最大缩放值，为一个数字，可以带小数<br>height| 设置layout viewport  的高度，这个属性对我们并不重要，很少使用<br>user-scalable|  是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</p>
+<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>| :———-:| ——– | —— |<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>| Left-aligned | Center-aligned | Right-aligned |<br>| :—         |     :—:      |          —: |<br>| git status   | git status     | git status    |<br>| git diff     | git diff       | git diff      |</p>
 <h2 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
 <p>一个好的database design有下列三个属性：</p>
 <h3 id="Lossless-decomposition"><a href="#Lossless-decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
@@ -200,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16gd6ck0005nee9da9kaz4k" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16gpjx50009pze9a8sm2dbb" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -256,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-1/" data-id="cj16gd6cp0009nee9nhno3qkl" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-1/" data-id="cj16gpjx20005pze9iq1b4ew9" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -299,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/ER-model/" data-id="cj16gd6cd0003nee9t920gvfl" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/ER-model/" data-id="cj16gpjx00004pze93h8oy45v" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -335,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Relational-Algebra/" data-id="cj16gd6cm0007nee9xh2rqd3c" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Relational-Algebra/" data-id="cj16gpjx30007pze94htc1tmq" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -386,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj16gd6bz0000nee9gcibfiwa" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj16gpjwl0001pze9wszxi1fr" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -431,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj16gd6cs000cnee9vf2jcuj0" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj16gpjx8000cpze9rmvqpwve" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -476,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj16gd6ct000dnee9mo4k4lfa" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/binary-search/" data-id="cj16gpjxb000fpze9qcr2ucxl" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -548,7 +548,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj16gd6cx000gnee91upt51cl" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/03/21/bitwise/" data-id="cj16gpjx7000bpze98alk0r8x" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -565,7 +565,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
     </div>
@@ -580,7 +580,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
@@ -590,7 +590,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -627,7 +627,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Ziliang, Ken, Mo<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

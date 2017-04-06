@@ -6,20 +6,20 @@
   <title>Functional Dependencies(2) | Mozi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———- | ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || :———-:| ——– | —— ||      1     |   clerk  |  2000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Functional Dependencies(2)">
 <meta property="og:url" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———- | ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || :———-:| ——– | —— ||      1     |   clerk  |  2000">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/3NF.png">
-<meta property="og:updated_time" content="2017-04-06T13:26:25.000Z">
+<meta property="og:updated_time" content="2017-04-06T14:04:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Dependencies(2)">
 <meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———- | ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || :———-:| ——– | —— ||      1     |   clerk  |  2000">
 <meta name="twitter:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
   
     <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
@@ -58,9 +58,9 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
@@ -96,7 +96,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是对Functional Dependency的知识点归纳</p>
-<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>| ———- | ——– | —— |<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>参数|描述<br>—|—|—<br>width|  设置layout viewport  的宽度，为一个正整数，或字符串”width-device”<br>initial-scale|  设置页面的初始缩放值，为一个数字，可以带小数<br>minimum-scale|  允许用户的最小缩放值，为一个数字，可以带小数<br>maximum-scale|  允许用户的最大缩放值，为一个数字，可以带小数<br>height| 设置layout viewport  的高度，这个属性对我们并不重要，很少使用<br>user-scalable|  是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</p>
+<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>| :———-:| ——– | —— |<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>| Left-aligned | Center-aligned | Right-aligned |<br>| :—         |     :—:      |          —: |<br>| git status   | git status     | git status    |<br>| git diff     | git diff       | git diff      |</p>
 <h2 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
 <p>一个好的database design有下列三个属性：</p>
 <h3 id="Lossless-decomposition"><a href="#Lossless-decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
@@ -120,7 +120,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16gd6ck0005nee9da9kaz4k" class="article-share-link">Delen</a>
+      <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16gpjx50009pze9a8sm2dbb" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -130,7 +130,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
 <nav id="article-nav">
   
     <a href="/2017/04/06/Computational-Geometry/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+      <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
           Computational Geometry
@@ -140,7 +140,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
   
   
     <a href="/2017/04/05/Functional-Dependencies-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">Functional Dependencies(1)</div>
     </a>
   
@@ -155,7 +155,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
     </div>
@@ -170,7 +170,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
@@ -180,7 +180,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -217,7 +217,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Ziliang, Ken, Mo<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
