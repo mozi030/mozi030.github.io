@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Collection,Map及其相关 | Mozi&#39;s Blog</title>
+    <title>Computational Geometry | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="study notes of programming">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Collection,Map及其相关">
-<meta property="og:url" content="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/index.html">
+    <meta name="description" content="Convex Hull（凸包）若S为平面上的点集{p1,p2,…,pn}，convex hull of S, denoted by conv(S)，是包含S的全部点的最小polygon。
+Graham’s Scan为简化为题，将平面旋转某个角度，使得任意两个点的x坐标都不同。找出leftmost与rightmost的点，这两点将conv(S)分为upper hull和lower hull两部分。一">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Computational Geometry">
+<meta property="og:url" content="https://mozi030.github.io/temp/Computational-Geometry.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="study notes of programming">
-<meta property="og:updated_time" content="2017-04-06T14:51:54.000Z">
+<meta property="og:description" content="Convex Hull（凸包）若S为平面上的点集{p1,p2,…,pn}，convex hull of S, denoted by conv(S)，是包含S的全部点的最小polygon。
+Graham’s Scan为简化为题，将平面旋转某个角度，使得任意两个点的x坐标都不同。找出leftmost与rightmost的点，这两点将conv(S)分为upper hull和lower hull两部分。一">
+<meta property="og:updated_time" content="2017-04-06T06:52:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Collection,Map及其相关">
-<meta name="twitter:description" content="study notes of programming">
+<meta name="twitter:title" content="Computational Geometry">
+<meta name="twitter:description" content="Convex Hull（凸包）若S为平面上的点集{p1,p2,…,pn}，convex hull of S, denoted by conv(S)，是包含S的全部点的最小polygon。
+Graham’s Scan为简化为题，将平面旋转某个角度，使得任意两个点的x坐标都不同。找出leftmost与rightmost的点，这两点将conv(S)分为upper hull和lower hull两部分。一">
     
 
     
@@ -63,11 +64,11 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -75,7 +76,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -96,8 +97,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -123,45 +124,39 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Java/">Java</a>
+    <em class="page-title-link" data-url="/temp/Computational-Geometry.html">Computational Geometry</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Collection-Map及其相关" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="page-undefined" class="article article-single article-type-page" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Collection,Map及其相关
+        Computational Geometry
         </h1>
     
 
             </header>
         
         
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/04/06/Collection-Map及其相关/" class="article-date">
-            <time datetime="2017-04-06T10:42:50.000Z" itemprop="datePublished">2017-04-06</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
         
         <div class="article-entry" itemprop="articleBody">
-            
+            <h2 id="Convex_Hull_uFF08_u51F8_u5305_uFF09"><a href="#Convex_Hull_uFF08_u51F8_u5305_uFF09" class="headerlink" title="Convex Hull（凸包）"></a>Convex Hull（凸包）</h2><p>若S为平面上的点集{p1,p2,…,pn}，convex hull of S, denoted by conv(S)，是包含S的全部点的最小polygon。<br></p>
+<h3 id="Graham_u2019s_Scan"><a href="#Graham_u2019s_Scan" class="headerlink" title="Graham’s Scan"></a>Graham’s Scan</h3><p>为简化为题，将平面旋转某个角度，使得任意两个点的x坐标都不同。<br>找出leftmost与rightmost的点，这两点将conv(S)分为upper hull和lower hull两部分。<br><br>一次Graham’s scan可以找出upper hull，然后同理可得lower hull。<br>(1)将S按x坐标排序。<br>(2)从左到右scan S。初始化一个stack D。<br>(3)设r为下一个scan的点：<br>    (i)若D中为空，或只有一个点，则将r放入D。<br>    (ii)若D中有两个或以上的点，则设top的点是q，第二top的点是p，<br>        若p→q→r是右转，则将r放入D；<br>        若p→q→r是左转或直线，则将q pop出来，重复(i)到(ii)知道r被放入D中。<br>(4)遍历完S后D即为upper hull。<br></p>
+<p>右转的判断：<br>先求pq的直线方程y = k(x - px) + py, k = (qy - py) / (qx - px)。<br>然后把rx代入，判断k(rx - px) + py &gt; ry是否成立。<br>或者用行列式：<br><br>Time complexity取决于排序时间，n log(n)。</p>
+<h3 id="u5206_u6CBB_u6CD5"><a href="#u5206_u6CBB_u6CD5" class="headerlink" title="分治法"></a>分治法</h3><p>把S排序后分为左右两份，对每份计算其conv，之后合并。<br>设左半部分为S1，右半部分为S2，S1的rightmost的点是p，S2的leftmost的点是q。规定p在下面遍历中逆时针移动，q则顺时针移动。<br>(1)若r为q的下一个移动点，判断p→q→r是否右转，若否则q移动到r。不断重复直到p→q→r是右转。<br><br>(2)移动p，另r为p的下一个移动点，若q→p→r是右转，若否则p移动到r。不断重复直到q→p→r不是右转。<br>(3)若不能再移动p或q了，则pq is the upper outer tangent of conv(S1) and conv(S2)。<br><br>同理可得lower outer tangent of conv(S1) and conv(S2)。</p>
+<p>Time Complexity: 合并需要O(n)，则整个算法需要n log(n)。</p>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/" data-id="cj16iz2ae00056ge9j89pqkxi" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/temp/Computational-Geometry.html" data-id="cj16iqrkr00064ie9v39g6dj3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -241,7 +236,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -295,19 +290,6 @@
         </ul>
     </div>
     
-        
-<nav id="article-nav">
-    
-    
-        <a href="/2017/04/06/Computational-Geometry/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">Computational Geometry</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
     <div class="widgets-container">
         
             
@@ -320,27 +302,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/06/Collection-Map及其相关/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/04/06/Collection-Map及其相关/" class="title">Collection,Map及其相关</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T10:42:50.000Z" itemprop="datePublished">2017-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/06/Computational-Geometry/" class="thumbnail">
+                            <a href="/2017/03/21/Binary-Search/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -352,68 +314,8 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/04/06/Computational-Geometry/" class="title">Computational Geometry</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T05:48:03.000Z" itemprop="datePublished">2017-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/Functional-Dependencies-2/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-2/" class="title">Functional Dependencies(2)</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T08:14:24.000Z" itemprop="datePublished">2017-04-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/Functional-Dependencies-1/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-1/" class="title">Functional Dependencies(1)</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T06:40:17.000Z" itemprop="datePublished">2017-04-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/ER-model/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/ER-model/" class="title">ER model</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T06:32:38.000Z" itemprop="datePublished">2017-04-05</time></p>
+                            <p class="item-title"><a href="/2017/03/21/Binary-Search/" class="title">Binary Search</a></p>
+                            <p class="item-date"><time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time></p>
                         </div>
                     </li>
                 
@@ -426,7 +328,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -434,9 +336,9 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -490,7 +392,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/04/06/Collection-Map及其相关/';
+    var disqus_url = 'https://mozi030.github.io/temp/Computational-Geometry.html';
     
     (function() {
     var dsq = document.createElement('script');

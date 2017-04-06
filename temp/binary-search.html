@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Collection,Map及其相关 | Mozi&#39;s Blog</title>
+    <title>Binary Search | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="study notes of programming">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Collection,Map及其相关">
-<meta property="og:url" content="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/index.html">
+    <meta name="description" content="本文记录关于二分搜索的学习笔记
+对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Binary Search">
+<meta property="og:url" content="https://mozi030.github.io/temp/binary-search.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="study notes of programming">
-<meta property="og:updated_time" content="2017-04-06T14:51:54.000Z">
+<meta property="og:description" content="本文记录关于二分搜索的学习笔记
+对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+<meta property="og:updated_time" content="2017-03-21T16:02:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Collection,Map及其相关">
-<meta name="twitter:description" content="study notes of programming">
+<meta name="twitter:title" content="Binary Search">
+<meta name="twitter:description" content="本文记录关于二分搜索的学习笔记
+对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
     
 
     
@@ -63,11 +64,11 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -75,7 +76,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -96,8 +97,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -123,45 +124,39 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Java/">Java</a>
+    <em class="page-title-link" data-url="/temp/binary-search.html">Binary Search</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Collection-Map及其相关" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="page-undefined" class="article article-single article-type-page" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Collection,Map及其相关
+        Binary Search
         </h1>
     
 
             </header>
         
         
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/04/06/Collection-Map及其相关/" class="article-date">
-            <time datetime="2017-04-06T10:42:50.000Z" itemprop="datePublished">2017-04-06</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
         
         <div class="article-entry" itemprop="articleBody">
-            
+            <p>本文记录关于二分搜索的学习笔记</p>
+<h2 id="u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E"><a href="#u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
+</ul>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/06/Collection-Map及其相关/" data-id="cj16iz2ae00056ge9j89pqkxi" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/temp/binary-search.html" data-id="cj16iqrkz00094ie96z3kvsxi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -241,7 +236,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -295,19 +290,6 @@
         </ul>
     </div>
     
-        
-<nav id="article-nav">
-    
-    
-        <a href="/2017/04/06/Computational-Geometry/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">Computational Geometry</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
-    
     <div class="widgets-container">
         
             
@@ -320,27 +302,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/06/Collection-Map及其相关/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/04/06/Collection-Map及其相关/" class="title">Collection,Map及其相关</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T10:42:50.000Z" itemprop="datePublished">2017-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/06/Computational-Geometry/" class="thumbnail">
+                            <a href="/2017/03/21/Binary-Search/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -352,68 +314,8 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/04/06/Computational-Geometry/" class="title">Computational Geometry</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T05:48:03.000Z" itemprop="datePublished">2017-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/Functional-Dependencies-2/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-2/" class="title">Functional Dependencies(2)</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T08:14:24.000Z" itemprop="datePublished">2017-04-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/Functional-Dependencies-1/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-1/" class="title">Functional Dependencies(1)</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T06:40:17.000Z" itemprop="datePublished">2017-04-05</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/05/ER-model/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/05/ER-model/" class="title">ER model</a></p>
-                            <p class="item-date"><time datetime="2017-04-05T06:32:38.000Z" itemprop="datePublished">2017-04-05</time></p>
+                            <p class="item-title"><a href="/2017/03/21/Binary-Search/" class="title">Binary Search</a></p>
+                            <p class="item-date"><time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time></p>
                         </div>
                     </li>
                 
@@ -426,7 +328,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -434,9 +336,9 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -490,7 +392,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/04/06/Collection-Map及其相关/';
+    var disqus_url = 'https://mozi030.github.io/temp/binary-search.html';
     
     (function() {
     var dsq = document.createElement('script');
