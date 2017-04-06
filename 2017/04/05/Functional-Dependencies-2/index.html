@@ -9,19 +9,19 @@
         <meta name="keywords" content="" />
     
     <meta name="description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———-| ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary|EmployeeId|Position|Salary||—–|—-|—-||1|clerk|2000||2|clerk|2000||3|manager|4000||4|">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Functional Dependencies(2)">
 <meta property="og:url" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———-| ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary|EmployeeId|Position|Salary||—–|—-|—-||1|clerk|2000||2|clerk|2000||3|manager|4000||4|">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
-<meta property="og:updated_time" content="2017-04-06T14:59:48.000Z">
+<meta property="og:updated_time" content="2017-04-06T16:12:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Dependencies(2)">
 <meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
-Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary| EmployeeId | Position | Salary || ———-| ——– | —— ||      1     |   clerk  |  2000">
+Functional dependencies can be used to refine ER diagramse.g.若有FD：position → salary|EmployeeId|Position|Salary||—–|—-|—-||1|clerk|2000||2|clerk|2000||3|manager|4000||4|">
 <meta name="twitter:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
     
 
@@ -68,11 +68,11 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Accueil</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">À propos</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                         </ul>
@@ -80,7 +80,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -99,10 +99,10 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Articles',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Catégories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -160,7 +160,8 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
         
         <div class="article-entry" itemprop="articleBody">
             <p>本文是对Functional Dependency的知识点归纳</p>
-<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>| EmployeeId | Position | Salary |<br>| ———-| ——– | —— |<br>|      1     |   clerk  |  2000  |<br>|      2     |   clerk  |  2000  |<br>|      3     |  manager |  4000  |<br>|      4     |  manager |  4000  |<br>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>| Left-aligned | Center-aligned | Right-aligned |<br>| :—         |     :—:      |          —: |<br>| git status   | git status     | git status    |<br>| git diff     | git diff       | git diff      |</p>
+<p>Functional dependencies can be used to refine ER diagrams<br>e.g.若有FD：position → salary<br>|EmployeeId|Position|Salary|<br>|—–|—-|—-|<br>|1|clerk|2000|<br>|2|clerk|2000|<br>|3|manager|4000|<br>|4|manager|4000|</p>
+<p>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。<br>| Left-aligned | Center-aligned | Right-aligned |<br>| :—         |     :—:      |          —: |<br>| git status   | git status     | git status    |<br>| git diff     | git diff       | git diff      |</p>
 <h2 id="Decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
 <p>一个好的database design有下列三个属性：</p>
 <h3 id="Lossless_decomposition"><a href="#Lossless_decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
@@ -187,7 +188,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16k12yd000ed6e9dmesr96v" class="article-share-link"><i class="fa fa-share"></i>Partager</a>
+    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj16lmr76000cp4e984a0x4x0" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -267,7 +268,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>suivre:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -296,7 +297,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
             
                 
                 <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                    <a class="social-tooltip" title="github" href="https://github.com/mozi030" target="_blank">
                         <i class="icon fa fa-github"></i>
                     </a>
                 </li>
@@ -325,7 +326,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
 <nav id="article-nav">
     
         <a href="/2017/04/06/Computational-Geometry/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">+ récent</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             Computational Geometry
@@ -336,7 +337,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
     
     
         <a href="/2017/04/05/Functional-Dependencies-1/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">- récent</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">Functional Dependencies(1)</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -349,7 +350,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">récents</h3>
+        <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
                 
@@ -460,7 +461,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">catégories</h3>
+        <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
         </div>
@@ -470,7 +471,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
@@ -486,7 +487,7 @@ Functional dependencies can be used to refine ER diagramse.g.若有FD：position
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">liens</h3>
+        <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
                 
