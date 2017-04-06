@@ -81,11 +81,11 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -93,7 +93,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -114,8 +114,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -173,21 +173,21 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p>本文为本人归纳的实用位操作算法知识。</p>
-<h2 id="位运算符"><a href="#u4F4D_u8FD0_u7B97_u7B26" class="headerlink" title="位运算符"></a>位运算符</h2><p>左移&lt;&lt;<br>右移&gt;&gt;<br>与&amp;<br>或|<br>异或^<br>非~</p>
-<h2 id="基本功能"><a href="#u57FA_u672C_u529F_u80FD" class="headerlink" title="基本功能"></a>基本功能</h2><h3 id="amp"><a href="#26amp_3B" class="headerlink" title="&amp;"></a>&amp;</h3><ul>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>左移&lt;&lt;<br>右移&gt;&gt;<br>与&amp;<br>或|<br>异或^<br>非~</p>
+<h2 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h2><h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><ul>
 <li>0与任何数取&amp;，得0</li>
 <li>1与任何数取&amp;，不变</li>
 <li>判断一个数某一位是否为1，<br>如判断最后一位是否为1：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_is_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>单独提取某1位，<br>如提取最后一位<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_last_bit</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id=""><a href="#7C" class="headerlink" title="|"></a>|</h3></li>
+<h3 id=""><a href="#" class="headerlink" title="|"></a>|</h3></li>
 <li>0与任何数取|，不变</li>
 <li>1与任何数取|，得1</li>
 <li>将某一位强制标记为1，<br>如将最后一位标记为1：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">force_to_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	n | <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id=""><a href="#5E" class="headerlink" title="^"></a>^</h3></li>
+<h3 id=""><a href="#-1" class="headerlink" title="^"></a>^</h3></li>
 <li>两数相同为0，不同为1</li>
 <li>对1作异或相当于取反<br>如将最后一位取反：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">force_to_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	n ^ <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="~"><a href="#7E" class="headerlink" title="~"></a>~</h3></li>
-<li>将0，1互换<h2 id="性质"><a href="#u6027_u8D28" class="headerlink" title="性质"></a>性质</h2>交换律<br>a|b = b|a<br>a&amp;b = b&amp;a<br>a^b = b^a</li>
+<h3 id="~"><a href="#-2" class="headerlink" title="~"></a>~</h3></li>
+<li>将0，1互换<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2>交换律<br>a|b = b|a<br>a&amp;b = b&amp;a<br>a^b = b^a</li>
 </ul>
 <p>结合律<br>(a|b)|c = a|(b|c)<br>(a&amp;b)&amp;c = a&amp;(b&amp;c)<br>(a^b)^c = a^(b^c)</p>
 <p>分配律(其他类推)<br>a&amp;(b|c) = (a&amp;b)|(a&amp;c)<br>a^(b|c)=(a^b)|(a^c)</p>
@@ -197,8 +197,8 @@
 <li>判断一个整数是否2的n次方<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_pow_of_2</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; -n) == n;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>判断一个数的奇偶性<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_odd</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> ~(x &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>平方根倒数<br><a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf" target="_blank" rel="external">FAST INVERSE SQUARE ROOT</a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">inv_sqrt</span><span class="params">(<span class="keyword">float</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">float</span> x_half = <span class="number">0.5f</span> * x;</div><div class="line">	<span class="keyword">int</span> i = * (<span class="keyword">int</span>* ) &amp; x;</div><div class="line">	i = <span class="number">0x5f3759df</span> - (i&gt;&gt;<span class="number">1</span>);</div><div class="line">	x = * (<span class="keyword">float</span>* ) &amp; i;</div><div class="line">	x = x * (<span class="number">1.5f</span> - x_half * x * x);</div><div class="line">	<span class="keyword">return</span> x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="classic-problem"><a href="#classic_problem" class="headerlink" title="classic problem"></a>classic problem</h2><h3 id="single-number"><a href="#Single_Number" class="headerlink" title="Single Number"></a><a href="https://leetcode.com/problems/single-number/#/description" target="_blank" rel="external">Single Number</a></h3>Given an array of integers, every element appears twice except for one. Find that single one.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; nums.size(); i++) &#123;</div><div class="line">            temp ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> temp;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-用临时变量temp来记录已经遍历过的数字，利用异或^的性质（同数异或得0，即遇到相同时可被消去）以及位操作的交换律（后面的数字可以消去前面的相同的数字），得出最后不能被消去的single number。<h3 id="single-number-general-solution"><a href="#Single_Number_general_solution" class="headerlink" title="Single Number general solution"></a><a href="https://leetcode.com/problems/single-number-ii/#/solutions" target="_blank" rel="external">Single Number general solution</a></h3>Given an array of integers, every element appears m times except for one, which appears exactly n(n &lt; m). Find that single one.</li>
+<h2 id="classic-problem"><a href="#classic-problem" class="headerlink" title="classic problem"></a>classic problem</h2><h3 id="single-number"><a href="#Single-Number" class="headerlink" title="Single Number"></a><a href="https://leetcode.com/problems/single-number/#/description" target="_blank" rel="external">Single Number</a></h3>Given an array of integers, every element appears twice except for one. Find that single one.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; nums.size(); i++) &#123;</div><div class="line">            temp ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> temp;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+用临时变量temp来记录已经遍历过的数字，利用异或^的性质（同数异或得0，即遇到相同时可被消去）以及位操作的交换律（后面的数字可以消去前面的相同的数字），得出最后不能被消去的single number。<h3 id="single-number-general-solution"><a href="#Single-Number-general-solution" class="headerlink" title="Single Number general solution"></a><a href="https://leetcode.com/problems/single-number-ii/#/solutions" target="_blank" rel="external">Single Number general solution</a></h3>Given an array of integers, every element appears m times except for one, which appears exactly n(n &lt; m). Find that single one.</li>
 <li>思路类似上题，我们需要找出一种位操作，使得3个相同的数在操作后会被消去（等于0）。<br>以m = 3, n = 1为例。当m = 3，状态则有3个，0分别表示某数字没出现过，1表示出现了一次，2表示出现了2次。当出现第3次的时候，我们要把它消去，状态回归0。<br>因为有3个状态，我们需要两个临时变量（a，b）来储存，定义状态转换表（设c为当前输入）：<br>(a,b)  c  result_(a,b)<br>(0,0)  0     (0,0)<br>(0,1)  0     (0,1)<br>(1,0)  0     (1,0)<br>(0,0)  1     (0,1)<br>(0,1)  1     (1,0)<br>(1,0)  1     (0,0)<br>解释：若输入c为0，则状态不变，若输入c为1，则状态变为下一个状态，(0,0)-&gt;(0,1), (0,1)-&gt;(1,0), or (1,0)-&gt;(0,0)</li>
 <li>每轮循环中更新a和b的规则：<br>若输入c为0，a和b不变，我们只需考虑a和b为1的情况。<br>要令a为1，只有两种可能(a,b,c) = (1,0,0) or (0,1,1)，故a = (a&amp;(~b)&amp;(~c))|((~a)&amp;b&amp;c)<br>要令b为1，只有两种可能(a,b,c) = (0,1,0) or (0,0,1)，故b = ((~a)&amp;b&amp;(~c))|((~a)&amp;(~b)&amp;c)</li>
 <li>c++代码：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> b = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">int</span> c = nums[i];</div><div class="line">            <span class="keyword">int</span> temp = (a&amp;(~b)&amp;(~c))|((~a)&amp;b&amp;c);</div><div class="line">            b = ((~a)&amp;b&amp;(~c))|((~a)&amp;(~b)&amp;c);</div><div class="line">            a = temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
@@ -211,7 +211,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/Bitwise/" data-id="cj16mb3h60001ume91s5wfgp2" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/03/21/Bitwise/" data-id="cj16rjnyq0001n6e9ehiww84o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -291,7 +291,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -349,7 +349,7 @@
 <nav id="article-nav">
     
         <a href="/2017/03/21/Binary-Search/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
+        <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
             Binary Search
@@ -488,7 +488,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>

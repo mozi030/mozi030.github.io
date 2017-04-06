@@ -69,11 +69,11 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -81,7 +81,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -102,8 +102,8 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -162,15 +162,15 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
         <div class="article-entry" itemprop="articleBody">
             <p>本文记录对数据库基本概念的归纳</p>
 <h2 id="dbms"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h2><p>是一种针对对象数据库，为管理数据库而设计的大型电脑软件管理系统。具有代表性的数据管理系统有：Oracle、Microsoft SQL Server、Access、MySQL及PostgreSQL等</p>
-<h1 id="传统文件系统的弱点"><a href="#u4F20_u7EDF_u6587_u4EF6_u7CFB_u7EDF_u7684_u5F31_u70B9_uFF1A" class="headerlink" title="传统文件系统的弱点："></a>传统文件系统的弱点：</h1><p>1.操作非原子性。<br>2.并发性操作可能导致错误结果，或效率降低。<br>3.安全性问题。<br>4.非用户友好：当下列情况发生，可能需要更改程序：<br>硬件更换，用B-tree结构或hash file存储，data partition，更换存储格式，数据迁移，增加数据属性。<br>DBMS是一种对数据存储的抽象，能较好解决这些问题。</p>
+<h1 id="传统文件系统的弱点"><a href="#传统文件系统的弱点：" class="headerlink" title="传统文件系统的弱点："></a>传统文件系统的弱点：</h1><p>1.操作非原子性。<br>2.并发性操作可能导致错误结果，或效率降低。<br>3.安全性问题。<br>4.非用户友好：当下列情况发生，可能需要更改程序：<br>硬件更换，用B-tree结构或hash file存储，data partition，更换存储格式，数据迁移，增加数据属性。<br>DBMS是一种对数据存储的抽象，能较好解决这些问题。</p>
 <h2 id="ddl"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><p>Data Definition Language:<br>负责数据结构定义与数据库对象定义的语言, 由CREATE、ALTER与DROP三个语法所组成</p>
 <h2 id="dml"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><p>负责对数据库对象运行数据访问工作的指令集，以INSERT、UPDATE、DELETE三种指令为核心，分别代表插入、更新与删除，是开发以数据为中心的应用程序必定会使用到的指令，因此有很多开发人员都把加上SQL的SELECT语句的四大指令以“CRUD”来称呼</p>
-<h2 id="事务transaction"><a href="#u4E8B_u52A1transaction" class="headerlink" title="事务transaction"></a>事务transaction</h2><p>事务是数据库管理系统执行过程中的一个逻辑单位，包含多个数据库操作。</p>
+<h2 id="事务transaction"><a href="#事务transaction" class="headerlink" title="事务transaction"></a>事务transaction</h2><p>事务是数据库管理系统执行过程中的一个逻辑单位，包含多个数据库操作。</p>
 <p>事务的执行具有4个特征：ACID</p>
-<h1 id="原子性atomicity"><a href="#u539F_u5B50_u6027_uFF08atomicity_uFF09" class="headerlink" title="原子性（atomicity）"></a>原子性（atomicity）</h1><p>一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。<br>在现实情况下，失败的风险很高。在一个数据库事务的执行过程中，有可能会遇上事务操作失败、数据库系统/操作系统失败，甚至是存储介质失败等情况。这便需要DBMS对一个执行失败的事务执行恢复操作，将其数据库状态恢复到一致状态（数据的一致性得到保证的状态）。为了实现将数据库状态恢复到一致状态的功能，DBMS通常需要维护事务日志以追踪事务中所有影响数据库数据的操作。</p>
-<h1 id="一致性consistency"><a href="#u4E00_u81F4_u6027_uFF08consistency_uFF09" class="headerlink" title="一致性（consistency）"></a>一致性（consistency）</h1><p>在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</p>
-<h1 id="隔离性isolation"><a href="#u9694_u79BB_u6027_uFF08isolation_uFF09" class="headerlink" title="隔离性（isolation）"></a>隔离性（isolation）</h1><p>数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</p>
-<h1 id="持久性durability"><a href="#u6301_u4E45_u6027_uFF08durability_uFF09" class="headerlink" title="持久性（durability）"></a>持久性（durability）</h1><p>事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</p>
+<h1 id="原子性atomicity"><a href="#原子性（atomicity）" class="headerlink" title="原子性（atomicity）"></a>原子性（atomicity）</h1><p>一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。<br>在现实情况下，失败的风险很高。在一个数据库事务的执行过程中，有可能会遇上事务操作失败、数据库系统/操作系统失败，甚至是存储介质失败等情况。这便需要DBMS对一个执行失败的事务执行恢复操作，将其数据库状态恢复到一致状态（数据的一致性得到保证的状态）。为了实现将数据库状态恢复到一致状态的功能，DBMS通常需要维护事务日志以追踪事务中所有影响数据库数据的操作。</p>
+<h1 id="一致性consistency"><a href="#一致性（consistency）" class="headerlink" title="一致性（consistency）"></a>一致性（consistency）</h1><p>在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</p>
+<h1 id="隔离性isolation"><a href="#隔离性（isolation）" class="headerlink" title="隔离性（isolation）"></a>隔离性（isolation）</h1><p>数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</p>
+<h1 id="持久性durability"><a href="#持久性（durability）" class="headerlink" title="持久性（durability）"></a>持久性（durability）</h1><p>事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</p>
 
         </div>
         <footer class="article-footer">
@@ -178,7 +178,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj16mb3ho0005ume9pxqpnpop" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/" data-id="cj16rjnz80005n6e9uq5bgmbl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -258,7 +258,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -316,7 +316,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
 <nav id="article-nav">
     
         <a href="/2017/04/05/Relational-Algebra/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
+        <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
             Relational Algebra
@@ -327,7 +327,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
     
     
         <a href="/2017/03/21/sort/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
+        <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">Sort</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -461,7 +461,7 @@ DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>

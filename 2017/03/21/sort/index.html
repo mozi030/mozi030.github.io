@@ -66,11 +66,11 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -78,7 +78,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -99,8 +99,8 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -158,7 +158,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         
         <div class="article-entry" itemprop="articleBody">
             <p>本文记录各种排序算法</p>
-<h2 id="merge-sort"><a href="#merge_sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="merge-sort"><a href="#merge-sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <ul>
 <li>Time complexity:<br>T(n) &lt;= 2 <em> T(n / 2) + O(n)<br>   &lt;= 2 </em> (2 <em> T(n / 4) + O(n / 2)) + O(n) = 4 </em> T(n / 4) + 2 <em> O(n)<br>   &lt;= ……<br>   &lt;= 2<sup>k</sup> </em> T(n / 2<sup>k</sup>) + k <em> O(n)<br>So T(n) &lt;= O(n </em> log(n))</li>
 </ul>
@@ -169,7 +169,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj16mb3i3000gume9c18s1aia" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj16rjnzm000gn6e9mqpeoqo2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -249,7 +249,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -307,7 +307,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
 <nav id="article-nav">
     
         <a href="/2017/04/05/DataBase-Basic/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
+        <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
             DataBase Basic
@@ -318,7 +318,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
     
     
         <a href="/2017/03/21/Binary-Search/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
+        <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">Binary Search</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -452,7 +452,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>

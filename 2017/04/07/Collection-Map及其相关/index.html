@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="本文归纳Collection和Map的相关类的源码归纳
 本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
-<meta property="og:updated_time" content="2017-04-06T18:45:47.000Z">
+<meta property="og:updated_time" content="2017-04-06T18:55:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection-Map及其相关">
 <meta name="twitter:description" content="本文归纳Collection和Map的相关类的源码归纳
@@ -66,11 +66,11 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -78,7 +78,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -99,8 +99,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -477,11 +477,24 @@
 </tr>
 </tbody>
 </table>
-<p>新增方法：<br>|方法|备注|<br>|—|—|<br>|abstract public E get(int index)||</p>
+<p>新增方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abstract public E get(int index)</td>
+</tr>
+</tbody>
+</table>
 <p>(1)其set、add、remove函数均抛出错误，get函数只作了声明，这些都需要其子类来修改。<br>(2)不再使用原Collection中的Iterator，而是新建了内部类：<br>private class Itr implements Iterator<e><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">   <span class="keyword">int</span> cursor = <span class="number">0</span>; <span class="comment">//Index of element to be returned by subsequent call to next.</span></div><div class="line">   <span class="keyword">int</span> lastRet = -<span class="number">1</span>;<span class="comment">//element Index returned by most recent call to next or previous</span></div><div class="line">   <span class="keyword">int</span> expectedModCount = modCount;<span class="comment">//检测modCount在Iterator操作中不变</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> cursor != size();&#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           E next = get(cursor);</div><div class="line">           lastRet = cursor;</div><div class="line">           cursor++;</div><div class="line">           <span class="keyword">return</span> next;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           checkForComodification();</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           AbstractList.<span class="keyword">this</span>.remove(lastRet);</div><div class="line">           <span class="keyword">if</span> (lastRet &lt; cursor)</div><div class="line">               cursor--;</div><div class="line">           lastRet = -<span class="number">1</span>;</div><div class="line">           expectedModCount = modCount;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></e></p>
 <p>注意不能在iterator遍历时中用arraylist.remove()，要用iterator内置的remove。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    arraylist.remove(integer); <span class="comment">//没有更新cursor和lastRet</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>以上代码是错误的，因arraylist.remove不会改变cursor与lastRet的值，而会改变modCount。<br>在第二次使用hasNext时因修改了size，所以还是会返回true，但第二次iterator.next()时会有ConcurrentModificationException，这种情况相当于在iterator循环的同时有别的线程更改了arraylist。<br>因此我们需要用Iterator.remove来删除Iterator的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    iterator.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>注意必须要用next获取当前值后才remove当前值。<br>(3)ListItr:<br>private class ListItr extends Itr implements ListIterator<e><br>是在Itr上扩展了previous指针，实现原理与Itr相同。其实现了ListIterator中的下列方法：</e></p>
+<p>注意必须要用next获取当前值后才remove当前值，hasNext并不移动游标cursor。<br>(3)ListItr:<br>private class ListItr extends Itr implements ListIterator<e><br>是在Itr上扩展了previous指针，实现原理与Itr相同。其实现了ListIterator中的下列方法：</e></p>
 <table>
 <thead>
 <tr>
@@ -528,7 +541,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj16mb3hc0003ume948j70qqk" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj16rjnyx0003n6e9795g7kas" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -608,7 +621,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -667,7 +680,7 @@
     
     
         <a href="/2017/04/06/Computational-Geometry/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
+        <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">Computational Geometry</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -801,7 +814,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
