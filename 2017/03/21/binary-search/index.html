@@ -158,7 +158,7 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p>本文记录关于二分搜索的学习笔记</p>
-<h2 id="u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E"><a href="#u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="对有序数组的二分查找"><a href="#u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
 </ul>
@@ -169,7 +169,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/Binary-Search/" data-id="cj16lmr6g0000p4e9d7f7w18r" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/03/21/Binary-Search/" data-id="cj16mb3gp0000ume912drn259" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -338,7 +338,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/06/Collection-Map及其相关/" class="thumbnail">
+                            <a href="/2017/04/07/Collection-Map及其相关/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -350,8 +350,8 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/04/06/Collection-Map及其相关/" class="title">Collection,Map及其相关</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T10:42:50.000Z" itemprop="datePublished">2017-04-06</time></p>
+                            <p class="item-title"><a href="/2017/04/07/Collection-Map及其相关/" class="title">Collection-Map及其相关</a></p>
+                            <p class="item-date"><time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time></p>
                         </div>
                     </li>
                 

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Collection-Map及其相关 | Mozi&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="本文归纳Collection和Map的相关类的源码归纳
+本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collection-Map及其相关">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/index.html">
+<meta property="og:site_name" content="Mozi's Blog">
+<meta property="og:description" content="本文归纳Collection和Map的相关类的源码归纳
+本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
+<meta property="og:updated_time" content="2017-04-06T18:45:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Collection-Map及其相关">
+<meta name="twitter:description" content="本文归纳Collection和Map的相关类的源码归纳
+本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
+    
+
+    
+        <link rel="alternate" href="/" title="Mozi&#39;s Blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java/">Java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Collection-Map及其相关" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Collection-Map及其相关
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/04/07/Collection-Map及其相关/" class="article-date">
+            <time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>本文归纳Collection和Map的相关类的源码归纳</p>
+<p>本文包含以下类的源码分析：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line">2.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">3.<span class="title">public</span> <span class="title">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">4.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</div><div class="line">5.<span class="title">public</span> <span class="title">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">6.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">7.<span class="title">public</span> <span class="title">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">8.<span class="title">public</span> <span class="title">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line">9.<span class="title">public</span> <span class="title">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">10.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line">11.<span class="title">public</span> <span class="title">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">12.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">13.<span class="title">public</span> <span class="title">interface</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line">14.<span class="title">public</span> <span class="title">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">15.<span class="title">public</span> <span class="title">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">16.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">17.<span class="title">public</span> <span class="title">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></div><div class="line">18.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">19.<span class="title">public</span> <span class="title">class</span> <span class="title">Hashtable</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">20.<span class="title">public</span> <span class="title">class</span> <span class="title">TreeMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">21.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="1collection"><a href="#1-Collection" class="headerlink" title="1.Collection"></a>1.Collection</h2><p>public interface Collection<e> extends Iterable<e><br>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的”子接口”如List和Set。<br>方法：</e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int size()</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>Iterator<e> iterator()</e></td>
+<td></td>
+</tr>
+<tr>
+<td>Object[] toArray()</td>
+<td></td>
+</tr>
+<tr>
+<td><t> T[] toArray(T[] a)</t></td>
+<td></td>
+</tr>
+<tr>
+<td>boolean add(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean containsAll(Collection&lt;?&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean addAll(Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean removeAll(Collection&lt;?&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>default boolean removeIf(Predicate&lt;? super E&gt; filter)</td>
+<td>return true if any elements were removed</td>
+</tr>
+<tr>
+<td>boolean retainAll(Collection&lt;?&gt; c)</td>
+<td>只保留在c中的元素</td>
+</tr>
+<tr>
+<td>void clear()</td>
+</tr>
+</tbody>
+</table>
+<p>(1)所有实现Collection接口的类都必须提供两个标准的构造函数：无参数的构造函数用于创建一个空的Collection，有一个 Collection参数的构造函数用于创建一个新的Collection，这个新的Collection与传入的Collection有相同的元素，相当于深复制。下文省略对其构造函数的描述。<br>(2)Collection中没有get、set方法，get、set方法由子类List声明。<br>(3)而Collection靠引入Iterator来提供遍历方法:<br>public interface Iterator<e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean hasNext()</td>
+<td></td>
+</tr>
+<tr>
+<td>E next()</td>
+<td></td>
+</tr>
+<tr>
+<td>default void remove()</td>
+<td>throw new UnsupportedOperationException(“remove”)</td>
+</tr>
+</tbody>
+</table>
+<p>Iterator的遍历：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Iterator it = collection.iterator(); <span class="comment">// 获得一个迭代子</span></div><div class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">	Object obj = it.next(); <span class="comment">// 得到下一个元素</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>(4)但是Collection的iterator只提供遍历的方法，没有使用Iterator来修改数据，且其remove函数只跑出错误，需要其子类来重写。</p>
+<h2 id="2abstractcollection"><a href="#2-AbstractCollection" class="headerlink" title="2.AbstractCollection"></a>2.AbstractCollection</h2><p>public abstract class AbstractCollection<e> implements Collection<e></e></e></p>
+<p>AbstractCollection使用Iterator实现了Collection中的这些接口：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public boolean isEmpty()</td>
+<td>return size() == 0</td>
+</tr>
+<tr>
+<td>public boolean contains(Object o)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public Object[] toArray()</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public <t> T[] toArray(T[] a)</t></td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public boolean add(E e)</td>
+<td>throw new UnsupportedOperationException()</td>
+</tr>
+<tr>
+<td>public boolean remove(Object o)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public boolean containsAll(Collection&lt;?&gt; c)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public boolean addAll(Collection&lt;? extends E&gt; c)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public boolean removeAll(Collection&lt;?&gt; c)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public boolean retainAll(Collection&lt;?&gt; c)</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public void clear()</td>
+<td>用iterator实现</td>
+</tr>
+<tr>
+<td>public String toString()</td>
+<td>用iterator实现</td>
+</tr>
+</tbody>
+</table>
+<p>(1)AbstractCollection依然没有声明/实现get、set方法；<br>(2)其用Iterator实现了多种修改数据的方法，但是其并没有修改Collection中的Iterator，因此Iterator中的remove依然是{throw new UnsupportedOperationException(“remove”);}；<br>(3)其add方法throw new UnsupportedOperationException()，需要其子类ArrayList中把add重写；<br>(4)java不允许直接实例化AbstractCollection，其构造函数为protected。</p>
+<h2 id="3list"><a href="#3-List" class="headerlink" title="3.List"></a>3.List</h2><p>public interface List<e> extends Collection<e></e></e></p>
+<p>List还是一个interface，其描述一个有序的Collection，而且比Collection新增了用index来操作数据的方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>default void replaceAll(UnaryOperator<e> operator)</e></td>
+<td>用ListIterator</td>
+</tr>
+<tr>
+<td>default void sort(Comparator&lt;? super E&gt; c)</td>
+<td>用toArray转为Object[]、Arrays.sort再用ListIterator保存</td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td></td>
+</tr>
+<tr>
+<td>E set(int index, E element)</td>
+<td></td>
+</tr>
+<tr>
+<td>void add(int index, E element)</td>
+<td></td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td></td>
+</tr>
+<tr>
+<td>int indexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>int lastIndexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>ListIterator<e> listIterator()</e></td>
+<td></td>
+</tr>
+<tr>
+<td>ListIterator<e> listIterator(int index)</e></td>
+<td></td>
+</tr>
+<tr>
+<td>List<e> subList(int fromIndex, int toIndex)</e></td>
+</tr>
+</tbody>
+</table>
+<p>(1)Unlike sets, lists typically allow duplicate elements<br>(2)allow null elements.（某些子类会禁止null）<br>(3)比Collection新增了用index来操作数据的方法，以及get、set、indexOf等方法。<br>(4)除了具有Collection接口必备的iterator()方法外，List还提供一个listIterator()方法，返回一个ListIterator接口，和标准的Iterator接口相比，ListIterator允许add，set元素，还能向前或向后遍历。</p>
+<p>public interface ListIterator<e> extends Iterator<e><br>ListIterator新增方法：</e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean hasPrevious()</td>
+<td></td>
+</tr>
+<tr>
+<td>E previous()</td>
+<td></td>
+</tr>
+<tr>
+<td>int nextIndex()</td>
+<td></td>
+</tr>
+<tr>
+<td>int previousIndex()</td>
+<td></td>
+</tr>
+<tr>
+<td>void set(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>void add(E e)</td>
+</tr>
+</tbody>
+</table>
+<p>(5)用ListIterator实现了默认的replaceAll与sort方法。<br>(6)所有实现List的类都要实现Iterator与ListIterator。</p>
+<h2 id="4abstractlist"><a href="#4-AbstractList" class="headerlink" title="4.AbstractList"></a>4.AbstractList</h2><p>public abstract class AbstractList<e> extends AbstractCollection<e> implements List<e><br>其维护modCount变量<br>protected transient int modCount = 0;<br>并实现了List接口的以下方法：</e></e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public boolean add(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>public E set(int index, E element)</td>
+<td>throw new UnsupportedOperationException()</td>
+</tr>
+<tr>
+<td>public void add(int index, E element)</td>
+<td>throw new UnsupportedOperationException()</td>
+</tr>
+<tr>
+<td>public E remove(int index)</td>
+<td>throw new UnsupportedOperationException()</td>
+</tr>
+<tr>
+<td>public int indexOf(Object o)</td>
+<td>用ListIterator</td>
+</tr>
+<tr>
+<td>public int lastIndexOf(Object o)</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>public void clear()</td>
+<td>removeRange(0, size())</td>
+</tr>
+<tr>
+<td>public boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>public Iterator<e> iterator()</e></td>
+<td>return new Itr()</td>
+</tr>
+<tr>
+<td>public ListIterator<e> listIterator()</e></td>
+<td>return listIterator(0)</td>
+</tr>
+<tr>
+<td>public ListIterator<e> listIterator(final int index)</e></td>
+<td></td>
+</tr>
+<tr>
+<td>public List<e> subList(int fromIndex, int toIndex)</e></td>
+<td></td>
+</tr>
+<tr>
+<td>public boolean equals(Object o)</td>
+<td>重写，用ListIterator实现</td>
+</tr>
+<tr>
+<td>public int hashCode()</td>
+<td>重写</td>
+</tr>
+<tr>
+<td>protected void removeRange(int fromIndex, int toIndex)</td>
+<td>用ListIterator实现</td>
+</tr>
+</tbody>
+</table>
+<p>新增方法：<br>|方法|备注|<br>|—|—|<br>|abstract public E get(int index)||</p>
+<p>(1)其set、add、remove函数均抛出错误，get函数只作了声明，这些都需要其子类来修改。<br>(2)不再使用原Collection中的Iterator，而是新建了内部类：<br>private class Itr implements Iterator<e><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">   <span class="keyword">int</span> cursor = <span class="number">0</span>; <span class="comment">//Index of element to be returned by subsequent call to next.</span></div><div class="line">   <span class="keyword">int</span> lastRet = -<span class="number">1</span>;<span class="comment">//element Index returned by most recent call to next or previous</span></div><div class="line">   <span class="keyword">int</span> expectedModCount = modCount;<span class="comment">//检测modCount在Iterator操作中不变</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> cursor != size();&#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           E next = get(cursor);</div><div class="line">           lastRet = cursor;</div><div class="line">           cursor++;</div><div class="line">           <span class="keyword">return</span> next;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           checkForComodification();</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           AbstractList.<span class="keyword">this</span>.remove(lastRet);</div><div class="line">           <span class="keyword">if</span> (lastRet &lt; cursor)</div><div class="line">               cursor--;</div><div class="line">           lastRet = -<span class="number">1</span>;</div><div class="line">           expectedModCount = modCount;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></e></p>
+<p>注意不能在iterator遍历时中用arraylist.remove()，要用iterator内置的remove。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    arraylist.remove(integer); <span class="comment">//没有更新cursor和lastRet</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上代码是错误的，因arraylist.remove不会改变cursor与lastRet的值，而会改变modCount。<br>在第二次使用hasNext时因修改了size，所以还是会返回true，但第二次iterator.next()时会有ConcurrentModificationException，这种情况相当于在iterator循环的同时有别的线程更改了arraylist。<br>因此我们需要用Iterator.remove来删除Iterator的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    iterator.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意必须要用next获取当前值后才remove当前值。<br>(3)ListItr:<br>private class ListItr extends Itr implements ListIterator<e><br>是在Itr上扩展了previous指针，实现原理与Itr相同。其实现了ListIterator中的下列方法：</e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListItr(int index)</td>
+<td>cursor = index</td>
+</tr>
+<tr>
+<td>public boolean hasPrevious()</td>
+<td>cursor != 0</td>
+</tr>
+<tr>
+<td>public E previous()</td>
+<td>修改lastRet、cursor，并用AbstractList中没实现的get方法</td>
+</tr>
+<tr>
+<td>public int nextIndex()</td>
+<td>return cursor</td>
+</tr>
+<tr>
+<td>public int previousIndex()</td>
+<td>return cursor-1</td>
+</tr>
+<tr>
+<td>public void set(E e)</td>
+<td>使用AbstractList中的set方法，并修改expectedModCount的值</td>
+</tr>
+<tr>
+<td>public void add(E e)</td>
+<td>使用AbstractList中的add方法，并修改其维护的各个值</td>
+</tr>
+</tbody>
+</table>
+<p>(4)removeRange方法是protected的，必须要用clear方法来删除一个范围内元素，或subList(a,b).clear()</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj16mb3hc0003ume948j70qqk" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mozi030" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/04/06/Computational-Geometry/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">Computational Geometry</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/07/Collection-Map及其相关/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2017/04/07/Collection-Map及其相关/" class="title">Collection-Map及其相关</a></p>
+                            <p class="item-date"><time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/06/Computational-Geometry/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2017/04/06/Computational-Geometry/convex_hull1.png)" alt="Computational Geometry" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2017/04/06/Computational-Geometry/" class="title">Computational Geometry</a></p>
+                            <p class="item-date"><time datetime="2017-04-06T05:48:03.000Z" itemprop="datePublished">2017-04-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/05/Functional-Dependencies-2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2017/04/05/Functional-Dependencies-2/2NF.png)" alt="Functional Dependencies(2)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
+                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-2/" class="title">Functional Dependencies(2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-05T08:14:24.000Z" itemprop="datePublished">2017-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/05/Functional-Dependencies-1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
+                            <p class="item-title"><a href="/2017/04/05/Functional-Dependencies-1/" class="title">Functional Dependencies(1)</a></p>
+                            <p class="item-date"><time datetime="2017-04-05T06:40:17.000Z" itemprop="datePublished">2017-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/05/ER-model/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2017/04/05/ER-model/example1.png)" alt="ER model" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
+                            <p class="item-title"><a href="/2017/04/05/ER-model/" class="title">ER model</a></p>
+                            <p class="item-date"><time datetime="2017-04-05T06:32:38.000Z" itemprop="datePublished">2017-04-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 Ziliang, Ken, Mo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://mozi030.github.io/2017/04/07/Collection-Map及其相关/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
