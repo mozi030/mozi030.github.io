@@ -3,24 +3,29 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Sort | Mozi&#39;s Blog</title>
+    <title>数据库索引 | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
+    <meta name="description" content="本文归纳数据库索引的知识点
+如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
+一、in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sort">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/sort/index.html">
+<meta property="og:title" content="数据库索引">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/19/数据库索引/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
-<meta property="og:updated_time" content="2017-04-06T14:55:47.000Z">
+<meta property="og:description" content="本文归纳数据库索引的知识点
+如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
+一、in">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index1.png">
+<meta property="og:updated_time" content="2017-04-20T09:25:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sort">
-<meta name="twitter:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
+<meta name="twitter:title" content="数据库索引">
+<meta name="twitter:description" content="本文归纳数据库索引的知识点
+如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
+一、in">
+<meta name="twitter:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index1.png">
     
 
     
@@ -126,18 +131,18 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="page-title-link" href="/categories/DataBase/">DataBase</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-sort" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-数据库索引" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Sort
+        数据库索引
         </h1>
     
 
@@ -147,8 +152,8 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/03/21/sort/" class="article-date">
-            <time datetime="2017-03-21T15:19:21.000Z" itemprop="datePublished">2017-03-21</time>
+        <a href="/2017/04/19/数据库索引/" class="article-date">
+            <time datetime="2017-04-19T02:27:24.000Z" itemprop="datePublished">2017-04-19</time>
         </a>
     </div>
 
@@ -157,11 +162,22 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>本文记录各种排序算法</p>
-<h2 id="merge-sort"><a href="#merge-sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= 2 <em> T(n / 2) + O(n)<br>   &lt;= 2 </em> (2 <em> T(n / 4) + O(n / 2)) + O(n) = 4 </em> T(n / 4) + 2 <em> O(n)<br>   &lt;= ……<br>   &lt;= 2<sup>k</sup> </em> T(n / 2<sup>k</sup>) + k <em> O(n)<br>So T(n) &lt;= O(n </em> log(n))</li>
-</ul>
+            <p>本文归纳数据库索引的知识点</p>
+<p>如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：<br>1.如果这些数据随机存放，则我们需要查询1,000,000页；<br>2.如果这些数据已被排序，则查询需要log<sub>2</sub>10<sup>6</sup> = 20页；<br>3.更快的方法是使用index entry：</p>
+<h3 id="一-index-entry"><a href="#u4E00_u3001index_entry" class="headerlink" title="一、index entry"></a>一、index entry</h3><p>包含一个search key和能找到这个search key的page ID，e.g.,<123456, 456="">。<br>我们不必为每一条数据建一个index entry，只需用index entry记录每页中第一个数据，即每页对应一个index entry，即1,000,000个index entry。若某页的index entry为<10100, 400="">，下一页的index entry为<10200, 401="">，则search key为10100~10099的数据都在第400页中。<br>假设一页可以存放100个index entry，则需要10,000页来存放所有index entry。而且这些index entry也要经过search key排序。因此search key为1~100的index entry在第1页，999,900~1,000,000的index entry在第1000页。<br><img src="/2017/04/19/数据库索引/index1.png" alt="index1.png" title=""><br>若我们需要查询search key为k的数据，则从第一层index entry搜索需要查询log<sub>2</sub>10<sup>4</sup> = 14页，搜索后通过选中的index entry的page ID找到存放该数据的数据页，则从该页中可找到search key为k的数据。一共需要查询14 + 1 = 15页。<br>若在继续建立二级索引、三级索引：<br><img src="/2017/04/19/数据库索引/index2.png" alt="index2.png" title=""><br>一级索引需要10,000页，二级需要100页，三级只有1页，查询一个数据只需查询4页即可。</10200,></10100,></123456,></p>
+<h4 id="ordered-index有序索引also-called-tree"><a href="#ordered_index_u6709_u5E8F_u7D22_u5F15_uFF08also_called_tree_uFF09" class="headerlink" title="ordered index有序索引（also called tree）"></a>ordered index有序索引（also called tree）</h4><p>所有的index entry都是排好序的，因此有利于寻找同值数据或范围搜索。</p>
+<h4 id="fanout扇出"><a href="#fanout_u6247_u51FA" class="headerlink" title="fanout扇出"></a>fanout扇出</h4><p>每个index page的children数量。</p>
+<h4 id="树的高度"><a href="#u6811_u7684_u9AD8_u5EA6" class="headerlink" title="树的高度"></a>树的高度</h4><p>height = log<sub>fanout</sub>(#index entries)。</p>
+<h4 id="primary-indexclustering-index聚类索引"><a href="#primary_index_28clustering_index_u805A_u7C7B_u7D22_u5F15_29" class="headerlink" title="primary index(clustering index聚类索引)"></a>primary index(clustering index聚类索引)</h4><p>数据是按照索引的search key排序的。</p>
+<h5 id="isamindexed-sequential-access-method"><a href="#ISAM_28indexed_sequential_access_method_29" class="headerlink" title="ISAM(indexed sequential access method)"></a>ISAM(indexed sequential access method)</h5><p>使用primary index处理index-sequential file</p>
+<h4 id="secondary-indexnon-clustering-index非聚类索引"><a href="#secondary_index_28non-clustering_index_u975E_u805A_u7C7B_u7D22_u5F15_29" class="headerlink" title="secondary index(non-clustering index非聚类索引)"></a>secondary index(non-clustering index非聚类索引)</h4><p>数据不是按照索引的search key排序的<br><img src="/2017/04/19/数据库索引/index3.png" alt="index3.png" title=""></p>
+<h4 id="sparse-index"><a href="#sparse_index" class="headerlink" title="sparse index"></a>sparse index</h4><p>只对部分数据做索引，如前面的例子中，只对每一个数据页的第一个数据作索引。<br>1.只适用于primary index。<br>2.对于插入和删除，工作量较少。</p>
+<h4 id="dense-index"><a href="#dense_index" class="headerlink" title="dense index"></a>dense index</h4><p>对每个数据都有对应的index entry。<br>1.secondary index必须是dense。<br>e.g.,如果在上例中我们想用name来找数据而不是ID，我们需要另外建search key为name的索引。<br>由于数据已经按ID来排序，所以只能使用secondary dense index，所以将会有10,000,000个index entry，需要搜索log<sub>100</sub>(107)页<br>notes: 若只找一个数据，secondary dense index与primary index的用时差不多，但是当查询多个数据（如范围所搜）时，secondary index就可能比primary慢得多。<br>2.若存在很多人同名的情况：(primary index中不会有任何问题)<br>2.1可将index entry格式改为<search key,="" pageid1,="" pageid2,...=""><br>2.2或<search key,="" pageid1="">, <search key,="" pageid2="">, <search key,="" pageid3="">,…（index entry是排好序的。）<br>2.3最常用的方法：在数据页和index tree中间加一层bucket层。查询时，用name定位到一个bucket，bucket中包含所有同名数据的page ID。<br><img src="/2017/04/19/数据库索引/index4.png" alt="index4.png" title=""></search></search></search></search></p>
+<h3 id="二-hash-index"><a href="#u4E8C_u3001Hash_Index" class="headerlink" title="二、Hash Index"></a>二、Hash Index</h3><p>1.将search key和对应的page ID(pointers)放入hash table中。<br>2.是一种secondary index。<br>3.我们希望数据不会增删太多，不然维护需要成本。<br><img src="/2017/04/19/数据库索引/index5.png" alt="index5.png" title=""><br>4.理想的hash table是分布均匀的，若所有的search key都map到同一个bucket，会大大增加搜索时间。hash function的例子：将search key转为2进制，对1的个数mod(#bucket)。<br>5.bucket溢出：原因可能是bucket太少，hash function不能均匀分配数据到各个bucket。解决方法为链表法，但是就会提高搜索时间。<br>6.十分有利于找同search key的数据，但不支持范围查找，多值查找。<br>7.当数据增删，可能需要增删bucket，hash function和每一个bucket的内容都要改动。</p>
+<h3 id="三-b-tree"><a href="#u4E09_u3001B+_Tree" class="headerlink" title="三、B+ Tree"></a>三、B<sup>+</sup> Tree</h3><p>index-sequential file的缺点是：当数据规模增大，性能会下降，需要多次对index file重建。<br>而B<sup>+</sup> Tree的index file只需简单地修改。</p>
+<h4 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h4><p>1.B<sup>+</sup> Tree是一颗平行树(balence tree)，根节点到所有叶子节点的路径等长。<br>2.若根节点不是leaf，则至少有2个children；若是leaf，只可能有0~(n-1)个值。<br>3.除根节点外，所有非leaf节点只可能有n/2~n个pointer，leaf只可能有(n–1)/2~(n–1)个值。<br>其中n为fanout扇出，是每个节点的最大children数。<br>每个节点的结构如下：<br><img src="/2017/04/19/数据库索引/index6.png" alt="index6.png" title=""><br>4.若第1~(n-1)个pointer(P1,P2,…Pn-1)的search key为k，则pointer指向search key同样为k的数据页或一个包含所有search key为k的pointer的bucket。<br>5.最后一个pointer(Pn)指向其右边的sibling，即按search key排序的下一个sibling。<br>6.对于non-leaf节点，P1指向的subtree的所有search key均 &lt; K1，Pi(1 &lt; i &lt; n)的subtree的所有search key均 &lt; Ki且 &gt; Ki-1。</p>
+<p>primary(clustering) B<sup>+</sup> Tree<br><img src="/2017/04/19/数据库索引/index7.png" alt="index7.png" title=""><br>secondary B<sup>+</sup> Tree<br><img src="/2017/04/19/数据库索引/index8.png" alt="index8.png" title=""><br>primary B<sup>+</sup> Tree on non-candidate key<br><img src="/2017/04/19/数据库索引/index9.png" alt="index9.png" title=""><br><img src="/2017/04/19/数据库索引/index10.png" alt="index10.png" title=""></p>
+<p>####</p>
 
         </div>
         <footer class="article-footer">
@@ -169,7 +185,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj1q4epoz000k8le9tidu25vs" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/19/数据库索引/" data-id="cj1q4epp1000l8le9sxfaor40" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -306,20 +322,10 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         
 <nav id="article-nav">
     
-        <a href="/2017/04/05/DataBase-Basic/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            DataBase Basic
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/03/21/Binary-Search/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/04/11/计算机网络协议/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Binary Search</p>
+        <p class="article-nav-title">计算机网络协议</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -508,7 +514,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/sort/';
+    var disqus_url = 'https://mozi030.github.io/2017/04/19/数据库索引/';
     
     (function() {
     var dsq = document.createElement('script');

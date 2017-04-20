@@ -3,24 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Sort | Mozi&#39;s Blog</title>
+    <title>Archive | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Sort">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/sort/index.html">
+    <meta name="description" content="study notes of programming">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mozi's Blog">
+<meta property="og:url" content="https://mozi030.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
-<meta property="og:updated_time" content="2017-04-06T14:55:47.000Z">
+<meta property="og:description" content="study notes of programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sort">
-<meta name="twitter:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
+<meta name="twitter:title" content="Mozi's Blog">
+<meta name="twitter:description" content="study notes of programming">
     
 
     
@@ -126,122 +120,226 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+    <i class="icon fa fa-archive"></i>Archive
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-sort" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/04/05/DataBase-Basic/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/04/05/DataBase-Basic/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+            </div>
+            <div class="date"><time datetime="2017-04-05T05:49:05.000Z" itemprop="datePublished">2017-04-05</time></div>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        Sort
+        <a href="/2017/04/05/DataBase-Basic/">DataBase Basic</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/03/21/sort/" class="article-date">
-            <time datetime="2017-03-21T15:19:21.000Z" itemprop="datePublished">2017-03-21</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>本文记录各种排序算法</p>
-<h2 id="merge-sort"><a href="#merge-sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= 2 <em> T(n / 2) + O(n)<br>   &lt;= 2 </em> (2 <em> T(n / 4) + O(n / 2)) + O(n) = 4 </em> T(n / 4) + 2 <em> O(n)<br>   &lt;= ……<br>   &lt;= 2<sup>k</sup> </em> T(n / 2<sup>k</sup>) + k <em> O(n)<br>So T(n) &lt;= O(n </em> log(n))</li>
-</ul>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj1q4epoz000k8le9tidu25vs" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+        <p class="article-excerpt">
+            本文记录对数据库基本概念的归纳
+DBMS是一种针对对象数据库，为管理数据库而设计的大型电脑软件管理系统。具有代表性的数据管理系统有：Oracle、Microsoft SQL Server、Access、MySQL及PostgreSQL等
+传统文件系统的弱点：1.操作非原子性。2.并发性操作可能导致错误结果，或效率降低。3.安全性问题。4.非用户友好：当下列情况发生，可能需要更改程序：硬件更换，用B
+        </p>
     </div>
 </article>
+    
 
-    <section id="comments">
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/03/21/sort/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
     
         
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/03/21/sort/">0</span>
+    
+</span>
 
     
-    </section>
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            </div>
+            <div class="date"><time datetime="2017-03-21T15:19:21.000Z" itemprop="datePublished">2017-03-21</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/03/21/sort/">Sort</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            本文记录各种排序算法
+merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&lt;int&gt; merge_sort(vector&lt;int&gt;&amp;arr) &#123;    if
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/03/21/Binary-Search/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/03/21/Binary-Search/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            </div>
+            <div class="date"><time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/03/21/Binary-Search/">Binary Search</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            本文记录关于二分搜索的学习笔记
+对有序数组的二分查找12345678910111213int bsearch(int target, vector&lt;int&gt;&amp;arr, int begin, int end) &#123;    if (begin &gt; end) &#123;        return -1;    &#125;    int middle = (begi
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/03/21/Bitwise/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/03/21/Bitwise/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            </div>
+            <div class="date"><time datetime="2017-03-21T09:48:14.000Z" itemprop="datePublished">2017-03-21</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/03/21/Bitwise/">位运算归纳</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            本文为本人归纳的实用位操作算法知识。
+位运算符左移&lt;&lt;右移&gt;&gt;与&amp;或|异或^非~
+基本功能&amp;
+0与任何数取&amp;，得0
+1与任何数取&amp;，不变
+判断一个数某一位是否为1，如判断最后一位是否为1：123bool check_is_1(int&amp; n) &#123;	return (n &amp; 1);&#125;
+单独提取某1位，如提取最后一
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+
+    </div></section>
+
+
+    <nav id="page-nav">
+        <span class="pages">Page 2 of 2</span>
+        <a class="extend prev" rel="prev" href="/archives/">&laquo;</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
 
 
                         </div>
@@ -302,29 +400,6 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/04/05/DataBase-Basic/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            DataBase Basic
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/03/21/Binary-Search/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Binary Search</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -508,13 +583,11 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/sort/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

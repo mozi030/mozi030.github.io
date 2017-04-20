@@ -3,24 +3,27 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Sort | Mozi&#39;s Blog</title>
+    <title>c++虚函数 | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
+    <meta name="description" content="本文主要对c++虚函数与多态进行归纳总结。
+c++虚函数主要是用来实现多态。直观上来说就是new一个子类并赋值给父指针，然后通过父指针调用子类方法。如下例：
+123456789101112131415class Parent &amp;#123;public:    string str = &quot;parent&quot;, str1 = &quot;parent&quot;;    virtual void fun() &amp;#123; c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sort">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/sort/index.html">
+<meta property="og:title" content="c++虚函数">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/08/c-虚函数/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
-<meta property="og:updated_time" content="2017-04-06T14:55:47.000Z">
+<meta property="og:description" content="本文主要对c++虚函数与多态进行归纳总结。
+c++虚函数主要是用来实现多态。直观上来说就是new一个子类并赋值给父指针，然后通过父指针调用子类方法。如下例：
+123456789101112131415class Parent &amp;#123;public:    string str = &quot;parent&quot;, str1 = &quot;parent&quot;;    virtual void fun() &amp;#123; c">
+<meta property="og:updated_time" content="2017-04-07T17:38:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sort">
-<meta name="twitter:description" content="本文记录各种排序算法
-merge sort对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。1234567891011121314151617181920212223242526272829303132333435363738394041vector&amp;lt;int&amp;gt; merge_sort(vector&amp;lt;int&amp;gt;&amp;amp;arr) &amp;#123;    if">
+<meta name="twitter:title" content="c++虚函数">
+<meta name="twitter:description" content="本文主要对c++虚函数与多态进行归纳总结。
+c++虚函数主要是用来实现多态。直观上来说就是new一个子类并赋值给父指针，然后通过父指针调用子类方法。如下例：
+123456789101112131415class Parent &amp;#123;public:    string str = &quot;parent&quot;, str1 = &quot;parent&quot;;    virtual void fun() &amp;#123; c">
     
 
     
@@ -126,18 +129,18 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="page-title-link" href="/categories/c/">c++</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-sort" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-c-虚函数" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Sort
+        c++虚函数
         </h1>
     
 
@@ -147,8 +150,8 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/03/21/sort/" class="article-date">
-            <time datetime="2017-03-21T15:19:21.000Z" itemprop="datePublished">2017-03-21</time>
+        <a href="/2017/04/08/c-虚函数/" class="article-date">
+            <time datetime="2017-04-07T16:39:50.000Z" itemprop="datePublished">2017-04-08</time>
         </a>
     </div>
 
@@ -157,19 +160,18 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>本文记录各种排序算法</p>
-<h2 id="merge-sort"><a href="#merge-sort" class="headerlink" title="merge sort"></a>merge sort</h2><p>对一个无序数组，在每一次迭代中，平均分为2份，之后进行合并。同值元素可保序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; merge_sort(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr) &#123;</div><div class="line">    <span class="keyword">if</span> (arr.size() &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//partition the array evenly into n parts</span></div><div class="line">    <span class="keyword">int</span> middle = (<span class="number">0</span> + arr.size()) / <span class="number">2</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition1 = <span class="built_in">vector</span>(arr.begin(), arr.begin() + middle);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; partition2 = <span class="built_in">vector</span>(arr.begin() + middle, arr.end());</div><div class="line">    </div><div class="line">    <span class="comment">//sort each part recursively</span></div><div class="line">    partition1 = merge_sort(partition1);</div><div class="line">    partition2 = merge_sort(partition2);</div><div class="line">    </div><div class="line">    <span class="comment">//merge all partitions together</span></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;output;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> a = partition1[i];</div><div class="line">        <span class="keyword">int</span> b = partition2[j];</div><div class="line">        <span class="keyword">if</span> (a &lt; b) &#123;</div><div class="line">            i++;</div><div class="line">            output.push_back(a);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            j++;</div><div class="line">            output.push_back(b);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i == partition1.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; j &lt; partition2.size(); j++) &#123;</div><div class="line">                output.push_back(partition2[j]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == partition2.size()) &#123;</div><div class="line">            <span class="keyword">for</span> (; i &lt; partition1.size(); i++) &#123;</div><div class="line">                output.push_back(partition1[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= 2 <em> T(n / 2) + O(n)<br>   &lt;= 2 </em> (2 <em> T(n / 4) + O(n / 2)) + O(n) = 4 </em> T(n / 4) + 2 <em> O(n)<br>   &lt;= ……<br>   &lt;= 2<sup>k</sup> </em> T(n / 2<sup>k</sup>) + k <em> O(n)<br>So T(n) &lt;= O(n </em> log(n))</li>
-</ul>
-
+            <p>本文主要对c++虚函数与多态进行归纳总结。</p>
+<p>c++虚函数主要是用来实现多态。直观上来说就是new一个子类并赋值给父指针，然后通过父指针调用子类方法。如下例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Parent &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">string</span> str = <span class="string">"parent"</span>, str1 = <span class="string">"parent"</span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> Child : <span class="keyword">public</span> Parent&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">string</span> str1 = <span class="string">"child"</span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Child::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    Parent *p = <span class="keyword">new</span> Child();</div><div class="line">    p-&gt;fun();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种让父指针p有多态属性的技术叫“泛型”，通过不更改类的代码来更改p的功能、方法。<br>(1)在添加virtual前，编译器会提示warning: Child::fun遮蔽了Parent::fun，但是加上virtual后就不再提示。<br>(2)编译器会为每个有虚函数的类创建一个虚函数表（编译的时候），该虚函数表将被该类的所有对象共享。类的每个虚成员占据虚函数表中的一行。如果类中有N个虚函数，那么其虚函数表将有N*4字节的大小。</p>
+<h2 id="动态绑定与静态绑定"><a href="#动态绑定与静态绑定" class="headerlink" title="动态绑定与静态绑定"></a>动态绑定与静态绑定</h2>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/sort/" data-id="cj1q4epoz000k8le9tidu25vs" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/08/c-虚函数/" data-id="cj1q4epow000h8le9ih5a2n6b" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -306,20 +308,20 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
         
 <nav id="article-nav">
     
-        <a href="/2017/04/05/DataBase-Basic/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/04/11/计算机网络协议/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            DataBase Basic
+            计算机网络协议
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2017/03/21/Binary-Search/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/04/08/c-继承/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Binary Search</p>
+        <p class="article-nav-title">c++继承</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -508,7 +510,7 @@ merge sort对一个无序数组，在每一次迭代中，平均分为2份，之
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/sort/';
+    var disqus_url = 'https://mozi030.github.io/2017/04/08/c-虚函数/';
     
     (function() {
     var dsq = document.createElement('script');
