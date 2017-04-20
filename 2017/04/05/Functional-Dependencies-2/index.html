@@ -149,11 +149,11 @@ m">
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                         </ul>
@@ -161,7 +161,7 @@ m">
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -182,8 +182,8 @@ m">
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -276,22 +276,22 @@ m">
 <p>根据FD的定义，我们知道第2、4条tuple是redundant，因此应将(Position, Salary)另外放在一个table中，原table只需保留Position。</p>
 <h2 id="decomposition"><a href="#Decomposition" class="headerlink" title="Decomposition"></a>Decomposition</h2><p>Normalization is the process of decomposing a relation schema R into smaller tables(fragments): R1, R2,…, Rn.<br>如：将上例分两个table: R1(EmployeeId, Position)和R2(Position, Salary), 再将R2中重复的tuple去掉。</p>
 <p>一个好的database design有下列三个属性：</p>
-<h3 id="lossless-decomposition"><a href="#Lossless-decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
-<h3 id="dependency-preservation"><a href="#Dependency-preservation" class="headerlink" title="Dependency preservation"></a>Dependency preservation</h3><p>Dependencies should be preserved within each Ri , i.e., otherwise, checking updates for violation of functional dependencies may require computing joins, which is expensive.</p>
+<h3 id="lossless-decomposition"><a href="#Lossless_decomposition" class="headerlink" title="Lossless decomposition"></a>Lossless decomposition</h3><p>a decomposition of R into R1 and R2 is lossless (not lossy) if and only if the common attribute of R1 and R2 must be a candidate key for R1 or R2.<br>在上例中Position就是candidate key for R1(Position, Salary)</p>
+<h3 id="dependency-preservation"><a href="#Dependency_preservation" class="headerlink" title="Dependency preservation"></a>Dependency preservation</h3><p>Dependencies should be preserved within each Ri , i.e., otherwise, checking updates for violation of functional dependencies may require computing joins, which is expensive.</p>
 <p>The decomposition is dependency preserving if and only if (F1 ∪ F2 ∪…∪ Fn)+ = F+ (Fi是Ri对应的FD). 若不等，意味着会失去一些FD。</p>
-<h3 id="good-form"><a href="#Good-form" class="headerlink" title="Good form"></a>Good form</h3><p>The fragments Ri should not involve redundancy. Roughly speaking, a table has redundancy if there is a FD where the LHS is not a key.</p>
-<h4 id="1nf第一范式"><a href="#1NF（第一范式）" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
+<h3 id="good-form"><a href="#Good_form" class="headerlink" title="Good form"></a>Good form</h3><p>The fragments Ri should not involve redundancy. Roughly speaking, a table has redundancy if there is a FD where the LHS is not a key.</p>
+<h4 id="1nf第一范式"><a href="#1NF_uFF08_u7B2C_u4E00_u8303_u5F0F_uFF09" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
 <p>第一范式是为了要排除重复组的出现，所采用的方法是要求数据库的每个列的值域都是由原子值组成；<br>每个字段的值都只能是单一值。</p>
-<h4 id="2nf第二范式"><a href="#2NF（第二范式）" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
+<h4 id="2nf第二范式"><a href="#2NF_uFF08_u7B2C_u4E8C_u8303_u5F0F_uFF09" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
 <p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的字段都一定是候选键中每一个字段的函数（可由candidate key的attribute决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""></p>
 <p>e.g. For FD: { {A    →B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
-<h4 id="3nf第三范式"><a href="#3NF（第三范式）" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
+<h4 id="3nf第三范式"><a href="#3NF_uFF08_u7B2C_u4E09_u8303_u5F0F_uFF09" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
 <p>In other words, for every FD that does not contain extraneous (useless) attributes, then:<br>(1)the LHS is a candidate key, or<br>(2)the RHS is a prime attribute, i.e., it is an attribute that is part of a candidate key</p>
 <p>e.g.若R=(B,C,E), F = { {E}→{B}, {B,C}→{E} }, candidate key is {C,E} or {B,C}<br>(1)for {E}→{B}, B is a prime attribute;<br>(2)for {B,C}→{E}, {B,C} is a candidate key</p>
 <p>一个数据表匹配第三范式当且仅当<br>(1)它匹配第二范式<br>(2)没有transitive functional dependency<br><img src="/2017/04/05/Functional-Dependencies-2/3NF.png" alt="3NF.png" title=""></p>
 <p>3NF和2NF的不同：<br>2NF allows FDs where X is not part of any candidate key</p>
 <p>3NF still has redundancy</p>
-<h4 id="bcnfboyce-codd-normal-form"><a href="#BCNF-Boyce-Codd-Normal-Form" class="headerlink" title="BCNF(Boyce-Codd Normal Form)"></a>BCNF(Boyce-Codd Normal Form)</h4><p>Let R be a relation schema, with the set F of FDs. R is in BCNF if and only if for eachFD: X → A in F+, then<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is a superkey for R</p>
+<h4 id="bcnfboyce-codd-normal-form"><a href="#BCNF_28Boyce-Codd_Normal_Form_29" class="headerlink" title="BCNF(Boyce-Codd Normal Form)"></a>BCNF(Boyce-Codd Normal Form)</h4><p>Let R be a relation schema, with the set F of FDs. R is in BCNF if and only if for eachFD: X → A in F+, then<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is a superkey for R</p>
 <p>BCNF tables have no redundancy</p>
 
         </div>
@@ -300,7 +300,7 @@ m">
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1q4epor000e8le9gbm181yy" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1qkqadf000mlye927mo46oh" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -380,7 +380,7 @@ m">
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -438,7 +438,7 @@ m">
 <nav id="article-nav">
     
         <a href="/2017/04/06/Computational-Geometry/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             Computational Geometry
@@ -449,7 +449,7 @@ m">
     
     
         <a href="/2017/04/05/Functional-Dependencies-1/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">Functional Dependencies(1)</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -583,7 +583,7 @@ m">
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>

@@ -72,11 +72,11 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Home</a>
+                                    <a class="main-nav-list-link" href="/">Inici</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
                                 </li>
                             
                         </ul>
@@ -84,7 +84,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -105,8 +105,8 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -168,7 +168,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
 <p>继承的优势：<br>1.减少代码，方便维护，增加可读性。<br>2.增加类之间的关系与约束，增强逻辑关系。</p>
 <p>如Student继承People，那么Student自然有People的所有属性与方法，不需重新写；当这些属性与方法有所修改，只需要更改People中的代码，则Student中的代码将被自动修改。</p>
 <p>继承的语法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Student: <span class="keyword">public</span> People</div></pre></td></tr></table></figure></p>
-<h2 id="继承的权限"><a href="#继承的权限" class="headerlink" title="继承的权限"></a>继承的权限</h2><p>上例中，public是公有继承的意思，当然也有private（默认）与protected，不过比较少用。<br>这些继承方法用来指定被继承的成员、方法的最高访问权限：</p>
+<h2 id="继承的权限"><a href="#u7EE7_u627F_u7684_u6743_u9650" class="headerlink" title="继承的权限"></a>继承的权限</h2><p>上例中，public是公有继承的意思，当然也有private（默认）与protected，不过比较少用。<br>这些继承方法用来指定被继承的成员、方法的最高访问权限：</p>
 <table>
 <thead>
 <tr>
@@ -192,7 +192,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
 </tbody>
 </table>
 <p>(1)虽然父类的private成员不能在派生类中使用，但实际上父类的private成员也在子类中继承，只是不可见，但依然会占用子类对象的内存。<br>(2)子类要访问父类的private成员，只能使用父类的非private函数来访问。</p>
-<h2 id="继承时的名字遮蔽"><a href="#继承时的名字遮蔽" class="headerlink" title="继承时的名字遮蔽"></a>继承时的名字遮蔽</h2><p>若子类和父类有同名函数fun()，则子类对象调用fun()时，只使用子类的fun()，这时父类的fun()就被遮蔽了。但子类对象同样可以用父类名字访问fun()<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Parent &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str = <span class="string">"parent"</span>, str1 = <span class="string">"parent"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun(int)\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> Child : <span class="keyword">public</span> Parent&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str1 = <span class="string">"child"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Child::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	Child c;</div><div class="line">	c.fun();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="继承时的名字遮蔽"><a href="#u7EE7_u627F_u65F6_u7684_u540D_u5B57_u906E_u853D" class="headerlink" title="继承时的名字遮蔽"></a>继承时的名字遮蔽</h2><p>若子类和父类有同名函数fun()，则子类对象调用fun()时，只使用子类的fun()，这时父类的fun()就被遮蔽了。但子类对象同样可以用父类名字访问fun()<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Parent &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str = <span class="string">"parent"</span>, str1 = <span class="string">"parent"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun(int)\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> Child : <span class="keyword">public</span> Parent&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str1 = <span class="string">"child"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Child::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	Child c;</div><div class="line">	c.fun();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>输出为：<br>using Child::fun()<br>str is parent<br>str1 is child<br>(1)Child中，str1对Parent::str1遮蔽，且继承了Parent::str<br>(2)这时编译器会有warning: Function ‘fun’ hides a non-virtual function from class Parent<br>(3)Child中fun不仅遮蔽了Parent::fun()，而且遮蔽了Parent::fun(int)，若此时我们在c.fun()中加入int参数，编辑器会报错Too mang arguments, expected 0，意味着Child中只能使用fun()。因此只要子类和父类有同名函数，子类函数都会将父类函数遮蔽，不论参数列表是否相同。<br>(4)当然，子类要调用父类函数很简单：只需使用c.Parent::fun()或c.Parent::fun(1);</p>
 
         </div>
@@ -201,7 +201,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/08/c-继承/" data-id="cj1q4epou000g8le9yrmdb5c0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/08/c-继承/" data-id="cj1qkqad8000glye98kj6uqfm" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -281,7 +281,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>follow:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -339,7 +339,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
 <nav id="article-nav">
     
         <a href="/2017/04/08/c-虚函数/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
+        <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
             c++虚函数
@@ -350,7 +350,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
     
     
         <a href="/2017/04/07/Collection-Map及其相关/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
+        <strong class="article-nav-caption">antic</strong>
         <p class="article-nav-title">Collection-Map及其相关</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -484,7 +484,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">arxius</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
