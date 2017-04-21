@@ -9,18 +9,18 @@
         <meta name="keywords" content="" />
     
     <meta name="description" content="本文归纳Collection和Map的相关类的源码归纳
-本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
+本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collection-Map及其相关">
 <meta property="og:url" content="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="本文归纳Collection和Map的相关类的源码归纳
-本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
-<meta property="og:updated_time" content="2017-04-07T08:51:03.000Z">
+本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
+<meta property="og:updated_time" content="2017-04-21T04:35:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection-Map及其相关">
 <meta name="twitter:description" content="本文归纳Collection和Map的相关类的源码归纳
-本文包含以下类的源码分析：123456789101112131415161718192021222324252627281.public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;2.public abstract class AbstractCollection&amp;lt;E&amp;">
+本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
     
 
     
@@ -158,7 +158,7 @@
         
         <div class="article-entry" itemprop="articleBody">
             <p>本文归纳Collection和Map的相关类的源码归纳</p>
-<p>本文包含以下类的源码分析：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line">2.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">3.<span class="title">public</span> <span class="title">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">4.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</div><div class="line">5.<span class="title">public</span> <span class="title">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">6.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">7.<span class="title">public</span> <span class="title">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">8.<span class="title">public</span> <span class="title">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line">9.<span class="title">public</span> <span class="title">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line">10.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line">11.<span class="title">public</span> <span class="title">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">12.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">13.<span class="title">public</span> <span class="title">interface</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line">14.<span class="title">public</span> <span class="title">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">15.<span class="title">public</span> <span class="title">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">16.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">17.<span class="title">public</span> <span class="title">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></div><div class="line">18.<span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line">19.<span class="title">public</span> <span class="title">class</span> <span class="title">Hashtable</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">20.<span class="title">public</span> <span class="title">class</span> <span class="title">TreeMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line">21.<span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>本文包含以下类的源码分析：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Hashtable</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">TreeMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div></pre></td></tr></table></figure></p>
 <h2 id="1collection"><a href="#1-Collection" class="headerlink" title="1.Collection"></a>1.Collection</h2><p>public interface Collection<e> extends Iterable<e><br>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的”子接口”如List和Set。<br>方法：</e></e></p>
 <table>
 <thead>
@@ -491,10 +491,10 @@
 </tr>
 </tbody>
 </table>
-<p>其维护modCount变量<br>protected transient int modCount = 0;<br>表示修改的次数，</p>
+<p>AbstractList首次引入modCount变量，以及<br>protected transient int modCount = 0;<br>来表示修改的次数，</p>
 <p>(1)其set、add、remove函数均抛出错误，get函数只作了声明，这些都需要其子类来修改。<br>(2)不再使用原Collection中的Iterator，而是新建了内部类：<br>private class Itr implements Iterator<e><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">   <span class="keyword">int</span> cursor = <span class="number">0</span>; <span class="comment">//Index of element to be returned by subsequent call to next.</span></div><div class="line">   <span class="keyword">int</span> lastRet = -<span class="number">1</span>;<span class="comment">//element Index returned by most recent call to next or previous</span></div><div class="line">   <span class="keyword">int</span> expectedModCount = modCount;<span class="comment">//检测modCount在Iterator操作中不变</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> cursor != size();&#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           E next = get(cursor);</div><div class="line">           lastRet = cursor;</div><div class="line">           cursor++;</div><div class="line">           <span class="keyword">return</span> next;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           checkForComodification();</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">       checkForComodification();</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           AbstractList.<span class="keyword">this</span>.remove(lastRet);</div><div class="line">           <span class="keyword">if</span> (lastRet &lt; cursor)</div><div class="line">               cursor--;</div><div class="line">           lastRet = -<span class="number">1</span>;</div><div class="line">           expectedModCount = modCount;</div><div class="line">       &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></e></p>
-<p>注意不能在iterator遍历时中用arraylist.remove()，要用iterator内置的remove。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    arraylist.remove(integer); <span class="comment">//没有更新cursor和lastRet</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以上代码是错误的，因arraylist.remove不会改变cursor与lastRet的值，而会改变modCount。<br>在第二次使用hasNext时因修改了size，所以还是会返回true，但第二次iterator.next()时会有ConcurrentModificationException，这种情况相当于在iterator循环的同时有别的线程更改了arraylist。<br>因此我们需要用Iterator.remove来删除Iterator的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = arraylist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    iterator.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意不能在iterator遍历时中用abstractlist.remove()，要用iterator内置的remove。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = abstractlist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    abstractlist.remove(integer); <span class="comment">//没有更新cursor和lastRet</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上代码是错误的，因abstractlist.remove不会改变cursor与lastRet的值，而会改变modCount。<br>在第二次使用hasNext时因修改了size，所以还是会返回true，但第二次iterator.next()时会有ConcurrentModificationException，这种情况相当于在iterator循环的同时有别的线程更改了abstractlist。<br>因此我们需要用Iterator.remove来删除Iterator的元素<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Iterator&lt;Integer&gt; iterator = abstractlist.iterator();</div><div class="line"><span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">    Integer integer = iterator.next();</div><div class="line">    iterator.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>注意必须要用next获取当前值后才remove当前值，hasNext并不移动游标cursor。<br>(3)ListItr:<br>private class ListItr extends Itr implements ListIterator<e><br>是在Itr上扩展了previous指针，实现原理与Itr相同。其实现了ListIterator中的下列方法：</e></p>
 <table>
 <thead>
@@ -535,6 +535,628 @@
 </tbody>
 </table>
 <p>(4)removeRange方法是protected的，必须要用clear方法来删除一个范围内元素，或subList(a,b).clear()</p>
+<h2 id="5arraylist"><a href="#5-ArrayList" class="headerlink" title="5.ArrayList"></a>5.ArrayList</h2><p>public class ArrayList<e> extends AbstractList<e> implements List<e>, RandomAccess, Cloneable, java.io.Serializable<br>本质是一个变长的数组。<br>其维护size，Object[] elementData，DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}, DEFAULT_CAPACITY = 10, modCount = 0（来自AbstractList）。<br>实现了一下函数：</e></e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList(int initialCapacity)</td>
+<td>initialCapacity是初始elementData的大小</td>
+</tr>
+<tr>
+<td>ArrayList()</td>
+<td>elementData初始值为DEFAULTCAPACITY_EMPTY_ELEMENTDATA</td>
+</tr>
+<tr>
+<td>ArrayList(Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>void trimToSize()</td>
+<td>令capacity或elementData的长度为size</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>直接return size</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td>return indexOf(o) &gt;= 0</td>
+</tr>
+<tr>
+<td>int indexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>int lastIndexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>int lastIndexOf(Object o)</td>
+<td>浅复制</td>
+</tr>
+<tr>
+<td>Object[] toArray()</td>
+<td>使用Arrays.copyOf开一个新的array</td>
+</tr>
+<tr>
+<td><t> T[] toArray(T[] a)</t></td>
+<td>使用System.arraycopy</td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td>先做一个rangeCheck，可能抛出IndexOutOfBoundsException</td>
+</tr>
+<tr>
+<td>E set(int index, E element)</td>
+<td>同上，返回oldValue</td>
+</tr>
+<tr>
+<td>boolean add(E e)</td>
+<td>always true</td>
+</tr>
+<tr>
+<td>void add(int index, E element)</td>
+<td>先做rangeCheck，使用System.arraycopy复制</td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td>先做rangeCheck，使用System.arraycopy，返回oldValue</td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td>将所有元素设为null，不改变capacity</td>
+</tr>
+<tr>
+<td>boolean addAll(Collection&lt;? extends E&gt; c)</td>
+<td>使用System.arraycopy</td>
+</tr>
+<tr>
+<td>boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>void removeRange(int fromIndex, int toIndex)</td>
+<td>protected</td>
+</tr>
+<tr>
+<td>boolean removeAll(Collection&lt;?&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean retainAll(Collection&lt;?&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>ListIterator<e> listIterator(int index)</e></td>
+<td>return new ListItr(index)</td>
+</tr>
+<tr>
+<td>ListIterator<e> listIterator()</e></td>
+<td>return new ListItr(0)</td>
+</tr>
+<tr>
+<td>Iterator<e> iterator()</e></td>
+<td>return new Itr()</td>
+</tr>
+<tr>
+<td>List<e> subList(int fromIndex, int toIndex)</e></td>
+<td>先做rangeCheck，return new SubList，与AbstractList相同</td>
+</tr>
+<tr>
+<td>void forEach(Consumer&lt;? super E&gt; action)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean removeIf(Predicate&lt;? super E&gt; filter)</td>
+<td></td>
+</tr>
+<tr>
+<td>void replaceAll(UnaryOperator<e> operator)</e></td>
+<td></td>
+</tr>
+<tr>
+<td>void sort(Comparator&lt;? super E&gt; c)</td>
+<td>用Arrays.sort</td>
+</tr>
+</tbody>
+</table>
+<p>private class Itr implements Iterator<e><br>的实现和AbstractList基本一样。区别只是ArrayList具体实现了get的方法，而AbstractList没有。而<br>private class ListItr extends Itr implements ListIterator<e><br>也是一样</e></e></p>
+<p>private class SubList extends AbstractList<e> implements RandomAccess</e></p>
+<p>(1)变长数组的实现：<br>当ArrayList为empty，elementData为DEFAULTCAPACITY_EMPTY_ELEMENTDATA，长度为0，size = 0；<br>当add第一个元素时，elementData的长度会变为DEFAULT_CAPACITY = 10，size为1，此时第二到第十个元素设为null。<br>当加入元素后长度超过当前elementData.length的时候，令capacity先为原来的1.5倍，若还不够大，就直接设为required的值。然后把原数组复制到一个长度为newCapacity的新数组内：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</div><div class="line">    <span class="comment">// overflow-conscious code</span></div><div class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</div><div class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</div><div class="line">        newCapacity = minCapacity;</div><div class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</div><div class="line">        newCapacity = hugeCapacity(minCapacity);</div><div class="line">    <span class="comment">// minCapacity is usually close to size, so this is a win:</span></div><div class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>(2)ArrayList是线程不安全的:<br>其读写数组的函数都没有同步性质。<br>另在其iterator中加入了并发修改检验：即用modCount来判断当前是否出现并发修改异常。modCount表示elementData被修改的次数，在remove，add等方法中都会修改modCount，如果在iterator迭代中modCount有变，则认为有其他线程修改了原数组，报错。<br>(3)它允许所有元素，包括null<br>(4)size，isEmpty，get，set方法运行时间为常数。但是add方法开销为分摊的常数，添加n个元素需要O(n)的时间。其他的方法运行时间为线性。</p>
+<h2 id="6linkedlist"><a href="#6-LinkedList" class="headerlink" title="6.LinkedList"></a>6.LinkedList</h2><p>public class LinkedList<e> extends AbstractSequentialList<e> implements List<e>, Deque<e>, Cloneable, java.io.Serializable</e></e></e></e></p>
+<p>本质上是一个链表，链表结构体：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    E item;</div><div class="line">    Node&lt;E&gt; next;</div><div class="line">    Node&lt;E&gt; prev;</div><div class="line">    Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) &#123;</div><div class="line">        <span class="keyword">this</span>.item = element;</div><div class="line">        <span class="keyword">this</span>.next = next;</div><div class="line">        <span class="keyword">this</span>.prev = prev;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现的函数有：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinkedList()</td>
+<td></td>
+</tr>
+<tr>
+<td>LinkedList(Collection&lt;? extends E&gt; c)</td>
+<td>使用addAll</td>
+</tr>
+<tr>
+<td>E getFirst()</td>
+<td></td>
+</tr>
+<tr>
+<td>E getLast()</td>
+<td></td>
+</tr>
+<tr>
+<td>E removeFirst()</td>
+<td>return first</td>
+</tr>
+<tr>
+<td>E removeLast()</td>
+<td>return last</td>
+</tr>
+<tr>
+<td>void addFirst(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>void addLast(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td>return indexOf(o) != -1;</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean add(E e)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean addAll(Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean addAll(int index, Collection&lt;? extends E&gt; c)</td>
+<td></td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td></td>
+</tr>
+<tr>
+<td>E get(int index)</td>
+<td></td>
+</tr>
+<tr>
+<td>E set(int index, E element)</td>
+<td></td>
+</tr>
+<tr>
+<td>void add(int index, E element)</td>
+<td></td>
+</tr>
+<tr>
+<td>E remove(int index)</td>
+<td></td>
+</tr>
+<tr>
+<td>int indexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>int lastIndexOf(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>E peek()</td>
+<td>Retrieves, but does not remove, the head</td>
+</tr>
+<tr>
+<td>E element()</td>
+<td>Retrieves, but does not remove, the head</td>
+</tr>
+<tr>
+<td>E poll()</td>
+<td>Retrieves and removes the head</td>
+</tr>
+<tr>
+<td>E remove()</td>
+<td>Retrieves and removes the head</td>
+</tr>
+<tr>
+<td>boolean offer(E e)</td>
+<td>return add(e)</td>
+</tr>
+<tr>
+<td>boolean offerFirst(E e)</td>
+<td>addFirst(e)</td>
+</tr>
+<tr>
+<td>boolean offerLast(E e)</td>
+<td>addLast(e)</td>
+</tr>
+<tr>
+<td>E peekFirst()</td>
+<td></td>
+</tr>
+<tr>
+<td>E peekLast()</td>
+<td></td>
+</tr>
+<tr>
+<td>E pollFirst()</td>
+<td></td>
+</tr>
+<tr>
+<td>E pollLast()</td>
+<td></td>
+</tr>
+<tr>
+<td>void push(E e)</td>
+<td>addFirst(e)</td>
+</tr>
+<tr>
+<td>E pop()</td>
+<td>removeFirst()</td>
+</tr>
+<tr>
+<td>boolean removeFirstOccurrence(Object o)</td>
+<td>remove(o)</td>
+</tr>
+<tr>
+<td>boolean removeLastOccurrence(Object o)</td>
+<td></td>
+</tr>
+<tr>
+<td>public ListIterator<e> listIterator(int index)</e></td>
+<td>new ListItr(index)</td>
+</tr>
+<tr>
+<td>public Iterator<e> descendingIterator()</e></td>
+<td>new DescendingIterator();</td>
+</tr>
+<tr>
+<td>Object clone()</td>
+<td>浅复制</td>
+</tr>
+<tr>
+<td>Object[] toArray()</td>
+<td>对象是新的，但是item元素是旧的</td>
+</tr>
+<tr>
+<td><t> T[] toArray(T[] a)</t></td>
+</tr>
+</tbody>
+</table>
+<p>(1)维护变量size，故size()只需O(1)时间。<br>(2)get, set, add, remove等使用index的方法均可能抛出IndexOutOfBoundsException<br>(3)维护Node<e>first与Node<e>last记录首尾<br>(4)维护modCount在ListItr检查并发修改。<br>(5)toArray的实现：<br>public Object[] toArray() {<br>    Object[] result = new Object[size];<br>    int i = 0;<br>    for (Node<e> x = first; x != null; x = x.next)<br>        result[i++] = x.item;<br>    return result;<br>}<br>(6)此外LinkedList提供额外的getFirst, getLast，removeFirst, removeLast，addFirst, addLast方法在LinkedList的首部或尾部。这些操作使LinkedList可被用作堆栈（stack），队列（queue）或双向队列（deque）。<br>(7)LinkedList线程不安全，可用SynchronizedList：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List list = Collections.synchronizedList(linkedList);</div></pre></td></tr></table></figure></e></e></e></p>
+<p>(8)private class ListItr implements ListIterator<e><br>维护<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Node&lt;E&gt; lastReturned;</div><div class="line"><span class="keyword">private</span> Node&lt;E&gt; next;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> nextIndex;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> expectedModCount = modCount;</div></pre></td></tr></table></figure></e></p>
+<p>方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListItr(int index)</td>
+<td>让index作为next</td>
+</tr>
+<tr>
+<td>boolean hasNext()</td>
+<td>nextIndex &lt; size</td>
+</tr>
+<tr>
+<td>E next()</td>
+<td>checkForComodification first</td>
+</tr>
+<tr>
+<td>boolean hasPrevious()</td>
+<td>nextIndex &gt; 0</td>
+</tr>
+<tr>
+<td>E previous()</td>
+<td>checkForComodification</td>
+</tr>
+<tr>
+<td>int nextIndex()</td>
+<td></td>
+</tr>
+<tr>
+<td>int previousIndex()</td>
+<td></td>
+</tr>
+<tr>
+<td>void remove()</td>
+<td>checkForComodification</td>
+</tr>
+<tr>
+<td>void set(E e)</td>
+<td>checkForComodification</td>
+</tr>
+<tr>
+<td>void add(E e)</td>
+<td>checkForComodification</td>
+</tr>
+<tr>
+<td>void forEachRemaining(Consumer&lt;? super E&gt; action)</td>
+<td>checkForComodification</td>
+</tr>
+</tbody>
+</table>
+<p>(9)private class DescendingIterator implements Iterator<e><br>与ListItr反向的Iterator</e></p>
+<h2 id="7vector"><a href="#7-Vector" class="headerlink" title="7.Vector"></a>7.Vector</h2><p>public class Vector<e> extends AbstractList<e> implements List<e>, RandomAccess, Cloneable, java.io.Serializable</e></e></e></p>
+<p>维护<br>protected Object[] elementData; //元素允许null，长度始终为capacity<br>protected int elementCount;<br>protected int capacityIncrement;</p>
+<p>(1)本质上是一个同步的ArrayList。<br>(2)变长数组的实现方式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</div><div class="line">    <span class="comment">// overflow-conscious code</span></div><div class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</div><div class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + ((capacityIncrement &gt; <span class="number">0</span>) ? capacityIncrement : oldCapacity);</div><div class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</div><div class="line">        newCapacity = minCapacity;</div><div class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</div><div class="line">        newCapacity = hugeCapacity(minCapacity);</div><div class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如无定义capacityIncrement，则当达到当前capacity上限时，就capacity * 2，如有定义，直接加capacityIncrement。如capacity还不满足，则直接设为满足的，最后复制数组<br>(3)private class Itr implements Iterator<e>与<br>final class ListItr extends Itr implements ListIterator<e><br>是和ArrayList一样的，但加了同步。</e></e></p>
+<h2 id="8stack"><a href="#8-Stack" class="headerlink" title="8.Stack"></a>8.Stack</h2><p>public class Stack<e> extends Vector<e></e></e></p>
+<p>(1)是一种Vector，故也是同步的。<br>(2)栈顶是数组的尾。<br>方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E push(E item)</td>
+<td>addElement(item);return item;</td>
+</tr>
+<tr>
+<td>synchronized E pop()</td>
+<td>peek and remove</td>
+</tr>
+<tr>
+<td>synchronized E peek()</td>
+<td>peek but not remove</td>
+</tr>
+<tr>
+<td>boolean empty()</td>
+<td></td>
+</tr>
+<tr>
+<td>synchronized int search(Object o)</td>
+<td>相当于indexOf</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9set"><a href="#9-Set" class="headerlink" title="9.Set"></a>9.Set</h2><p>public interface Set<e> extends Collection<e><br>(1)集合中的对象不按特定的方式排序，并且没有重复对象。<br>(2)Set最多有一个null元素。<br>(3)方法与Collection基本一样，有基本方法，也有Iterator。<br>(4)Set接口主要实现了两类：<br>HashSet：用hashTable来存取，存取比较快。<br>TreeSet：实现SortedSet，存取查log(n)能排序。</e></e></p>
+<h2 id="10abstractset"><a href="#10-AbstractSet" class="headerlink" title="10.AbstractSet"></a>10.AbstractSet</h2><p>public abstract class AbstractSet<e> extends AbstractCollection<e> implements Set<e><br>实现的方法：</e></e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean equals(Object o)</td>
+<td>containsAll((Collection&lt;?&gt;) o)</td>
+</tr>
+<tr>
+<td>int hashCode()</td>
+<td>用Iterator，把所有元素的hashCode相加</td>
+</tr>
+<tr>
+<td>boolean removeAll(Collection&lt;?&gt; c)</td>
+<td>用Iterator</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11hashset"><a href="#11-HashSet" class="headerlink" title="11.HashSet"></a>11.HashSet</h2><p>public class HashSet<e> extends AbstractSet<e> implements Set<e>, Cloneable, java.io.Serializable</e></e></e></p>
+<p>用hashMap实现，维护：<br>private transient HashMap<e,object> map;<br>private static final Object PRESENT = new Object();<br>Set元素作为map的key，PRESENT作为所有的value值。</e,object></p>
+<p>实现方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HashSet()</td>
+<td>map = new HashMap&lt;&gt;();</td>
+</tr>
+<tr>
+<td>HashSet(Collection&lt;? extends E&gt; c)</td>
+<td>map = new HashMap&lt;&gt;(…);addAll(c);</td>
+</tr>
+<tr>
+<td>HashSet(int initialCapacity, float loadFactor</td>
+<td>map = new HashMap&lt;&gt;(initialCapacity, loadFactor)</td>
+</tr>
+<tr>
+<td>HashSet(int initialCapacity)</td>
+<td>map = new HashMap&lt;&gt;(initialCapacity);</td>
+</tr>
+<tr>
+<td>Iterator<e> iterator()</e></td>
+<td>return map.keySet().iterator();</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>map.size();</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td>return map.isEmpty();</td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td>return map.containsKey(o);</td>
+</tr>
+<tr>
+<td>boolean add(E e)</td>
+<td>return map.put(e, PRESENT)==null;</td>
+</tr>
+<tr>
+<td>boolean remove(Object o)</td>
+<td>return map.remove(o)==PRESENT;</td>
+</tr>
+<tr>
+<td>void clear()</td>
+<td>map.clear();</td>
+</tr>
+<tr>
+<td>Object clone()</td>
+<td>newSet.map = (HashMap<e, object="">) map.clone();</e,></td>
+</tr>
+</tbody>
+</table>
+<h2 id="12sortedset"><a href="#12-SortedSet" class="headerlink" title="12.SortedSet"></a>12.SortedSet</h2><p>public interface SortedSet<e> extends Set<e><br>接口有以下函数：</e></e></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comparator&lt;? super E&gt; comparator();</td>
+<td></td>
+</tr>
+<tr>
+<td>SortedSet<e> subSet(E fromElement, E toElement);</e></td>
+<td>符合范围的子集</td>
+</tr>
+<tr>
+<td>SortedSet<e> headSet(E toElement);</e></td>
+<td>符合范围的子集</td>
+</tr>
+<tr>
+<td>SortedSet<e> tailSet(E fromElement);</e></td>
+<td>符合范围的子集</td>
+</tr>
+<tr>
+<td>E first();</td>
+<td></td>
+</tr>
+<tr>
+<td>E last();</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13treeset"><a href="#13-TreeSet" class="headerlink" title="13.TreeSet"></a>13.TreeSet</h2><p>public class TreeSet<e> extends AbstractSet<e> implements NavigableSet<e>, Cloneable, java.io.Serializable</e></e></e></p>
+<p>与HashSet类似，维护：<br>private transient NavigableMap<e,object> m;<br>private static final Object PRESENT = new Object();<br>将Set元素作为map的key，PRESENT作为value，之后全部交给NavigableMap(实际是TreeMap)处理</e,object></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TreeSet()</td>
+<td>this(new TreeMap<e,object>())</e,object></td>
+</tr>
+<tr>
+<td>TreeSet(Comparator&lt;? super E&gt; comparator)</td>
+<td>this(new TreeMap&lt;&gt;(comparator))</td>
+</tr>
+<tr>
+<td>TreeSet(Collection&lt;? extends E&gt; c)</td>
+<td>this();addAll(c);</td>
+</tr>
+<tr>
+<td>TreeSet(SortedSet<e> s)</e></td>
+<td>this(s.comparator());addAll(s);</td>
+</tr>
+<tr>
+<td>Iterator<e> iterator()</e></td>
+<td>return m.navigableKeySet().iterator();</td>
+</tr>
+<tr>
+<td>Iterator<e> descendingIterator()</e></td>
+<td>return m.descendingKeySet().iterator()</td>
+</tr>
+<tr>
+<td>NavigableSet<e> descendingSet()</e></td>
+<td>return new TreeSet&lt;&gt;(m.descendingMap());</td>
+</tr>
+<tr>
+<td>int size()</td>
+<td>return m.size();</td>
+</tr>
+<tr>
+<td>boolean isEmpty()</td>
+<td>return m.isEmpty();</td>
+</tr>
+<tr>
+<td>boolean contains(Object o)</td>
+<td>return m.containsKey(o);</td>
+</tr>
+<tr>
+<td>boolean add(E e)</td>
+<td>return m.put(e, PRESENT)==null;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>HashMap：Map基于散列表的实现。插入和查询“键值对”的开销是固定的。可以通过构造器设置容量capacity和负载因子load factor，以调整容器的性能。<br>LinkedHashMap： 类似于HashMap，但是迭代遍历它时，取得“键值对”的顺序是其插入次序，或者是最近最少使用(LRU)的次序。只比HashMap慢一点。而在迭代访问时发而更快，因为它使用链表维护内部次序。<br>TreeMap ： 基于红黑树数据结构的实现。查看“键”或“键值对”时，它们会被排序(次序由Comparabel或Comparator决定)。TreeMap的特点在 于，你得到的结果是经过排序的。TreeMap是唯一的带有subMap()方法的Map，它可以返回一个子树。<br>WeakHashMao ：弱键(weak key)Map，Map中使用的对象也被允许释放: 这是为解决特殊问题设计的。如果没有map之外的引用指向某个“键”，则此“键”可以被垃圾收集器回收。<br>IdentifyHashMap： : 使用==代替equals()对“键”作比较的hash map。专为解决特殊问题而设计。</p>
+<p>Hashtable类<br>　　Hashtable继承Map接口，实现一个key-value映射的哈希表。任何非空（non-null）的对象都可作为key或者value。<br>　　添加数据使用put(key, value)，取出数据使用get(key)，这两个基本操作的时间开销为常数。<br>Hashtable通过initial capacity和load factor两个参数调整性能。通常缺省的load factor 0.75较好地实现了时间和空间的均衡。增大load factor可以节省空间但相应的查找时间将增大，这会影响像get和put这样的操作。<br>使用Hashtable的简单示例如下，将1，2，3放到Hashtable中，他们的key分别是”one”，”two”，”three”：<br>　　　　Hashtable numbers = new Hashtable();<br>　　　　numbers.put(“one”, new Integer(1));<br>　　　　numbers.put(“two”, new Integer(2));<br>　　　　numbers.put(“three”, new Integer(3));<br>　　要取出一个数，比如2，用相应的key：<br>　　　　Integer n = (Integer)numbers.get(“two”);<br>　　　　System.out.println(“two = ” + n);<br>　　由于作为key的对象将通过计算其散列函数来确定与之对应的value的位置，因此任何作为key的对象都必须实现hashCode和equals方 法。hashCode和equals方法继承自根类Object，如果你用自定义的类当作key的话，要相当小心，按照散列函数的定义，如果两个对象相 同，即obj1.equals(obj2)=true，则它们的hashCode必须相同，但如果两个对象不同，则它们的hashCode不一定不同，如 果两个不同对象的hashCode相同，这种现象称为冲突，冲突会导致操作哈希表的时间开销增大，所以尽量定义好的hashCode()方法，能加快哈希 表的操作。<br>　　如果相同的对象有不同的hashCode，对哈希表的操作会出现意想不到的结果（期待的get方法返回null），要避免这种问题，只需要牢记一条：要同时复写equals方法和hashCode方法，而不要只写其中一个。<br>　　Hashtable是同步的。<br>HashMap类<br>　　HashMap和Hashtable类似，不同之处在于HashMap是非同步的，并且允许null，即null value和null key。，但是将HashMap视为Collection时（values()方法可返回Collection），其迭代子操作时间开销和HashMap 的容量成比例。因此，如果迭代操作的性能相当重要的话，不要将HashMap的初始化容量设得过高，或者load factor过低。<br>WeakHashMap类<br>　　WeakHashMap是一种改进的HashMap，它对key实行“弱引用”，如果一个key不再被外部所引用，那么该key可以被GC回收。</p>
+<p>同步性<br>Vector是同步的。这个类中的一些方法保证了Vector中的对象是线程安全的。而ArrayList则是异步的，因此ArrayList中的对象并 不是线程安全的。因为同步的要求会影响执行的效率，所以如果你不需要线程安全的集合那么使用ArrayList是一个很好的选择，这样可以避免由于同步带 来的不必要的性能开销。<br>数据增长<br>从内部实现机制来讲ArrayList和Vector都是使用数组(Array)来控制集合中的对象。当你向这两种类型中增加元素的时候，如果元素的数目 超出了内部数组目前的长度它们都需要扩展内部数组的长度，Vector缺省情况下自动增长原来一倍的数组长度，ArrayList是原来的50%,所以最 后你获得的这个集合所占的空间总是比你实际需要的要大。所以如果你要在集合中保存大量的数据那么使用Vector有一些优势，因为你可以通过设置集合的初 始化大小来避免不必要的资源开销。<br>使用模式<br>在ArrayList和Vector中，从一个指定的位置（通过索引）查找数据或是在集合的末尾增加、移除一个元素所花费的时间是一样的，这个时间我们用 O(1)表示。但是，如果在集合的其他位置增加或移除元素那么花费的时间会呈线形增长：O(n-i)，其中n代表集合中元素的个数，i代表元素增加或移除 元素的索引位置。为什么会这样呢？以为在进行上述操作的时候集合中第i和第i个元素之后的所有元素都要执行位移的操作。这一切意味着什么呢？<br>这意味着，你只是查找特定位置的元素或只在集合的末端增加、移除元素，那么使用Vector或ArrayList都可以。如果是其他操作，你最好选择其他 的集合操作类。比如，LinkList集合类在增加或移除集合中任何位置的元素所花费的时间都是一样的?O(1)，但它在索引一个元素的使用缺比较慢 －O(i),其中i是索引的位置.使用ArrayList也很容易，因为你可以简单的使用索引来代替创建iterator对象的操作。LinkList也 会为每个插入的元素创建对象，所有你要明白它也会带来额外的开销。<br>最后，在《Practical Java》一书中Peter Haggar建议使用一个简单的数组（Array）来代替Vector或ArrayList。尤其是对于执行效率要求高的程序更应如此。因为使用数组 (Array)避免了同步、额外的方法调用和不必要的重新分配空间的操作。</p>
+<p>Vector和ArrayList<br>1，vector是线程同步的，所以它也是线程安全的，而arraylist是线程异步的，是不安全的。如果不考虑到线程的安全因素，一般用<br>arraylist效率比较高。<br>2，如果集合中的元素的数目大于目前集合数组的长度时，vector增长率为目前数组长度的100%,而arraylist增长率为目前数组长度<br>的50%.如过在集合中使用数据量比较大的数据，用vector有一定的优势。<br>3，如果查找一个指定位置的数据，vector和arraylist使用的时间是相同的，都是0(1),这个时候使用vector和arraylist都可以。而<br>如果移动一个指定位置的数据花费的时间为0(n-i)n为总长度，这个时候就应该考虑到使用linklist,因为它移动一个指定位置的数据<br>所花费的时间为0(1),而查询一个指定位置的数据时花费的时间为0(i)。<br>ArrayList 和Vector是采用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，都允许直接序号索引元素，但是插入数据要设计到数组元素移动 等内存操作，所以索引数据快插入数据慢，Vector由于使用了synchronized方法（线程安全）所以性能上比ArrayList要 差，LinkedList使用双向链表实现存储，按序号索引数据需要进行向前或向后遍历，但是插入数据时只需要记录本项的前后项即可，所以插入数度较快！<br>arraylist和linkedlist<br>1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。<br>2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。<br>3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。<br>    这一点要看实际情况的。若只对单条数据插入或删除，ArrayList的速度反而优于LinkedList。但若是批量随机的插入删除数 据，LinkedList的速度大大优于ArrayList. 因为ArrayList每插入一条数据，要移动插入点及之后的所有数据。</p>
+<p>HashMap与TreeMap<br>        (注)<br>       文章出处：<a href="http://www.diybl.com/course/3_program/java/javaxl/200875/130233.html" target="_blank" rel="external">http://www.diybl.com/course/3_program/java/javaxl/200875/130233.html</a></p>
+<pre><code>1、HashMap通过hashcode对其内容进行快速查找，而TreeMap中所有的元素都保持着某种固定的顺序，如果你需要得到一个有序的结果你就应该使用TreeMap（HashMap中元素的排列顺序是不固定的）。
+</code></pre><p>HashMap中元素的排列顺序是不固定的）。<br>        2、  HashMap通过hashcode对其内容进行快速查找，而TreeMap中所有的元素都保持着某种固定的顺序，如果你需要得到一个有序的结果你就应该 使用TreeMap（HashMap中元素的排列顺序是不固定的）。集合框架”提供两种常规的Map实现：HashMap和TreeMap (TreeMap实现SortedMap接口)。<br>         3、在Map 中插入、删除和定位元素，HashMap 是最好的选择。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。使用HashMap要求添加的键类明确定义了hashCode()和 equals()的实现。　　这个TreeMap没有调优选项，因为该树总处于平衡状态。<br>      结过研究，在原作者的基础上我还发现了一点，二树map一样，但顺序不一样，导致hashCode()不一样。<br>      同样做测试：<br>      在hashMap中，同样的值的map,顺序不同，equals时，false;<br>      而在treeMap中，同样的值的map,顺序不同,equals时，true，说明，treeMap在equals()时是整理了顺序了的。<br>hashtable与hashmap<br>一.历史原因:Hashtable是基于陈旧的Dictionary类的，HashMap是Java 1.2引进的Map接口的一个实现<br>二.同步性:Hashtable是线程安全的，也就是说是同步的，而HashMap是线程序不安全的，不是同步的<br>三.值：只有HashMap可以让你将空值作为一个表的条目的key或value</p>
 
         </div>
         <footer class="article-footer">
@@ -542,7 +1164,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj1qkqad20009lye9jjfgqwu3" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj1qlg1re0003r6e95oybtih1" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
