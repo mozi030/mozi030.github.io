@@ -71,7 +71,7 @@ manager
 4
 m">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
-<meta property="og:updated_time" content="2017-04-06T16:36:19.000Z">
+<meta property="og:updated_time" content="2017-04-23T08:51:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Dependencies(2)">
 <meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
@@ -149,11 +149,11 @@ m">
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -161,7 +161,7 @@ m">
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -182,8 +182,8 @@ m">
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -283,8 +283,7 @@ m">
 <h4 id="1nf第一范式"><a href="#1NF_uFF08_u7B2C_u4E00_u8303_u5F0F_uFF09" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
 <p>第一范式是为了要排除重复组的出现，所采用的方法是要求数据库的每个列的值域都是由原子值组成；<br>每个字段的值都只能是单一值。</p>
 <h4 id="2nf第二范式"><a href="#2NF_uFF08_u7B2C_u4E8C_u8303_u5F0F_uFF09" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
-<p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的字段都一定是候选键中每一个字段的函数（可由candidate key的attribute决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""></p>
-<p>e.g. For FD: { {A    →B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
+<p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的attribute都一定是候选键中所有attribute的函数（可由candidate key的attribute完全决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""><br>第二范式（2NF）要求实体的属性完全依赖于主关键字。所谓完全依赖是指不能存在仅依赖主关键字一部分的属性，如果存在，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与原实体之间是一对多的关系。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。简而言之，第二范式就是主属性只依赖于主关键字。<br>e.g. For FD: { {A→B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
 <h4 id="3nf第三范式"><a href="#3NF_uFF08_u7B2C_u4E09_u8303_u5F0F_uFF09" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
 <p>In other words, for every FD that does not contain extraneous (useless) attributes, then:<br>(1)the LHS is a candidate key, or<br>(2)the RHS is a prime attribute, i.e., it is an attribute that is part of a candidate key</p>
 <p>e.g.若R=(B,C,E), F = { {E}→{B}, {B,C}→{E} }, candidate key is {C,E} or {B,C}<br>(1)for {E}→{B}, B is a prime attribute;<br>(2)for {B,C}→{E}, {B,C} is a candidate key</p>
@@ -300,7 +299,7 @@ m">
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1rczni3000kw0e92wo5eng5" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1wbo111000c63e92s44mgfo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -380,7 +379,7 @@ m">
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -438,7 +437,7 @@ m">
 <nav id="article-nav">
     
         <a href="/2017/04/06/Computational-Geometry/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
+        <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
             Computational Geometry
@@ -449,7 +448,7 @@ m">
     
     
         <a href="/2017/04/05/Functional-Dependencies-1/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
+        <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">Functional Dependencies(1)</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -465,6 +464,26 @@ m">
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/24/图论-一/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2017/04/24/图论-一/basic1.png)" alt="图论(一)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
+                            <p class="item-title"><a href="/2017/04/24/图论-一/" class="title">图论(一)</a></p>
+                            <p class="item-date"><time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -546,26 +565,6 @@ m">
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/07/Collection-Map及其相关/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
-                            <p class="item-title"><a href="/2017/04/07/Collection-Map及其相关/" class="title">Collection-Map及其相关(一)</a></p>
-                            <p class="item-date"><time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -575,7 +574,7 @@ m">
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -583,18 +582,32 @@ m">
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
     </div>
 
 
             
                 
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection-Set/">Collection, Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph-bfs-dfs，关节点，MST/">graph, bfs, dfs，关节点，MST</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
 
             
                 
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Collection-Set/" style="font-size: 10px;">Collection, Set</a> <a href="/tags/graph-bfs-dfs，关节点，MST/" style="font-size: 10px;">graph, bfs, dfs，关节点，MST</a>
+        </div>
+    </div>
+
 
             
                 

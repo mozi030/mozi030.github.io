@@ -3,30 +3,35 @@
 <head>
     <meta charset="utf-8">
     
-    <title>c++继承 | Mozi&#39;s Blog</title>
+    <title>图论(一) | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="graph, bfs, dfs，关节点，MST" />
     
-    <meta name="description" content="本文是对关于c++继承的知识点的总结
-c++面向对象的三特征之一：继承，表示类与类之间的关系，可以理解为父类向子类share某些成员与函数。
-继承的优势：1.减少代码，方便维护，增加可读性。2.增加类之间的关系与约束，增强逻辑关系。
-如Student继承People，那么Student自然有People的所有属性与方法，不需重新写；当这些属性与方法有所修改，只需要更改People中的代码，则Stu">
+    <meta name="description" content="本文归纳图论的知识点。
+图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。连通图：图中任意两点都连通，即存在路径以它们为始终点。有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。环：一条路径的起止点事一样的。无环图(acycle)：图中没有环
+图的邻接链表
+为每个顶点链接上它所有相连的顶点。
+宽度优先搜索(BFS)从一个顶点b开始等深度地遍历所有连通的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++继承">
-<meta property="og:url" content="https://mozi030.github.io/2017/04/08/c-继承/index.html">
+<meta property="og:title" content="图论(一)">
+<meta property="og:url" content="https://mozi030.github.io/2017/04/24/图论-一/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文是对关于c++继承的知识点的总结
-c++面向对象的三特征之一：继承，表示类与类之间的关系，可以理解为父类向子类share某些成员与函数。
-继承的优势：1.减少代码，方便维护，增加可读性。2.增加类之间的关系与约束，增强逻辑关系。
-如Student继承People，那么Student自然有People的所有属性与方法，不需重新写；当这些属性与方法有所修改，只需要更改People中的代码，则Stu">
-<meta property="og:updated_time" content="2017-04-07T17:37:24.000Z">
+<meta property="og:description" content="本文归纳图论的知识点。
+图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。连通图：图中任意两点都连通，即存在路径以它们为始终点。有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。环：一条路径的起止点事一样的。无环图(acycle)：图中没有环
+图的邻接链表
+为每个顶点链接上它所有相连的顶点。
+宽度优先搜索(BFS)从一个顶点b开始等深度地遍历所有连通的">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/24/图论-一/basic1.png">
+<meta property="og:updated_time" content="2017-04-25T10:06:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++继承">
-<meta name="twitter:description" content="本文是对关于c++继承的知识点的总结
-c++面向对象的三特征之一：继承，表示类与类之间的关系，可以理解为父类向子类share某些成员与函数。
-继承的优势：1.减少代码，方便维护，增加可读性。2.增加类之间的关系与约束，增强逻辑关系。
-如Student继承People，那么Student自然有People的所有属性与方法，不需重新写；当这些属性与方法有所修改，只需要更改People中的代码，则Stu">
+<meta name="twitter:title" content="图论(一)">
+<meta name="twitter:description" content="本文归纳图论的知识点。
+图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。连通图：图中任意两点都连通，即存在路径以它们为始终点。有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。环：一条路径的起止点事一样的。无环图(acycle)：图中没有环
+图的邻接链表
+为每个顶点链接上它所有相连的顶点。
+宽度优先搜索(BFS)从一个顶点b开始等深度地遍历所有连通的">
+<meta name="twitter:image" content="https://mozi030.github.io/2017/04/24/图论-一/basic1.png">
     
 
     
@@ -132,18 +137,18 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/c/">c++</a>
+    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-c-继承" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-图论-一" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        c++继承
+        图论(一)
         </h1>
     
 
@@ -153,47 +158,39 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/04/08/c-继承/" class="article-date">
-            <time datetime="2017-04-07T16:00:04.000Z" itemprop="datePublished">2017-04-08</time>
+        <a href="/2017/04/24/图论-一/" class="article-date">
+            <time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time>
         </a>
     </div>
 
                 
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/graph-bfs-dfs，关节点，MST/">graph, bfs, dfs，关节点，MST</a>
+    </div>
+
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>本文是对关于c++继承的知识点的总结</p>
-<p>c++面向对象的三特征之一：继承，表示类与类之间的关系，可以理解为父类向子类share某些成员与函数。</p>
-<p>继承的优势：<br>1.减少代码，方便维护，增加可读性。<br>2.增加类之间的关系与约束，增强逻辑关系。</p>
-<p>如Student继承People，那么Student自然有People的所有属性与方法，不需重新写；当这些属性与方法有所修改，只需要更改People中的代码，则Student中的代码将被自动修改。</p>
-<p>继承的语法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Student: <span class="keyword">public</span> People</div></pre></td></tr></table></figure></p>
-<h2 id="继承的权限"><a href="#u7EE7_u627F_u7684_u6743_u9650" class="headerlink" title="继承的权限"></a>继承的权限</h2><p>上例中，public是公有继承的意思，当然也有private（默认）与protected，不过比较少用。<br>这些继承方法用来指定被继承的成员、方法的最高访问权限：</p>
-<table>
-<thead>
-<tr>
-<th>继承方式</th>
-<th>父类成员的访问权限 → 子类成员的访问权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>public</td>
-<td>public → public; protected → protected; private → 不能使用</td>
-</tr>
-<tr>
-<td>protected</td>
-<td>public → protected; protected → protected; private → 不能使用</td>
-</tr>
-<tr>
-<td>private</td>
-<td>public → private; protected → private; private → 不能使用</td>
-</tr>
-</tbody>
-</table>
-<p>(1)虽然父类的private成员不能在派生类中使用，但实际上父类的private成员也在子类中继承，只是不可见，但依然会占用子类对象的内存。<br>(2)子类要访问父类的private成员，只能使用父类的非private函数来访问。</p>
-<h2 id="继承时的名字遮蔽"><a href="#u7EE7_u627F_u65F6_u7684_u540D_u5B57_u906E_u853D" class="headerlink" title="继承时的名字遮蔽"></a>继承时的名字遮蔽</h2><p>若子类和父类有同名函数fun()，则子类对象调用fun()时，只使用子类的fun()，这时父类的fun()就被遮蔽了。但子类对象同样可以用父类名字访问fun()<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Parent &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str = <span class="string">"parent"</span>, str1 = <span class="string">"parent"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Parent::fun(int)\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> Child : <span class="keyword">public</span> Parent&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">string</span> str1 = <span class="string">"child"</span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"using Child::fun()\nstr is "</span> &lt;&lt; str &lt;&lt; <span class="string">"\nstr1 is "</span> &lt;&lt; str1 &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	Child c;</div><div class="line">	c.fun();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>输出为：<br>using Child::fun()<br>str is parent<br>str1 is child<br>(1)Child中，str1对Parent::str1遮蔽，且继承了Parent::str<br>(2)这时编译器会有warning: Function ‘fun’ hides a non-virtual function from class Parent<br>(3)Child中fun不仅遮蔽了Parent::fun()，而且遮蔽了Parent::fun(int)，若此时我们在c.fun()中加入int参数，编辑器会报错Too mang arguments, expected 0，意味着Child中只能使用fun()。因此只要子类和父类有同名函数，子类函数都会将父类函数遮蔽，不论参数列表是否相同。<br>(4)当然，子类要调用父类函数很简单：只需使用c.Parent::fun()或c.Parent::fun(1);</p>
+            <p>本文归纳图论的知识点。</p>
+<p>图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。<br>连通图：图中任意两点都连通，即存在路径以它们为始终点。<br>有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。<br>环：一条路径的起止点事一样的。<br>无环图(acycle)：图中没有环</p>
+<h4 id="图的邻接链表"><a href="#u56FE_u7684_u90BB_u63A5_u94FE_u8868" class="headerlink" title="图的邻接链表"></a>图的邻接链表</h4><img src="/2017/04/24/图论-一/basic1.png" alt="basic1.png" title="">
+<p>为每个顶点链接上它所有相连的顶点。</p>
+<h3 id="宽度优先搜索bfs"><a href="#u5BBD_u5EA6_u4F18_u5148_u641C_u7D22_28BFS_29" class="headerlink" title="宽度优先搜索(BFS)"></a>宽度优先搜索(BFS)</h3><p>从一个顶点b开始等深度地遍历所有连通的顶点。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">queue</span>&lt;Node&gt;q;</div><div class="line">q.push(b);</div><div class="line"><span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">  Node cur_node = q.front();</div><div class="line">  q.pop();</div><div class="line">  <span class="comment">// do something with cur_node</span></div><div class="line">  <span class="keyword">for</span> (Node next : cur_node.all_next()) &#123;</div><div class="line">    <span class="keyword">if</span> (uncheck(next)) &#123;</div><div class="line">      q.push(next);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>若不连通的顶点也要遍历的话，在每次遇到q为empty的时候都检查还有没有顶点是unchecked，若有则push进q再遍历，直到所有顶点都checked。<br>每个顶点都会插入到q一次，并从q中删除一次；每条边都会被遍历两次（分别从两个顶点，若在有向图中则只有一次）。时间复杂度是O(V + E)。</p>
+<h4 id="bfs-tree"><a href="#BFS_Tree" class="headerlink" title="BFS Tree"></a>BFS Tree</h4><img src="/2017/04/24/图论-一/bfs1.png" alt="bfs1.png" title="">
+<h4 id="应用"><a href="#u5E94_u7528" class="headerlink" title="应用"></a>应用</h4><p>(1)找图的连通部分。<br>(2)找点v1到点v2之间的所有路径。（记录每个路径走过的点，不走重复点）。<br>(3)找点v1到点v2之间的最短路径。（第一个找到的路径即为最短。）</p>
+<h3 id="深度优先搜索dfs"><a href="#u6DF1_u5EA6_u4F18_u5148_u641C_u7D22_28DFS_29" class="headerlink" title="深度优先搜索(DFS)"></a>深度优先搜索(DFS)</h3><p>沿一个路径不断往深遍历，直到尽头（没有unchecked的点），再逐步回溯。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> prev_node[v_num];</div><div class="line"><span class="keyword">bool</span> checked[v_num];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="built_in">memset</span>(prev_node, <span class="number">-1</span>, <span class="keyword">sizeof</span>(prev_node));</div><div class="line">  <span class="built_in">memset</span>(checked, <span class="literal">false</span>, <span class="keyword">sizeof</span>(checked));</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v_num; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (!checked[i]) &#123;</div><div class="line">      DFS_visit(i);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS_visit</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">  checked[index] = <span class="literal">true</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> next : v[index].all_next()) &#123;</div><div class="line">    <span class="keyword">if</span> (!checked[next]) &#123;</div><div class="line">      prev[next] = index;</div><div class="line">      DFS_visit(index);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>DFS是基于stack实现的，上例用函数栈来代替stack，当然也可以直接用stack来实现。<br>若stack为empty，push下一个unchecked的点，若不为empty，去栈顶元素，并push这个元素的所有unchecked的next。<br>若要记录深度depth或step，要不在stack中存储的Node结构体中加入成员，要不在函数内传参，并在DFS_visit前后为depth++，和–。</p>
+<p>每个顶点将被遍历一次，每条边被遍历一次。所以时间复杂度是O(V + E)。</p>
+<h4 id="dfs-tree"><a href="#DFS_Tree" class="headerlink" title="DFS Tree"></a>DFS Tree</h4><img src="/2017/04/24/图论-一/dfs1.png" alt="dfs1.png" title="">
+<h3 id="关节点articulation-point"><a href="#u5173_u8282_u70B9_28Articulation_Point_29" class="headerlink" title="关节点(Articulation Point)"></a>关节点(Articulation Point)</h3><p>在无向连通图中，一个点是关节点，iff删除这个点后原图被分为若干个连通图。<br>1.The leaves of a DFS tree are not articulartion points.<br>2.The root is not a articulation point iff it has at most one child.<br>3.Vertex d is not an articulation point iff there are back edges that connect every subtree rooted at a child of d to an ancestor of d.<br><img src="/2017/04/24/图论-一/Articulation_Point1.png" alt="Articulation_Point1.png" title=""><br>时间复杂度为O(n<sup>2</sup>)。</p>
+<h3 id="生成树spanning-tree"><a href="#u751F_u6210_u6811_28spanning_tree_29" class="headerlink" title="生成树(spanning tree)"></a>生成树(spanning tree)</h3><p>G的生成树是一个G的无环连通子图，且包含G的所有点V。<br>一颗生成树的权重是生成树中所有边的权重之和。<br>G中存在n个顶点的话，那么生成树中就有(n - 1)条边。</p>
+<h4 id="最小生成树minimal-spanning-treemst"><a href="#u6700_u5C0F_u751F_u6210_u6811_28minimal_spanning_tree_2CMST_29" class="headerlink" title="最小生成树(minimal spanning tree,MST)"></a>最小生成树(minimal spanning tree,MST)</h4><p>是G的权重最小的生成树。</p>
+<h5 id="kruskal算法"><a href="#Kruskal_u7B97_u6CD5" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h5><p>设G施一个无向图，<br>(1)将图中所有边按权重的升序排序。<br>(2)不断遍历这些排好序的边，并维护一个forest F，且保证F是G的子图。<br>(3)F的初始状态是V，即只含G的所有顶点。<br>(4)不断选取边加入到F中，并保证每次加入都不会生成环，否则跳过这条边。<br>(5)直到F中插入了(n - 1)条边。<br>要保证无环，则要为F中所有连通部分分别取一个id，而同一连通部分中所有顶点的id是相同的。每个顶点的起始id是该顶点的id，若加入某条边时检查两个顶点的id是否一样，若不一样则另顶点较少的连通部分的id全部置为顶点较多的部分的id。</p>
+<h6 id="证明"><a href="#u8BC1_u660E" class="headerlink" title="证明"></a>证明</h6><p>用数学归纳法：证每次插入边后形成的forest F都是G的MST的子图。<br>(1)初始状态只含所有顶点，明显是MST的子图。<br>(2)若已知当前的F是MST的子图，要插入的下一条边为e，根据Kruskal算法，e将会把当前F中的两棵不连通的树T1，T2连通。现用反证法证插入e后，也会生成MST的子图。<br>(3)若e不属于MST，则{e} ∪ MST后会导致MST成环C，因MST是所有顶点连通的。C中包含e，T1和T2的一部分，以及在e之后将会插入的一些边e’，因T1，T2并不连通。因为e比e’中所有边的权重都小，所以将e代替e’中任意一边都能生成更小的MST，所以矛盾。</p>
+<p>时间复杂度：<br>排序需要mlog(m) = mlog(n)<br>当一个顶点的id要变化时，其所在连通部分的大小至少要double。所以一个顶点的id最多变化log<sub>2</sub>n次，所以所有顶点id变化的时间复杂度是nlog(n)。<br>总时间复杂度是mlog(n) + nlog(n) = mlog(n)。</p>
 
         </div>
         <footer class="article-footer">
@@ -201,7 +198,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/08/c-继承/" data-id="cj1wbo118000h63e93s0q9xll" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/24/图论-一/" data-id="cj1wbqskp000077e9aerdfqx1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -338,20 +335,10 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
         
 <nav id="article-nav">
     
-        <a href="/2017/04/08/c-虚函数/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            c++虚函数
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/04/07/Collection-Map及其相关/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/04/19/数据库索引/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Collection-Map及其相关(一)</p>
+        <p class="article-nav-title">数据库索引</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -554,7 +541,7 @@ c++面向对象的三特征之一：继承，表示类与类之间的关系，�
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/04/08/c-继承/';
+    var disqus_url = 'https://mozi030.github.io/2017/04/24/图论-一/';
     
     (function() {
     var dsq = document.createElement('script');

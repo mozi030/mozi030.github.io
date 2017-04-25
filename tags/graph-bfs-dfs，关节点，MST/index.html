@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Category: Java | Mozi&#39;s Blog</title>
+    <title>Tag: graph, bfs, dfs，关节点，MST | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="study notes of programming">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mozi's Blog">
-<meta property="og:url" content="https://mozi030.github.io/categories/Java/index.html">
+<meta property="og:url" content="https://mozi030.github.io/tags/graph-bfs-dfs，关节点，MST/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="study notes of programming">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-folder-open"></i>Category: <em class="page-title-link">Java</em>
+    <i class="icon fa fa-tag"></i>Tag: <em>graph, bfs, dfs，关节点，MST</em>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -143,17 +143,17 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/04/07/Collection-Map及其相关/" class="thumbnail">
+        <a href="/2017/04/24/图论-一/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(/2017/04/24/图论-一/basic1.png)" alt="图论(一)" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/04/24/图论-一/">0</span>
     
 </span>
 
@@ -163,20 +163,23 @@
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/Java/">Java</a>
+            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
             </div>
-            <div class="date"><time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time></div>
+            <div class="date"><time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/04/07/Collection-Map及其相关/">Collection-Map及其相关(一)</a>
+        <a href="/2017/04/24/图论-一/">图论(一)</a>
         </h1>
     
 
         <p class="article-excerpt">
-            本文归纳Collection和Map的相关类的源码归纳
-本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&lt;E&gt; extends Iterable&lt;E&gt;public abstract class AbstractCollection&lt;E&gt; implements Col
+            本文归纳图论的知识点。
+图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。连通图：图中任意两点都连通，即存在路径以它们为始终点。有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。环：一条路径的起止点事一样的。无环图(acycle)：图中没有环
+图的邻接链表
+为每个顶点链接上它所有相连的顶点。
+宽度优先搜索(BFS)从一个顶点b开始等深度地遍历所有连通的
         </p>
     </div>
 </article>
@@ -186,7 +189,6 @@
 
 
     </div></section>
-
 
 
 
