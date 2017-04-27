@@ -71,7 +71,7 @@ manager
 4
 m">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/2NF.png">
-<meta property="og:updated_time" content="2017-04-23T08:51:28.000Z">
+<meta property="og:updated_time" content="2017-04-25T17:24:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Dependencies(2)">
 <meta name="twitter:description" content="本文是对Functional Dependency的知识点归纳
@@ -282,7 +282,7 @@ m">
 <h3 id="good-form"><a href="#Good_form" class="headerlink" title="Good form"></a>Good form</h3><p>The fragments Ri should not involve redundancy. Roughly speaking, a table has redundancy if there is a FD where the LHS is not a key.</p>
 <h4 id="1nf第一范式"><a href="#1NF_uFF08_u7B2C_u4E00_u8303_u5F0F_uFF09" class="headerlink" title="1NF（第一范式）"></a>1NF（第一范式）</h4><p>If the domains of all attributes in a table contain only atomic values, then the table is in First Normal Form (1NF).<br>In other words, there are no nested tables, multi-valued attributes, or complex structures such as lists.<br>Relational tables are always in 1NF, according to the definition of the relational model.</p>
 <p>第一范式是为了要排除重复组的出现，所采用的方法是要求数据库的每个列的值域都是由原子值组成；<br>每个字段的值都只能是单一值。</p>
-<h4 id="2nf第二范式"><a href="#2NF_uFF08_u7B2C_u4E8C_u8303_u5F0F_uFF09" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
+<h4 id="2nf第二范式"><a href="#2NF_uFF08_u7B2C_u4E8C_u8303_u5F0F_uFF09" class="headerlink" title="2NF（第二范式）"></a>2NF（第二范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 2NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X (the FD is trivial), or<br>(2)X is not a proper subset(真子集) of a candidate key for R, or<br>(3)every attribute in A is prime (an attribute that is part of a candidate key)</p>
 <p>一个数据表匹配第二范式当且仅当<br>(1)它匹配第一范式<br>(2)所有非键的attribute都一定是候选键中所有attribute的函数（可由candidate key的attribute完全决定，非partial dependency）<br><img src="/2017/04/05/Functional-Dependencies-2/2NF.png" alt="2NF.png" title=""><br>第二范式（2NF）要求实体的属性完全依赖于主关键字。所谓完全依赖是指不能存在仅依赖主关键字一部分的属性，如果存在，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与原实体之间是一对多的关系。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。简而言之，第二范式就是主属性只依赖于主关键字。<br>e.g. For FD: { {A→B}, {B→C} }, candidate key is {A}, thus:<br>(1) for {A→B}, {A} is the only candidate key;<br>(2) for {B→C}, {B} is not a proper subset of candidate key {A};<br>对于其他的FD，其LHS只能是A、B的组合，所以也同理可得。<br>So this scheme is in 2NF.</p>
 <h4 id="3nf第三范式"><a href="#3NF_uFF08_u7B2C_u4E09_u8303_u5F0F_uFF09" class="headerlink" title="3NF（第三范式）"></a>3NF（第三范式）</h4><p>Let R be a relation schema, with the set F of FDs. R is in 3NF if and only if for each FD: X → A in F+, then:<br>(1)A ∈ X(the FD is trivial), or<br>(2)X is a superkey for R (different from 2NF), or<br>(3)every attribute in A is prime.</p>
 <p>In other words, for every FD that does not contain extraneous (useless) attributes, then:<br>(1)the LHS is a candidate key, or<br>(2)the RHS is a prime attribute, i.e., it is an attribute that is part of a candidate key</p>
@@ -299,7 +299,7 @@ m">
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1wbo111000c63e92s44mgfo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://mozi030.github.io/2017/04/05/Functional-Dependencies-2/" data-id="cj1xra285000esse9irarg4ow" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -594,7 +594,7 @@ m">
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection-Set/">Collection, Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph-bfs-dfs，关节点，MST/">graph, bfs, dfs，关节点，MST</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection-Set/">Collection, Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph-bfs-dfs，关节点，MST-Dijkstra/">graph, bfs, dfs，关节点，MST, Dijkstra</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -604,7 +604,7 @@ m">
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Collection-Set/" style="font-size: 10px;">Collection, Set</a> <a href="/tags/graph-bfs-dfs，关节点，MST/" style="font-size: 10px;">graph, bfs, dfs，关节点，MST</a>
+            <a href="/tags/Collection-Set/" style="font-size: 10px;">Collection, Set</a> <a href="/tags/graph-bfs-dfs，关节点，MST-Dijkstra/" style="font-size: 10px;">graph, bfs, dfs，关节点，MST, Dijkstra</a>
         </div>
     </div>
 
