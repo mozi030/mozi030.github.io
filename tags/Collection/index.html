@@ -3,23 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>图论(二)Maximum Flow | Mozi&#39;s Blog</title>
+    <title>Etiqueta: Collection | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Maximum Flow" />
-    
-    <meta name="description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
-<meta property="og:type" content="article">
-<meta property="og:title" content="图论(二)Maximum Flow">
-<meta property="og:url" content="https://mozi030.github.io/2017/05/04/图论-二/index.html">
+    <meta name="description" content="study notes of programming">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mozi's Blog">
+<meta property="og:url" content="https://mozi030.github.io/tags/Collection/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
-<meta property="og:image" content="https://mozi030.github.io/concept1.png">
-<meta property="og:updated_time" content="2017-05-04T06:44:51.000Z">
+<meta property="og:description" content="study notes of programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图论(二)Maximum Flow">
-<meta name="twitter:description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
-<meta name="twitter:image" content="https://mozi030.github.io/concept1.png">
+<meta name="twitter:title" content="Mozi's Blog">
+<meta name="twitter:description" content="study notes of programming">
     
 
     
@@ -125,125 +120,73 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+    <i class="icon fa fa-tag"></i>Etiqueta: <em>Collection</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-图论-二" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/04/07/Collection-Map及其相关/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            <div class="date"><time datetime="2017-04-06T16:28:20.000Z" itemprop="datePublished">2017-04-07</time></div>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        图论(二)Maximum Flow
+        <a href="/2017/04/07/Collection-Map及其相关/">Collection-Map及其相关(一)</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/05/04/图论-二/" class="article-date">
-            <time datetime="2017-05-04T03:14:40.000Z" itemprop="datePublished">2017-05-04</time>
-        </a>
-    </div>
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Maximum-Flow/">Maximum Flow</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>最大流问题中最典型的问题原型是：<br>你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum flow)。</p>
-<h5 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h5><p>每一条边edge(u,v)都有它对应的固定容量(capacity)，用c(u,v)表示，指在这条路上运输量的上限。而实际上运输的量就是流(flow)，用f(u,v)表示。0 &lt;= f(u,v) &lt;= c(u,v)。<br>规定<br>(1)f(u,u) = 0。<br>(2)就算edge(u,v)不存在，f(u,v)也存在，且可以是负数。这是为了方便后面的计算。<br>(3)用Σ<sub>v</sub>f(u,v)表示所有从u流出的流的总和。除了s和t，所有点u都满足Σ<sub>v</sub>f(u,v) = 0，即所有货物都不会在所有中继点停留，所有点的流入和流出量是一样的。<br>(4)从s流出的量和向t流入的量是一样的。<br>(5)f(u,v) = -f(v,u)，即：u发送x单位的货物到v，等价于u收到v发过来的-x单位的货物。<br>(6)表示：<br><img src="concept1.png" width="400" height="250" alt="example of flow"><br>对于每条边上的数字，/左边的是这条边的flow，/右边是capacity。如果只有一个数字，表示flow为0，数字为capacity。</p>
-<h3 id="ford-fulkersons-algorithm"><a href="#Ford-Fulkerson_u2019s_algorithm" class="headerlink" title="Ford-Fulkerson’s algorithm"></a>Ford-Fulkerson’s algorithm</h3><p>1.先令所有的flow(u,v) = 0。<br>2.不断地找从s到t的一个path(augment path)来使某些flow能增加，直到不能再增加为止。<br>最终找到的流就是maximum flow。</p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://mozi030.github.io/2017/05/04/图论-二/" data-id="cj4oazfjn000uzue9ejjjej7b" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+        <p class="article-excerpt">
+            本文归纳Collection和Map的相关类的源码归纳
+本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&lt;E&gt; extends Iterable&lt;E&gt;public abstract class AbstractCollection&lt;E&gt; implements Col
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
+
 
 
                         </div>
@@ -304,19 +247,6 @@
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-    
-        <a href="/2017/04/24/图论-一/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">图论(一):BFS,DFS,MST,Dijkstra</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -514,13 +444,11 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/05/04/图论-二/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
