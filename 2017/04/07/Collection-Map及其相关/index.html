@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Collection-Map及其相关(一) | Mozi&#39;s Blog</title>
+    <title>Collection, Map及其相关(一) | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="Collection,Set" />
@@ -11,14 +11,14 @@
     <meta name="description" content="本文归纳Collection和Map的相关类的源码归纳
 本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Collection-Map及其相关(一)">
+<meta property="og:title" content="Collection, Map及其相关(一)">
 <meta property="og:url" content="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
 <meta property="og:description" content="本文归纳Collection和Map的相关类的源码归纳
 本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
-<meta property="og:updated_time" content="2017-07-03T15:31:12.000Z">
+<meta property="og:updated_time" content="2017-07-03T15:47:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Collection-Map及其相关(一)">
+<meta name="twitter:title" content="Collection, Map及其相关(一)">
 <meta name="twitter:description" content="本文归纳Collection和Map的相关类的源码归纳
 本文包含以下类的源码分析：123456789101112131415161718192021public interface Collection&amp;lt;E&amp;gt; extends Iterable&amp;lt;E&amp;gt;public abstract class AbstractCollection&amp;lt;E&amp;gt; implements Col">
     
@@ -66,11 +66,11 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -78,7 +78,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -99,8 +99,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -137,7 +137,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-        Collection-Map及其相关(一)
+        Collection, Map及其相关(一)
         </h1>
     
 
@@ -164,7 +164,8 @@
         <div class="article-entry" itemprop="articleBody">
             <p>本文归纳Collection和Map的相关类的源码归纳</p>
 <p>本文包含以下类的源码分析：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">TreeSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">abstract</span> <span class="title">class</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">Hashtable</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">TreeMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">NavigableMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div><div class="line"><span class="title">public</span> <span class="title">class</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="1collection"><a href="#1-Collection" class="headerlink" title="1.Collection"></a>1.Collection</h2><p>public interface Collection<e> extends Iterable<e><br>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的”子接口”如List和Set。<br>方法：</e></e></p>
+<h2 id="1collection"><a href="#1-Collection" class="headerlink" title="1.Collection"></a>1.Collection</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的”子接口”如List和Set。<br>方法：</p>
 <table>
 <thead>
 <tr>
@@ -230,7 +231,8 @@
 </tr>
 </tbody>
 </table>
-<p>(1)所有实现Collection接口的类都必须提供两个标准的构造函数：无参数的构造函数用于创建一个空的Collection，有一个 Collection参数的构造函数用于创建一个新的Collection，这个新的Collection与传入的Collection有相同的元素，相当于深复制。下文省略对其构造函数的描述。<br>(2)Collection中没有get、set方法，get、set方法由子类List声明。<br>(3)而Collection靠引入Iterator来提供遍历方法:<br>public interface Iterator<e></e></p>
+<p>(1)所有实现Collection接口的类都必须提供两个标准的构造函数：无参数的构造函数用于创建一个空的Collection，有一个 Collection参数的构造函数用于创建一个新的Collection，这个新的Collection与传入的Collection有相同的元素，相当于深复制。下文省略对其构造函数的描述。<br>(2)Collection中没有get、set方法，get、set方法由子类List声明。<br>(3)而Collection靠引入Iterator来提供遍历方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt;</span></div></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -254,8 +256,8 @@
 </tbody>
 </table>
 <p>Iterator的遍历：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Iterator it = collection.iterator(); <span class="comment">// 获得一个迭代子</span></div><div class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</div><div class="line">	Object obj = it.next(); <span class="comment">// 得到下一个元素</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>(4)但是Collection的iterator只提供遍历的方法，没有使用Iterator来修改数据，且其remove函数只跑出错误，需要其子类来重写。</p>
-<h2 id="2abstractcollection"><a href="#2-AbstractCollection" class="headerlink" title="2.AbstractCollection"></a>2.AbstractCollection</h2><p>public abstract class AbstractCollection<e> implements Collection<e></e></e></p>
+<p>但是Collection的iterator只提供遍历的方法，没有使用Iterator来修改数据；<br>且其remove函数只跑出错误，需要其子类来重写。</p>
+<h2 id="2abstractcollection"><a href="#2-AbstractCollection" class="headerlink" title="2.AbstractCollection"></a>2.AbstractCollection</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>AbstractCollection使用Iterator实现了Collection中的这些接口：</p>
 <table>
 <thead>
@@ -1211,7 +1213,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj4obazj800052oe93a982ffl" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/04/07/Collection-Map及其相关/" data-id="cj4objvnu000547e9rqcdwcvo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -1291,7 +1293,7 @@
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -1349,7 +1351,7 @@
 <nav id="article-nav">
     
         <a href="/2017/04/08/c-继承/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
+        <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
             c++继承
@@ -1360,7 +1362,7 @@
     
     
         <a href="/2017/04/06/Computational-Geometry/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
+        <strong class="article-nav-caption">older</strong>
         <p class="article-nav-title">Computational Geometry</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -1494,7 +1496,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
@@ -1504,7 +1506,7 @@
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetes</h3>
+        <h3 class="widget-title">tags</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Map/">Map</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maximum-Flow/">Maximum Flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitwise/">bitwise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li></ul>
         </div>
@@ -1514,7 +1516,7 @@
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
+        <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Maximum-Flow/" style="font-size: 10px;">Maximum Flow</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/bitwise/" style="font-size: 10px;">bitwise</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a>
         </div>
