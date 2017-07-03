@@ -3,24 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Binary Search | Mozi&#39;s Blog</title>
+    <title>Etiqueta: graph | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Binary Search">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/Binary-Search/index.html">
+    <meta name="description" content="study notes of programming">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mozi's Blog">
+<meta property="og:url" content="https://mozi030.github.io/tags/graph/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
-<meta property="og:updated_time" content="2017-04-06T14:49:31.000Z">
+<meta property="og:description" content="study notes of programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Binary Search">
-<meta name="twitter:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+<meta name="twitter:title" content="Mozi's Blog">
+<meta name="twitter:description" content="study notes of programming">
     
 
     
@@ -126,122 +120,76 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+    <i class="icon fa fa-tag"></i>Etiqueta: <em>graph</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Binary-Search" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/04/24/图论-一/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2017/04/24/图论-一/basic1.png)" alt="图论(一):BFS,DFS,MST,Dijkstra" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://mozi030.github.io/2017/04/24/图论-一/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            </div>
+            <div class="date"><time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time></div>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        Binary Search
+        <a href="/2017/04/24/图论-一/">图论(一):BFS,DFS,MST,Dijkstra</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/03/21/Binary-Search/" class="article-date">
-            <time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>本文记录关于二分搜索的学习笔记</p>
-<h2 id="对有序数组的二分查找"><a href="#u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
-</ul>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://mozi030.github.io/2017/03/21/Binary-Search/" data-id="cj4oaq0jf0001wue9guy39n47" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+        <p class="article-excerpt">
+            本文归纳图论的知识点。
+图一般用G = (V, E)表示。连接顶点u和v的边用{u, v}表示。连通图：图中任意两点都连通，即存在路径以它们为始终点。有向图：图中每个边都有方向，无向图相当于是每条边都有正反两个方向的有向图。环：一条路径的起止点事一样的。无环图(acycle)：图中没有环
+图的邻接链表
+为每个顶点链接上它所有相连的顶点。
+宽度优先搜索(BFS)从一个顶点b开始等深度地遍历所有连通的
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
+
 
 
                         </div>
@@ -302,29 +250,6 @@
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/03/21/sort/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
-        <p class="article-nav-title">
-        
-            Sort
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/03/21/Bitwise/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">位运算归纳</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -522,13 +447,11 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/Binary-Search/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

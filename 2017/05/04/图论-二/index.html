@@ -3,24 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Binary Search | Mozi&#39;s Blog</title>
+    <title>图论(二)Maximum Flow | Mozi&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="Maximum Flow" />
     
-    <meta name="description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+    <meta name="description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Binary Search">
-<meta property="og:url" content="https://mozi030.github.io/2017/03/21/Binary-Search/index.html">
+<meta property="og:title" content="图论(二)Maximum Flow">
+<meta property="og:url" content="https://mozi030.github.io/2017/05/04/图论-二/index.html">
 <meta property="og:site_name" content="Mozi's Blog">
-<meta property="og:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
-<meta property="og:updated_time" content="2017-04-06T14:49:31.000Z">
+<meta property="og:description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
+<meta property="og:image" content="https://mozi030.github.io/concept1.png">
+<meta property="og:updated_time" content="2017-05-04T06:44:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Binary Search">
-<meta name="twitter:description" content="本文记录关于二分搜索的学习笔记
-对有序数组的二分查找12345678910111213int bsearch(int target, vector&amp;lt;int&amp;gt;&amp;amp;arr, int begin, int end) &amp;#123;    if (begin &amp;gt; end) &amp;#123;        return -1;    &amp;#125;    int middle = (begi">
+<meta name="twitter:title" content="图论(二)Maximum Flow">
+<meta name="twitter:description" content="最大流问题中最典型的问题原型是：你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum">
+<meta name="twitter:image" content="https://mozi030.github.io/concept1.png">
     
 
     
@@ -130,14 +129,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Binary-Search" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-图论-二" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Binary Search
+        图论(二)Maximum Flow
         </h1>
     
 
@@ -147,21 +146,24 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/03/21/Binary-Search/" class="article-date">
-            <time datetime="2017-03-21T14:56:45.000Z" itemprop="datePublished">2017-03-21</time>
+        <a href="/2017/05/04/图论-二/" class="article-date">
+            <time datetime="2017-05-04T03:14:40.000Z" itemprop="datePublished">2017-05-04</time>
         </a>
     </div>
 
                 
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Maximum-Flow/">Maximum Flow</a>
+    </div>
+
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>本文记录关于二分搜索的学习笔记</p>
-<h2 id="对有序数组的二分查找"><a href="#u5BF9_u6709_u5E8F_u6570_u7EC4_u7684_u4E8C_u5206_u67E5_u627E" class="headerlink" title="对有序数组的二分查找"></a>对有序数组的二分查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (begin &gt; end) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> middle = (begin + end) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (arr[middle] == target) &#123;</div><div class="line">        <span class="keyword">return</span> middle;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[middle] &gt; target) &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, begin, middle);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> bsearch(target, arr, middle, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Time complexity:<br>T(n) &lt;= T(n / 2) + O(1)<br>   &lt;= (T(n / 4) + O(1)) + O(1) = T(n / 4) + 2 <em> O(1)<br>   &lt;= ……<br>   &lt;= T(n / 2<sup>k</sup>) + k </em> O(1)<br>Let n / 2<sup>k</sup> = 1, then k = log<sub>2</sub>n相当于log(n)<br>So T(n) &lt;= O(log(n))</li>
-</ul>
+            <p>最大流问题中最典型的问题原型是：<br>你有一堆货物需要从出发点(sourse, s)运输到目的地(sink, t)，你可以在运输网络中(有向图，direct graph, network)沿很多不同的渠道(edge in graph)运输，但每一种渠道都有最大的运输量限制(each each has its capacity)。最终需要求出你最多可以运输多少货物到目的地(get the maximum flow)。</p>
+<h5 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h5><p>每一条边edge(u,v)都有它对应的固定容量(capacity)，用c(u,v)表示，指在这条路上运输量的上限。而实际上运输的量就是流(flow)，用f(u,v)表示。0 &lt;= f(u,v) &lt;= c(u,v)。<br>规定<br>(1)f(u,u) = 0。<br>(2)就算edge(u,v)不存在，f(u,v)也存在，且可以是负数。这是为了方便后面的计算。<br>(3)用Σ<sub>v</sub>f(u,v)表示所有从u流出的流的总和。除了s和t，所有点u都满足Σ<sub>v</sub>f(u,v) = 0，即所有货物都不会在所有中继点停留，所有点的流入和流出量是一样的。<br>(4)从s流出的量和向t流入的量是一样的。<br>(5)f(u,v) = -f(v,u)，即：u发送x单位的货物到v，等价于u收到v发过来的-x单位的货物。<br>(6)表示：<br><img src="concept1.png" width="400" height="250" alt="example of flow"><br>对于每条边上的数字，/左边的是这条边的flow，/右边是capacity。如果只有一个数字，表示flow为0，数字为capacity。</p>
+<h3 id="ford-fulkersons-algorithm"><a href="#Ford-Fulkerson_u2019s_algorithm" class="headerlink" title="Ford-Fulkerson’s algorithm"></a>Ford-Fulkerson’s algorithm</h3><p>1.先令所有的flow(u,v) = 0。<br>2.不断地找从s到t的一个path(augment path)来使某些flow能增加，直到不能再增加为止。<br>最终找到的流就是maximum flow。</p>
 
         </div>
         <footer class="article-footer">
@@ -169,7 +171,7 @@
 
 
 
-    <a data-url="https://mozi030.github.io/2017/03/21/Binary-Search/" data-id="cj4oaq0jf0001wue9guy39n47" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="https://mozi030.github.io/2017/05/04/图论-二/" data-id="cj4oaq0ke000kwue9af5f4kdd" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -306,20 +308,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/03/21/sort/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
-        <p class="article-nav-title">
-        
-            Sort
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/03/21/Bitwise/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/04/24/图论-一/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">位运算归纳</p>
+        <p class="article-nav-title">图论(一):BFS,DFS,MST,Dijkstra</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -522,7 +514,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/Binary-Search/';
+    var disqus_url = 'https://mozi030.github.io/2017/05/04/图论-二/';
     
     (function() {
     var dsq = document.createElement('script');
