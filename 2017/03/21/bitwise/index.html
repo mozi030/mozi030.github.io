@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>位运算归纳 | Mozi&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="bitwise" />
-    
-    <meta name="description" content="本文为本人归纳的实用位操作算法知识。
+  <meta charset="utf-8">
+  
+  <title>位运算归纳 | Mozi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文为本人归纳的实用位操作算法知识。
 位运算符左移&amp;lt;&amp;lt;右移&amp;gt;&amp;gt;与&amp;amp;或|异或^非~
 基本功能&amp;amp;
 0与任何数取&amp;amp;，得0
@@ -36,163 +33,96 @@
 1与任何数取&amp;amp;，不变
 判断一个数某一位是否为1，如判断最后一位是否为1：123bool check_is_1(int&amp;amp; n) &amp;#123;	return (n &amp;amp; 1);&amp;#125;
 单独提取某1位，如提取最后一">
-    
-
-    
-        <link rel="alternate" href="/" title="Mozi&#39;s Blog" type="application/atom+xml" />
-    
-
-    
-
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
+  
+    <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
 <body>
+  <div id="container">
     <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
-                                </li>
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mozi&#39;s Blog</a>
+      </h1>
+      
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
+      </div>
     </div>
+  </div>
 </header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
+      <div class="outer">
+        <section id="main"><article id="post-Bitwise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/21/Bitwise/" class="article-date">
+  <time datetime="2017-03-21T09:48:14.000Z" itemprop="datePublished">2017-03-21</time>
+</a>
     
-    <a class="page-title-link" href="/categories/Algorithm/">Algorithm</a>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      位运算归纳
     </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-Bitwise" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
+  
+
+      </header>
     
-        <h1 class="article-title" itemprop="name">
-        位运算归纳
-        </h1>
-    
-
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/03/21/Bitwise/" class="article-date">
-            <time datetime="2017-03-21T09:48:14.000Z" itemprop="datePublished">2017-03-21</time>
-        </a>
-    </div>
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/bitwise/">bitwise</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>本文为本人归纳的实用位操作算法知识。</p>
-<h2 id="位运算符"><a href="#u4F4D_u8FD0_u7B97_u7B26" class="headerlink" title="位运算符"></a>位运算符</h2><p>左移&lt;&lt;<br>右移&gt;&gt;<br>与&amp;<br>或|<br>异或^<br>非~</p>
-<h2 id="基本功能"><a href="#u57FA_u672C_u529F_u80FD" class="headerlink" title="基本功能"></a>基本功能</h2><h3 id="amp"><a href="#26amp_3B" class="headerlink" title="&amp;"></a>&amp;</h3><ul>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文为本人归纳的实用位操作算法知识。</p>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>左移&lt;&lt;<br>右移&gt;&gt;<br>与&amp;<br>或|<br>异或^<br>非~</p>
+<h2 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h2><h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><ul>
 <li>0与任何数取&amp;，得0</li>
 <li>1与任何数取&amp;，不变</li>
 <li>判断一个数某一位是否为1，<br>如判断最后一位是否为1：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_is_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>单独提取某1位，<br>如提取最后一位<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_last_bit</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id=""><a href="#7C" class="headerlink" title="|"></a>|</h3></li>
+<h3 id=""><a href="#" class="headerlink" title="|"></a>|</h3></li>
 <li>0与任何数取|，不变</li>
 <li>1与任何数取|，得1</li>
 <li>将某一位强制标记为1，<br>如将最后一位标记为1：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">force_to_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	n | <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id=""><a href="#5E" class="headerlink" title="^"></a>^</h3></li>
+<h3 id=""><a href="#-1" class="headerlink" title="^"></a>^</h3></li>
 <li>两数相同为0，不同为1</li>
 <li>对1作异或相当于取反<br>如将最后一位取反：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">force_to_1</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	n ^ <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="~"><a href="#7E" class="headerlink" title="~"></a>~</h3></li>
-<li>将0，1互换<h2 id="性质"><a href="#u6027_u8D28" class="headerlink" title="性质"></a>性质</h2>交换律<br>a|b = b|a<br>a&amp;b = b&amp;a<br>a^b = b^a</li>
+<h3 id="~"><a href="#-2" class="headerlink" title="~"></a>~</h3></li>
+<li>将0，1互换<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2>交换律<br>a|b = b|a<br>a&amp;b = b&amp;a<br>a^b = b^a</li>
 </ul>
 <p>结合律<br>(a|b)|c = a|(b|c)<br>(a&amp;b)&amp;c = a&amp;(b&amp;c)<br>(a^b)^c = a^(b^c)</p>
 <p>分配律(其他类推)<br>a&amp;(b|c) = (a&amp;b)|(a&amp;c)<br>a^(b|c)=(a^b)|(a^c)</p>
@@ -202,401 +132,148 @@
 <li>判断一个整数是否2的n次方<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_pow_of_2</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> (n &amp; -n) == n;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>判断一个数的奇偶性<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_odd</span><span class="params">(<span class="keyword">int</span>&amp; n)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> ~(x &amp; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 <li>平方根倒数<br><a href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf" target="_blank" rel="external">FAST INVERSE SQUARE ROOT</a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">inv_sqrt</span><span class="params">(<span class="keyword">float</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">float</span> x_half = <span class="number">0.5f</span> * x;</div><div class="line">	<span class="keyword">int</span> i = * (<span class="keyword">int</span>* ) &amp; x;</div><div class="line">	i = <span class="number">0x5f3759df</span> - (i&gt;&gt;<span class="number">1</span>);</div><div class="line">	x = * (<span class="keyword">float</span>* ) &amp; i;</div><div class="line">	x = x * (<span class="number">1.5f</span> - x_half * x * x);</div><div class="line">	<span class="keyword">return</span> x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="classic-problem"><a href="#classic_problem" class="headerlink" title="classic problem"></a>classic problem</h2><h3 id="single-number"><a href="#Single_Number" class="headerlink" title="Single Number"></a><a href="https://leetcode.com/problems/single-number/#/description" target="_blank" rel="external">Single Number</a></h3>Given an array of integers, every element appears twice except for one. Find that single one.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; nums.size(); i++) &#123;</div><div class="line">            temp ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> temp;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-用临时变量temp来记录已经遍历过的数字，利用异或^的性质（同数异或得0，即遇到相同时可被消去）以及位操作的交换律（后面的数字可以消去前面的相同的数字），得出最后不能被消去的single number。<h3 id="single-number-general-solution"><a href="#Single_Number_general_solution" class="headerlink" title="Single Number general solution"></a><a href="https://leetcode.com/problems/single-number-ii/#/solutions" target="_blank" rel="external">Single Number general solution</a></h3>Given an array of integers, every element appears m times except for one, which appears exactly n(n &lt; m). Find that single one.</li>
+<h2 id="classic-problem"><a href="#classic-problem" class="headerlink" title="classic problem"></a>classic problem</h2><h3 id="single-number"><a href="#Single-Number" class="headerlink" title="Single Number"></a><a href="https://leetcode.com/problems/single-number/#/description" target="_blank" rel="external">Single Number</a></h3>Given an array of integers, every element appears twice except for one. Find that single one.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt; nums.size(); i++) &#123;</div><div class="line">            temp ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> temp;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+用临时变量temp来记录已经遍历过的数字，利用异或^的性质（同数异或得0，即遇到相同时可被消去）以及位操作的交换律（后面的数字可以消去前面的相同的数字），得出最后不能被消去的single number。<h3 id="single-number-general-solution"><a href="#Single-Number-general-solution" class="headerlink" title="Single Number general solution"></a><a href="https://leetcode.com/problems/single-number-ii/#/solutions" target="_blank" rel="external">Single Number general solution</a></h3>Given an array of integers, every element appears m times except for one, which appears exactly n(n &lt; m). Find that single one.</li>
 <li>思路类似上题，我们需要找出一种位操作，使得3个相同的数在操作后会被消去（等于0）。<br>以m = 3, n = 1为例。当m = 3，状态则有3个，0分别表示某数字没出现过，1表示出现了一次，2表示出现了2次。当出现第3次的时候，我们要把它消去，状态回归0。<br>因为有3个状态，我们需要两个临时变量（a，b）来储存，定义状态转换表（设c为当前输入）：<br>(a,b)  c  result_(a,b)<br>(0,0)  0     (0,0)<br>(0,1)  0     (0,1)<br>(1,0)  0     (1,0)<br>(0,0)  1     (0,1)<br>(0,1)  1     (1,0)<br>(1,0)  1     (0,0)<br>解释：若输入c为0，则状态不变，若输入c为1，则状态变为下一个状态，(0,0)-&gt;(0,1), (0,1)-&gt;(1,0), or (1,0)-&gt;(0,0)</li>
 <li>每轮循环中更新a和b的规则：<br>若输入c为0，a和b不变，我们只需考虑a和b为1的情况。<br>要令a为1，只有两种可能(a,b,c) = (1,0,0) or (0,1,1)，故a = (a&amp;(~b)&amp;(~c))|((~a)&amp;b&amp;c)<br>要令b为1，只有两种可能(a,b,c) = (0,1,0) or (0,0,1)，故b = ((~a)&amp;b&amp;(~c))|((~a)&amp;(~b)&amp;c)</li>
 <li>c++代码：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> b = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">int</span> c = nums[i];</div><div class="line">            <span class="keyword">int</span> temp = (a&amp;(~b)&amp;(~c))|((~a)&amp;b&amp;c);</div><div class="line">            b = ((~a)&amp;b&amp;(~c))|((~a)&amp;(~b)&amp;c);</div><div class="line">            a = temp;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 注意其中temp变量必不可少，不能赋值给a，再赋值给b，这样的话b就不是由原来的a生成了。<br>因此例子中n = 1，当状态为1时，a = 0，b = 1，故最后只需输出b即刻。<br>同理，若n = 2，当状态为2时，a = 1，b = 0，则需输出a。<br>若需找出数量为1或2次时，则输出a|b。</li>
 </ul>
 
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://mozi030.github.io/2017/03/21/Bitwise/" data-id="cj4ob1md700030ee97p1pb0wo" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+      
     </div>
-</article>
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/03/21/Bitwise/" data-id="cj4ob7fua00011me9tkqqhi8r" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bitwise/">bitwise</a></li></ul>
 
-    <section id="comments">
+    </footer>
+  </div>
+  
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>seguir:</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/mozi030" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
 <nav id="article-nav">
-    
-        <a href="/2017/03/21/Binary-Search/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
-        <p class="article-nav-title">
+  
+    <a href="/2017/03/21/Binary-Search/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
         
-            Binary Search
+          Binary Search
         
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+      </div>
     </a>
-    
-    
+  
+  
 </nav>
 
-    
-    <div class="widgets-container">
+  
+</article>
+
+</section>
         
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/05/04/图论-二/" class="thumbnail">
+          <aside id="sidebar">
+  
     
-    
-        <span style="background-image:url(concept1.png)" alt="图论(二)Maximum Flow" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/05/04/图论-二/" class="title">图论(二)Maximum Flow</a></p>
-                            <p class="item-date"><time datetime="2017-05-04T03:14:40.000Z" itemprop="datePublished">2017-05-04</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/24/图论-一/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/24/图论-一/basic1.png)" alt="图论(一):BFS,DFS,MST,Dijkstra" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/04/24/图论-一/" class="title">图论(一):BFS,DFS,MST,Dijkstra</a></p>
-                            <p class="item-date"><time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/19/数据库索引/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/19/数据库索引/index1.png)" alt="数据库索引" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/19/数据库索引/" class="title">数据库索引</a></p>
-                            <p class="item-date"><time datetime="2017-04-19T02:27:24.000Z" itemprop="datePublished">2017-04-19</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/11/计算机网络协议/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/11/计算机网络协议/IP_format.jpg)" alt="计算机网络协议" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Computer-Network/">Computer Network</a></p>
-                            <p class="item-title"><a href="/2017/04/11/计算机网络协议/" class="title">计算机网络协议</a></p>
-                            <p class="item-date"><time datetime="2017-04-11T08:35:47.000Z" itemprop="datePublished">2017-04-11</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/08/c-虚函数/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/c/">c++</a></p>
-                            <p class="item-title"><a href="/2017/04/08/c-虚函数/" class="title">c++虚函数</a></p>
-                            <p class="item-date"><time datetime="2017-04-07T16:39:50.000Z" itemprop="datePublished">2017-04-08</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a></li></ul>
     </div>
+  </div>
 
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">2</span></li></ul>
-        </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/">Dijkstra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maximum-Flow/">Maximum Flow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitwise/">bitwise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a></li></ul>
     </div>
+  </div>
 
 
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
-        </div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/Maximum-Flow/" style="font-size: 10px;">Maximum Flow</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/bitwise/" style="font-size: 10px;">bitwise</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a>
     </div>
+  </div>
 
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetes</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maximum-Flow/">Maximum Flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitwise/">bitwise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li></ul>
-        </div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
+  </div>
 
 
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/Maximum-Flow/" style="font-size: 10px;">Maximum Flow</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/bitwise/" style="font-size: 10px;">bitwise</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
         
+          <li>
+            <a href="/2017/05/04/图论-二/">图论(二)Maximum Flow</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/图论-一/">图论(一):BFS,DFS,MST,Dijkstra</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/19/数据库索引/">数据库索引</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/11/计算机网络协议/">计算机网络协议</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/08/c-虚函数/">c++虚函数</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+
+  
 </aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2017 Ziliang, Ken, Mo</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
         
-    
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    var disqus_url = 'https://mozi030.github.io/2017/03/21/Bitwise/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ziliang, Ken, Mo<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
 </html>

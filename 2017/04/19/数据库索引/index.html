@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>数据库索引 | Mozi&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="本文归纳数据库索引的知识点
+  <meta charset="utf-8">
+  
+  <title>数据库索引 | Mozi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文归纳数据库索引的知识点
 如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
 一、in">
 <meta property="og:type" content="article">
@@ -19,6 +16,21 @@
 如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
 一、in">
 <meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index1.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index2.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index3.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index4.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index5.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index15.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index16.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index6.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index7.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index8.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index9.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index10.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index11.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index12.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index13.png">
+<meta property="og:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index14.png">
 <meta property="og:updated_time" content="2017-04-23T12:41:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库索引">
@@ -26,568 +38,250 @@
 如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：1.如果这些数据随机存放，则我们需要查询1,000,000页；2.如果这些数据已被排序，则查询需要log2106 = 20页；3.更快的方法是使用index entry：
 一、in">
 <meta name="twitter:image" content="https://mozi030.github.io/2017/04/19/数据库索引/index1.png">
-    
-
-    
-        <link rel="alternate" href="/" title="Mozi&#39;s Blog" type="application/atom+xml" />
-    
-
-    
-
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
+  
+    <link rel="alternate" href="/atom.xml" title="Mozi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
 <body>
+  <div id="container">
     <div id="wrap">
-        <header id="header">
-    <div id="header-outer" class="outer">
-        <div class="container">
-            <div class="container-inner">
-                <div id="header-title">
-                    <h1 class="logo-wrap">
-                        <a href="/" class="logo"></a>
-                    </h1>
-                    
-                </div>
-                <div id="header-inner" class="nav-container">
-                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
-                    <div class="nav-container-inner">
-                        <ul id="main-nav">
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
-                                </li>
-                            
-                                <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
-                                </li>
-                            
-                        </ul>
-                        <nav id="sub-nav">
-                            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mozi&#39;s Blog</a>
+      </h1>
+      
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mozi030.github.io"></form>
+      </div>
     </div>
+  </div>
 </header>
-        <div class="container">
-            <div class="main-body container-inner">
-                <div class="main-body-inner">
-                    <section id="main">
-                        <div class="main-body-header">
-    <h1 class="header">
+      <div class="outer">
+        <section id="main"><article id="post-数据库索引" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/19/数据库索引/" class="article-date">
+  <time datetime="2017-04-19T02:27:24.000Z" itemprop="datePublished">2017-04-19</time>
+</a>
     
-    <a class="page-title-link" href="/categories/DataBase/">DataBase</a>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库索引
     </h1>
-</div>
-                        <div class="main-body-content">
-                            <article id="post-数据库索引" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        数据库索引
-        </h1>
-    
+  
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/04/19/数据库索引/" class="article-date">
-            <time datetime="2017-04-19T02:27:24.000Z" itemprop="datePublished">2017-04-19</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>本文归纳数据库索引的知识点</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文归纳数据库索引的知识点</p>
 <p>如果我们希望寻找ID为123456的人，且数据库有10,000,000条数据，每一个储存页只能放10条数据，即我们有1,000,000个数据页。下面评估各种查询数据方法的用时，以页为单位：<br>1.如果这些数据随机存放，则我们需要查询1,000,000页；<br>2.如果这些数据已被排序，则查询需要log<sub>2</sub>10<sup>6</sup> = 20页；<br>3.更快的方法是使用index entry：</p>
-<h3 id="一-index-entry"><a href="#u4E00_u3001index_entry" class="headerlink" title="一、index entry"></a>一、index entry</h3><p>包含一个search key和能找到这个search key的page ID，e.g.,<123456,456>。<br>我们不必为每一条数据建一个index entry，只需用index entry记录每页中第一个数据，即每页对应一个index entry，即1,000,000个index entry。若某页的index entry为<10100,400>，下一页的index entry为<10200,401>，则search key为10100~10199的数据都在第400页中。<br>假设一页可以存放100个index entry，则需要10,000页来存放所有index entry。而且这些index entry也要经过search key排序。因此search key为1~100的index entry在第1页，9,999,900~10,000,000的index entry在第10,000页。<br><img src="/2017/04/19/数据库索引/index1.png" alt="index1.png" title=""><br>若我们需要查询search key为k的数据，则从第一层index entry搜索需要查询log<sub>2</sub>10<sup>4</sup> = 14页，搜索后通过选中的index entry的page ID找到存放该数据的数据页，则从该页中可找到search key为k的数据。一共需要查询14 + 1 = 15页。<br>若在继续建立二级索引、三级索引：<br><img src="/2017/04/19/数据库索引/index2.png" alt="index2.png" title=""><br>一级索引需要10,000页，二级需要100页，三级只有1页，查询一个数据只需查询4页即可。</10200,401></10100,400></123456,456></p>
-<h4 id="ordered-index有序索引also-called-tree"><a href="#ordered_index_u6709_u5E8F_u7D22_u5F15_uFF08also_called_tree_uFF09" class="headerlink" title="ordered index有序索引（also called tree）"></a>ordered index有序索引（also called tree）</h4><p>所有的index entry都是排好序的，因此有利于寻找同值数据或范围搜索。</p>
-<h4 id="fanout扇出"><a href="#fanout_u6247_u51FA" class="headerlink" title="fanout扇出"></a>fanout扇出</h4><p>每个index page的children数量。</p>
-<h4 id="树的高度"><a href="#u6811_u7684_u9AD8_u5EA6" class="headerlink" title="树的高度"></a>树的高度</h4><p>height = log<sub>fanout</sub>(#index entries)。</p>
-<h4 id="primary-indexclustering-index聚类索引"><a href="#primary_index_28clustering_index_u805A_u7C7B_u7D22_u5F15_29" class="headerlink" title="primary index(clustering index聚类索引)"></a>primary index(clustering index聚类索引)</h4><p>数据是按照索引的search key排序的。</p>
-<h5 id="isamindexed-sequential-access-method"><a href="#ISAM_28indexed_sequential_access_method_29" class="headerlink" title="ISAM(indexed sequential access method)"></a>ISAM(indexed sequential access method)</h5><p>使用primary index处理index-sequential file</p>
-<h4 id="secondary-indexnon-clustering-index非聚类索引"><a href="#secondary_index_28non-clustering_index_u975E_u805A_u7C7B_u7D22_u5F15_29" class="headerlink" title="secondary index(non-clustering index非聚类索引)"></a>secondary index(non-clustering index非聚类索引)</h4><p>数据不是按照索引的search key排序的<br><img src="/2017/04/19/数据库索引/index3.png" alt="index3.png" title=""></p>
-<h4 id="sparse-index"><a href="#sparse_index" class="headerlink" title="sparse index"></a>sparse index</h4><p>只对部分数据做索引，如前面的例子中，只对每一个数据页的第一个数据作索引。<br>1.只适用于primary index。<br>2.对于插入和删除，工作量较少。</p>
-<h4 id="dense-index"><a href="#dense_index" class="headerlink" title="dense index"></a>dense index</h4><p>对每个数据都有对应的index entry。<br>1.secondary index必须是dense。<br>e.g.,如果在上例中我们想用name来找数据而不是ID，我们需要另外建search key为name的索引。<br>由于数据已经按ID来排序，所以只能使用secondary dense index，所以将会有10,000,000个index entry，需要搜索log<sub>100</sub>(107)页<br>notes: 若只找一个数据，secondary dense index与primary index的用时差不多，但是当查询多个数据（如范围所搜）时，secondary index就可能比primary慢得多。<br>2.若存在很多人同名的情况：(primary index中不会有任何问题)<br>2.1可将index entry格式改为<search key,="" pageid1,="" pageid2,...=""><br>2.2或<search key,="" pageid1="">, <search key,="" pageid2="">, <search key,="" pageid3="">,…（index entry是排好序的。）<br>2.3最常用的方法：在数据页和index tree中间加一层bucket层。查询时，用name定位到一个bucket，bucket中包含所有同名数据的page ID。<br><img src="/2017/04/19/数据库索引/index4.png" alt="index4.png" title=""></search></search></search></search></p>
-<h3 id="二-hash-index"><a href="#u4E8C_u3001Hash_Index" class="headerlink" title="二、Hash Index"></a>二、Hash Index</h3><h4 id="静态hashstatic-hash"><a href="#u9759_u6001hash_28static_hash_29" class="headerlink" title="静态hash(static hash)"></a>静态hash(static hash)</h4><p>1.将search key和对应的page ID(pointers)放入hash table中。<br>2.是一种secondary index。<br>3.我们希望数据不会增删太多（静态数据库static database），不然维护需要成本。<br><img src="/2017/04/19/数据库索引/index5.png" alt="index5.png" title=""><br>4.理想的hash table是分布均匀的，若所有的search key都map到同一个bucket，会大大增加搜索时间。hash function的例子：将search key转为2进制，取倒数两位作为hash code。<br>5.bucket溢出：原因可能是bucket太少，hash function不能均匀分配数据到各个bucket。解决方法为链表法，但是就会提高搜索时间。<br>6.十分有利于找同search key的数据，但不支持范围查找，多值查找。<br>7.当数据增删，可能需要增删bucket，hash function和每一个bucket的内容都要改动。</p>
-<h4 id="动态hashdynamic-hash-extendible-hash"><a href="#u52A8_u6001hash_28dynamic_hash_2C_extendible_hash_29" class="headerlink" title="动态hash(dynamic hash, extendible hash)"></a>动态hash(dynamic hash, extendible hash)</h4><p>static hash的缺点：<br>1.当数据库变大，overflow会增加，性能变差。<br>2.需周期性重构hash结构。<br>因此我们需要动态改变#bucket。<br>当一个bucket(primary page)满了，我们简单地double bucket的数量，代价会很昂贵，因为所有bucket都要重新读写。<br>但若我们使用目录(directory)来储存一组指向bucket的pointer，然后只double目录，并只分裂和重构那些overflow的bucket，这样做会比较cheap，因为我们只double了目录（比bucket小很多），和需要修改hash function。</p>
-<h5 id="目录的global-depth"><a href="#u76EE_u5F55_u7684global_depth" class="headerlink" title="目录的global depth"></a>目录的global depth</h5><p>分配数据到bucket所需的最大#bit，一般为log<sub>2</sub>(#bucket)。</p>
-<h5 id="bucket的local-depth"><a href="#bucket_u7684local_depth" class="headerlink" title="bucket的local depth"></a>bucket的local depth</h5><p>判断一个数据是否属于自己bucket所需的#bit。若overflow的话，就要分裂bucket，并把local depth++。</p>
-<h5 id="如何插入数据"><a href="#u5982_u4F55_u63D2_u5165_u6570_u636E" class="headerlink" title="如何插入数据"></a>如何插入数据</h5><img src="/2017/04/19/数据库索引/index15.png" alt="index15.png" title="">
+<h3 id="一-index-entry"><a href="#一、index-entry" class="headerlink" title="一、index entry"></a>一、index entry</h3><p>包含一个search key和能找到这个search key的page ID，e.g.,<123456,456>。<br>我们不必为每一条数据建一个index entry，只需用index entry记录每页中第一个数据，即每页对应一个index entry，即1,000,000个index entry。若某页的index entry为<10100,400>，下一页的index entry为<10200,401>，则search key为10100~10199的数据都在第400页中。<br>假设一页可以存放100个index entry，则需要10,000页来存放所有index entry。而且这些index entry也要经过search key排序。因此search key为1~100的index entry在第1页，9,999,900~10,000,000的index entry在第10,000页。<br><img src="/2017/04/19/数据库索引/index1.png" alt="index1.png" title=""><br>若我们需要查询search key为k的数据，则从第一层index entry搜索需要查询log<sub>2</sub>10<sup>4</sup> = 14页，搜索后通过选中的index entry的page ID找到存放该数据的数据页，则从该页中可找到search key为k的数据。一共需要查询14 + 1 = 15页。<br>若在继续建立二级索引、三级索引：<br><img src="/2017/04/19/数据库索引/index2.png" alt="index2.png" title=""><br>一级索引需要10,000页，二级需要100页，三级只有1页，查询一个数据只需查询4页即可。</10200,401></10100,400></123456,456></p>
+<h4 id="ordered-index有序索引also-called-tree"><a href="#ordered-index有序索引（also-called-tree）" class="headerlink" title="ordered index有序索引（also called tree）"></a>ordered index有序索引（also called tree）</h4><p>所有的index entry都是排好序的，因此有利于寻找同值数据或范围搜索。</p>
+<h4 id="fanout扇出"><a href="#fanout扇出" class="headerlink" title="fanout扇出"></a>fanout扇出</h4><p>每个index page的children数量。</p>
+<h4 id="树的高度"><a href="#树的高度" class="headerlink" title="树的高度"></a>树的高度</h4><p>height = log<sub>fanout</sub>(#index entries)。</p>
+<h4 id="primary-indexclustering-index聚类索引"><a href="#primary-index-clustering-index聚类索引" class="headerlink" title="primary index(clustering index聚类索引)"></a>primary index(clustering index聚类索引)</h4><p>数据是按照索引的search key排序的。</p>
+<h5 id="isamindexed-sequential-access-method"><a href="#ISAM-indexed-sequential-access-method" class="headerlink" title="ISAM(indexed sequential access method)"></a>ISAM(indexed sequential access method)</h5><p>使用primary index处理index-sequential file</p>
+<h4 id="secondary-indexnon-clustering-index非聚类索引"><a href="#secondary-index-non-clustering-index非聚类索引" class="headerlink" title="secondary index(non-clustering index非聚类索引)"></a>secondary index(non-clustering index非聚类索引)</h4><p>数据不是按照索引的search key排序的<br><img src="/2017/04/19/数据库索引/index3.png" alt="index3.png" title=""></p>
+<h4 id="sparse-index"><a href="#sparse-index" class="headerlink" title="sparse index"></a>sparse index</h4><p>只对部分数据做索引，如前面的例子中，只对每一个数据页的第一个数据作索引。<br>1.只适用于primary index。<br>2.对于插入和删除，工作量较少。</p>
+<h4 id="dense-index"><a href="#dense-index" class="headerlink" title="dense index"></a>dense index</h4><p>对每个数据都有对应的index entry。<br>1.secondary index必须是dense。<br>e.g.,如果在上例中我们想用name来找数据而不是ID，我们需要另外建search key为name的索引。<br>由于数据已经按ID来排序，所以只能使用secondary dense index，所以将会有10,000,000个index entry，需要搜索log<sub>100</sub>(107)页<br>notes: 若只找一个数据，secondary dense index与primary index的用时差不多，但是当查询多个数据（如范围所搜）时，secondary index就可能比primary慢得多。<br>2.若存在很多人同名的情况：(primary index中不会有任何问题)<br>2.1可将index entry格式改为<search key,="" pageid1,="" pageid2,...=""><br>2.2或<search key,="" pageid1="">, <search key,="" pageid2="">, <search key,="" pageid3="">,…（index entry是排好序的。）<br>2.3最常用的方法：在数据页和index tree中间加一层bucket层。查询时，用name定位到一个bucket，bucket中包含所有同名数据的page ID。<br><img src="/2017/04/19/数据库索引/index4.png" alt="index4.png" title=""></search></search></search></search></p>
+<h3 id="二-hash-index"><a href="#二、Hash-Index" class="headerlink" title="二、Hash Index"></a>二、Hash Index</h3><h4 id="静态hashstatic-hash"><a href="#静态hash-static-hash" class="headerlink" title="静态hash(static hash)"></a>静态hash(static hash)</h4><p>1.将search key和对应的page ID(pointers)放入hash table中。<br>2.是一种secondary index。<br>3.我们希望数据不会增删太多（静态数据库static database），不然维护需要成本。<br><img src="/2017/04/19/数据库索引/index5.png" alt="index5.png" title=""><br>4.理想的hash table是分布均匀的，若所有的search key都map到同一个bucket，会大大增加搜索时间。hash function的例子：将search key转为2进制，取倒数两位作为hash code。<br>5.bucket溢出：原因可能是bucket太少，hash function不能均匀分配数据到各个bucket。解决方法为链表法，但是就会提高搜索时间。<br>6.十分有利于找同search key的数据，但不支持范围查找，多值查找。<br>7.当数据增删，可能需要增删bucket，hash function和每一个bucket的内容都要改动。</p>
+<h4 id="动态hashdynamic-hash-extendible-hash"><a href="#动态hash-dynamic-hash-extendible-hash" class="headerlink" title="动态hash(dynamic hash, extendible hash)"></a>动态hash(dynamic hash, extendible hash)</h4><p>static hash的缺点：<br>1.当数据库变大，overflow会增加，性能变差。<br>2.需周期性重构hash结构。<br>因此我们需要动态改变#bucket。<br>当一个bucket(primary page)满了，我们简单地double bucket的数量，代价会很昂贵，因为所有bucket都要重新读写。<br>但若我们使用目录(directory)来储存一组指向bucket的pointer，然后只double目录，并只分裂和重构那些overflow的bucket，这样做会比较cheap，因为我们只double了目录（比bucket小很多），和需要修改hash function。</p>
+<h5 id="目录的global-depth"><a href="#目录的global-depth" class="headerlink" title="目录的global depth"></a>目录的global depth</h5><p>分配数据到bucket所需的最大#bit，一般为log<sub>2</sub>(#bucket)。</p>
+<h5 id="bucket的local-depth"><a href="#bucket的local-depth" class="headerlink" title="bucket的local depth"></a>bucket的local depth</h5><p>判断一个数据是否属于自己bucket所需的#bit。若overflow的话，就要分裂bucket，并把local depth++。</p>
+<h5 id="如何插入数据"><a href="#如何插入数据" class="headerlink" title="如何插入数据"></a>如何插入数据</h5><img src="/2017/04/19/数据库索引/index15.png" alt="index15.png" title="">
 <p>若插入一个新的数据时，首先计算其hash code，从目录中获取对应的pointer，进入到对应的bucket，插入到bucket中，若bucket没有overflow，则完成插入；若有overflow，则分裂、重构这个bucket，（若A分裂为A和A2，则A2叫做A的split image）并令新的两个bucket的local depth++。若此时local depth &gt; global depth，那么令目录double，且global depth也++，目录double后，分裂出来的两个新bucket在目录中将有不同的pointer，但是未分裂的bucket将会被目录两个pointer所指向，因其还未overflow，无需分裂。若bucket分裂且local depth++后发现local depth = global depth，证明目录之前已被double过，则无需再double，只需将被原来指向未分裂时的bucket的两个pointer分别指向新的两个bucket即可。</p>
 <p>但是还有潜在的问题：overflow可能在目录double后并不会消失，即bucket中的数据不能被新的hash function分离。</p>
-<h5 id="如何删除数据"><a href="#u5982_u4F55_u5220_u9664_u6570_u636E" class="headerlink" title="如何删除数据"></a>如何删除数据</h5><p>若删除数据后某些bucket为空，则合并这个bucket和它的split image，并把原来指向这两个bucket的pointer都指向合并后的pointer。若目录中每一个pointer都和它成对的pointer（指向split image的pointer）指向同一个bucket，那么这个目录就可以减半了，把global depth–。</p>
-<h5 id="线性hashlinear-hashlh"><a href="#u7EBF_u6027hash_28Linear_hash_2CLH_29" class="headerlink" title="线性hash(Linear hash,LH)"></a>线性hash(Linear hash,LH)</h5><p>是另一种动态hash，且是可扩展的。<br>LH不使用目录，且能处理overflow的问题，还能去重。<br>concept：定义一组hash function：h0,h1,h2,…其中hi = h(key) mod(2<sup>i</sup>N)，N = #bucket为2的次方。令N = 2<sup>d0</sup>，hi的意义为获取key的后di bit数字，di = d0 + i。所以hi+1比hi的hash code多了一倍，相当于做了目录double。</p>
+<h5 id="如何删除数据"><a href="#如何删除数据" class="headerlink" title="如何删除数据"></a>如何删除数据</h5><p>若删除数据后某些bucket为空，则合并这个bucket和它的split image，并把原来指向这两个bucket的pointer都指向合并后的pointer。若目录中每一个pointer都和它成对的pointer（指向split image的pointer）指向同一个bucket，那么这个目录就可以减半了，把global depth–。</p>
+<h5 id="线性hashlinear-hashlh"><a href="#线性hash-Linear-hash-LH" class="headerlink" title="线性hash(Linear hash,LH)"></a>线性hash(Linear hash,LH)</h5><p>是另一种动态hash，且是可扩展的。<br>LH不使用目录，且能处理overflow的问题，还能去重。<br>concept：定义一组hash function：h0,h1,h2,…其中hi = h(key) mod(2<sup>i</sup>N)，N = #bucket为2的次方。令N = 2<sup>d0</sup>，hi的意义为获取key的后di bit数字，di = d0 + i。所以hi+1比hi的hash code多了一倍，相当于做了目录double。</p>
 <p>在LH中，分裂过程是按“轮”(round)算的，Level代表当前在进行第几轮分裂，设第r轮(Level = r)有Nr个bucket需要分裂。每轮中分裂是按bucket顺序分裂的，即第0~i个bucket分裂后，第i+1个bucket才能分裂。设指针Next指向当前需要分裂的bucket，即第0~Next-1个bucket已分裂，Next~Nr个bucket还没分裂。</p>
-<h6 id="线性hash查询数据"><a href="#u7EBF_u6027hash_u67E5_u8BE2_u6570_u636E" class="headerlink" title="线性hash查询数据"></a>线性hash查询数据</h6><p>若选择要查询数据r，计算h<sub>Level</sub>(r)：若它在[Next,Nr)中，则r在h<sub>Level</sub>(r)对应的bucket中；若在[0,Next-1]中，r在h<sub>Level</sub>(r)或h<sub>Level</sub>(r)+Nr对应的bucket中，需要计算h<sub>Level+1</sub>(r)来确定。</p>
-<h6 id="线性hash插入数据"><a href="#u7EBF_u6027hash_u63D2_u5165_u6570_u636E" class="headerlink" title="线性hash插入数据"></a>线性hash插入数据</h6><p>插入数据时若出现overflow，会采用overflow pages来存储数据。适时移动Next指针(Next++)来分裂bucket。若第Nr-1个bucket分裂后Level++，之后可重新定义Nr和Next的值，进入下一轮。<br><img src="/2017/04/19/数据库索引/index16.png" alt="index16.png" title=""></p>
-<h3 id="三-b-tree"><a href="#u4E09_u3001B+_Tree" class="headerlink" title="三、B+ Tree"></a>三、B<sup>+</sup> Tree</h3><p>index-sequential file的缺点是：当数据规模增大，性能会下降，需要多次对index file重建。<br>而B<sup>+</sup> Tree的index file只需简单地修改。</p>
+<h6 id="线性hash查询数据"><a href="#线性hash查询数据" class="headerlink" title="线性hash查询数据"></a>线性hash查询数据</h6><p>若选择要查询数据r，计算h<sub>Level</sub>(r)：若它在[Next,Nr)中，则r在h<sub>Level</sub>(r)对应的bucket中；若在[0,Next-1]中，r在h<sub>Level</sub>(r)或h<sub>Level</sub>(r)+Nr对应的bucket中，需要计算h<sub>Level+1</sub>(r)来确定。</p>
+<h6 id="线性hash插入数据"><a href="#线性hash插入数据" class="headerlink" title="线性hash插入数据"></a>线性hash插入数据</h6><p>插入数据时若出现overflow，会采用overflow pages来存储数据。适时移动Next指针(Next++)来分裂bucket。若第Nr-1个bucket分裂后Level++，之后可重新定义Nr和Next的值，进入下一轮。<br><img src="/2017/04/19/数据库索引/index16.png" alt="index16.png" title=""></p>
+<h3 id="三-b-tree"><a href="#三、B-Tree" class="headerlink" title="三、B+ Tree"></a>三、B<sup>+</sup> Tree</h3><p>index-sequential file的缺点是：当数据规模增大，性能会下降，需要多次对index file重建。<br>而B<sup>+</sup> Tree的index file只需简单地修改。</p>
 <h4 id="concept"><a href="#concept" class="headerlink" title="concept"></a>concept</h4><p>1.B<sup>+</sup> Tree是一颗平行树(balence tree)，根节点到所有叶子节点的路径等长。<br>2.若根节点不是leaf，则至少有2个children；若是leaf，只可能有0~(n-1)个数据。<br>3.除根节点外，所有非leaf节点只可能有n/2~n个pointer，leaf只可能有(n–1)/2~(n–1)个数据。<br>其中n为fanout扇出，是每个节点的最大children数。(pointer会比数据多一个)<br>每个节点的结构如下：<br><img src="/2017/04/19/数据库索引/index6.png" alt="index6.png" title=""><br>4.对于leaf，若pointer Pi右边的值是Ki(1 &lt;= i &lt;= (n-1))，则Pi指向search key同样为Ki的数据或一个包含所有search key为Ki的pointer的bucket。最后一个pointer(Pn)指向其右边的sibling，即按search key排序的下一个sibling，不指向任何数据。<br>5.对于non-leaf节点，P1指向的subtree的所有数据的search key均 &lt; K1，Pi(1 &lt; i &lt; n)的subtree的所有数据的search key均 &lt; Ki且 &gt; Ki-1。</p>
 <p>e.g.:<br>primary(clustering) B<sup>+</sup> Tree<br><img src="/2017/04/19/数据库索引/index7.png" alt="index7.png" title=""><br>secondary B<sup>+</sup> Tree<br><img src="/2017/04/19/数据库索引/index8.png" alt="index8.png" title=""><br>primary B<sup>+</sup> Tree on non-candidate key<br><img src="/2017/04/19/数据库索引/index9.png" alt="index9.png" title=""><br><img src="/2017/04/19/数据库索引/index10.png" alt="index10.png" title=""></p>
-<h4 id="查询b-tree"><a href="#u67E5_u8BE2B+_Tree" class="headerlink" title="查询B+ Tree"></a>查询B<sup>+</sup> Tree</h4><p>设查询search key为k的数据，每个非leaf节点有m个pointer。<br>1.从root开始，若存在Kj = k，沿Pj+1到下一节点；else if有k &lt; Kj（j为最小的一个），沿Pj到下一节点；else，即k大于所有的在这个节点中的K，则沿Pm到下一节点。<br>2.若下一节点不是leaf，重复第1步。<br>3.当到达leaf时，若存在Kj = k，则沿Pi到达所指向的数据或bucket（同search key）；若不存在，查询失败。<br>查询次数最大为log<sub>n/2</sub>(#search key)。<br>一个节点大概有4KB，fanout一般为100。</p>
-<h4 id="向b-tree增加数据"><a href="#u5411B+_Tree_u589E_u52A0_u6570_u636E" class="headerlink" title="向B+ Tree增加数据"></a>向B<sup>+</sup> Tree增加数据</h4><p>1.用数据的search key查询树，找到叶子节点L；<br>2.插入：若L有足够的空间，插入成功；若没有足够的空间，插入后将L分裂，把L平均分配成L1和L2，把L2的第一个值<strong>复制</strong>到L的parent，并加上指向L2的pointer。<br>3.由于L的parent也会多了值和pointer，所以递归地运行第2步。不同的是，若非leaf节点分裂，要将分列前中间的值<strong>提取</strong>并上传。出来若root需要分裂，则会增加高度。<br><img src="/2017/04/19/数据库索引/index11.png" alt="index11.png" title=""></p>
-<h4 id="在b-tree中删除数据"><a href="#u5728B+_Tree_u4E2D_u5220_u9664_u6570_u636E" class="headerlink" title="在B+ Tree中删除数据"></a>在B<sup>+</sup> Tree中删除数据</h4><p>1.用数据的search key查询树，找到叶子节点L；<br>2.删除节点：若L至少是半满，删除成功；若少于半满，就要再分配，从右边的sibling中借值；若分配失败，则合并L和右边的sibling。<br>3.如果出现了合并，要把sibling的值和pointer从parent中删除。这种删除可能会向上传递，更可能删除root而减少height。<br><img src="/2017/04/19/数据库索引/index12.png" alt="index12.png" title=""></p>
-<h4 id="建b-treebulk-loading"><a href="#u5EFAB+_Tree_uFF1ABulk_Loading" class="headerlink" title="建B+ Tree：Bulk Loading"></a>建B<sup>+</sup> Tree：Bulk Loading</h4><p>若将数据逐个插入B<sup>+</sup> Tree，将会十分慢。<br>Bulk Loading的做法：<br>1.把data按search key排序(使用external sort)<br>2.放置第1个leaf和root<br><img src="/2017/04/19/数据库索引/index13.png" alt="index13.png" title=""><br>3.不断插入，新插入的page会把其第一个data的search key插入到第二层index的最右边，这可能会导致分裂，令树高度增高。<br><img src="/2017/04/19/数据库索引/index14.png" alt="index14.png" title=""></p>
-<h3 id="四-sql中的index"><a href="#u56DB_u3001SQL_u4E2D_u7684index" class="headerlink" title="四、SQL中的index"></a>四、SQL中的index</h3><h4 id="创建index"><a href="#u521B_u5EFAindex" class="headerlink" title="创建index"></a>创建index</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> &lt;<span class="keyword">index</span>-<span class="keyword">name</span>&gt; <span class="keyword">on</span> &lt;relation-<span class="keyword">name</span>&gt; (&lt;<span class="keyword">attribute</span> <span class="keyword">list</span>&gt;)</div><div class="line">e.g.</div><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> brance-<span class="keyword">index</span> <span class="keyword">on</span> Branch(branch-<span class="keyword">name</span>)</div><div class="line"><span class="keyword">create</span> <span class="keyword">unique</span> <span class="keyword">index</span> brance-<span class="keyword">index</span> <span class="keyword">on</span> Branch(branch-<span class="keyword">name</span>)</div></pre></td></tr></table></figure>
+<h4 id="查询b-tree"><a href="#查询B-Tree" class="headerlink" title="查询B+ Tree"></a>查询B<sup>+</sup> Tree</h4><p>设查询search key为k的数据，每个非leaf节点有m个pointer。<br>1.从root开始，若存在Kj = k，沿Pj+1到下一节点；else if有k &lt; Kj（j为最小的一个），沿Pj到下一节点；else，即k大于所有的在这个节点中的K，则沿Pm到下一节点。<br>2.若下一节点不是leaf，重复第1步。<br>3.当到达leaf时，若存在Kj = k，则沿Pi到达所指向的数据或bucket（同search key）；若不存在，查询失败。<br>查询次数最大为log<sub>n/2</sub>(#search key)。<br>一个节点大概有4KB，fanout一般为100。</p>
+<h4 id="向b-tree增加数据"><a href="#向B-Tree增加数据" class="headerlink" title="向B+ Tree增加数据"></a>向B<sup>+</sup> Tree增加数据</h4><p>1.用数据的search key查询树，找到叶子节点L；<br>2.插入：若L有足够的空间，插入成功；若没有足够的空间，插入后将L分裂，把L平均分配成L1和L2，把L2的第一个值<strong>复制</strong>到L的parent，并加上指向L2的pointer。<br>3.由于L的parent也会多了值和pointer，所以递归地运行第2步。不同的是，若非leaf节点分裂，要将分列前中间的值<strong>提取</strong>并上传。出来若root需要分裂，则会增加高度。<br><img src="/2017/04/19/数据库索引/index11.png" alt="index11.png" title=""></p>
+<h4 id="在b-tree中删除数据"><a href="#在B-Tree中删除数据" class="headerlink" title="在B+ Tree中删除数据"></a>在B<sup>+</sup> Tree中删除数据</h4><p>1.用数据的search key查询树，找到叶子节点L；<br>2.删除节点：若L至少是半满，删除成功；若少于半满，就要再分配，从右边的sibling中借值；若分配失败，则合并L和右边的sibling。<br>3.如果出现了合并，要把sibling的值和pointer从parent中删除。这种删除可能会向上传递，更可能删除root而减少height。<br><img src="/2017/04/19/数据库索引/index12.png" alt="index12.png" title=""></p>
+<h4 id="建b-treebulk-loading"><a href="#建B-Tree：Bulk-Loading" class="headerlink" title="建B+ Tree：Bulk Loading"></a>建B<sup>+</sup> Tree：Bulk Loading</h4><p>若将数据逐个插入B<sup>+</sup> Tree，将会十分慢。<br>Bulk Loading的做法：<br>1.把data按search key排序(使用external sort)<br>2.放置第1个leaf和root<br><img src="/2017/04/19/数据库索引/index13.png" alt="index13.png" title=""><br>3.不断插入，新插入的page会把其第一个data的search key插入到第二层index的最右边，这可能会导致分裂，令树高度增高。<br><img src="/2017/04/19/数据库索引/index14.png" alt="index14.png" title=""></p>
+<h3 id="四-sql中的index"><a href="#四、SQL中的index" class="headerlink" title="四、SQL中的index"></a>四、SQL中的index</h3><h4 id="创建index"><a href="#创建index" class="headerlink" title="创建index"></a>创建index</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> &lt;<span class="keyword">index</span>-<span class="keyword">name</span>&gt; <span class="keyword">on</span> &lt;relation-<span class="keyword">name</span>&gt; (&lt;<span class="keyword">attribute</span> <span class="keyword">list</span>&gt;)</div><div class="line">e.g.</div><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> brance-<span class="keyword">index</span> <span class="keyword">on</span> Branch(branch-<span class="keyword">name</span>)</div><div class="line"><span class="keyword">create</span> <span class="keyword">unique</span> <span class="keyword">index</span> brance-<span class="keyword">index</span> <span class="keyword">on</span> Branch(branch-<span class="keyword">name</span>)</div></pre></td></tr></table></figure>
 <p>unique强制search key为candidate key</p>
-<h4 id="删除index"><a href="#u5220_u9664index" class="headerlink" title="删除index"></a>删除index</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span> &lt;<span class="keyword">index</span>-<span class="keyword">name</span>&gt;</div><div class="line">e.g.</div><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span> brance-<span class="keyword">index</span></div></pre></td></tr></table></figure>
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://mozi030.github.io/2017/04/19/数据库索引/" data-id="cj4ob1mek000x0ee9vz34fbdf" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+<h4 id="删除index"><a href="#删除index" class="headerlink" title="删除index"></a>删除index</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span> &lt;<span class="keyword">index</span>-<span class="keyword">name</span>&gt;</div><div class="line">e.g.</div><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span> brance-<span class="keyword">index</span></div></pre></td></tr></table></figure>
+      
     </div>
-</article>
-
-    <section id="comments">
+    <footer class="article-footer">
+      <a data-url="https://mozi030.github.io/2017/04/19/数据库索引/" data-id="cj4ob7fwb000x1me9yupn632b" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-
-                        </div>
-                    </section>
-                    <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
-    <div class="sidebar-top">
-        <p>seguir:</p>
-        <ul class="social-links">
-            
-                
-                <li>
-                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
-                        <i class="icon fa fa-twitter"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
-                        <i class="icon fa fa-facebook"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
-                        <i class="icon fa fa-google-plus"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/mozi030" target="_blank">
-                        <i class="icon fa fa-github"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
-                        <i class="icon fa fa-weibo"></i>
-                    </a>
-                </li>
-                
-            
-                
-                <li>
-                    <a class="social-tooltip" title="rss" href="/" target="_blank">
-                        <i class="icon fa fa-rss"></i>
-                    </a>
-                </li>
-                
-            
-        </ul>
-    </div>
-    
-        
 <nav id="article-nav">
-    
-        <a href="/2017/04/24/图论-一/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">més nou</strong>
-        <p class="article-nav-title">
+  
+    <a href="/2017/04/24/图论-一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
         
-            图论(一):BFS,DFS,MST,Dijkstra
+          图论(一):BFS,DFS,MST,Dijkstra
         
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+      </div>
     </a>
-    
-    
-        <a href="/2017/04/11/计算机网络协议/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antic</strong>
-        <p class="article-nav-title">计算机网络协议</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
+  
+  
+    <a href="/2017/04/11/计算机网络协议/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">计算机网络协议</div>
+    </a>
+  
 </nav>
 
-    
-    <div class="widgets-container">
+  
+</article>
+
+</section>
         
-            
-                
-    <div class="widget-wrap">
-        <h3 class="widget-title">recents</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/05/04/图论-二/" class="thumbnail">
+          <aside id="sidebar">
+  
     
-    
-        <span style="background-image:url(concept1.png)" alt="图论(二)Maximum Flow" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/05/04/图论-二/" class="title">图论(二)Maximum Flow</a></p>
-                            <p class="item-date"><time datetime="2017-05-04T03:14:40.000Z" itemprop="datePublished">2017-05-04</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/24/图论-一/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/24/图论-一/basic1.png)" alt="图论(一):BFS,DFS,MST,Dijkstra" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Algorithm/">Algorithm</a></p>
-                            <p class="item-title"><a href="/2017/04/24/图论-一/" class="title">图论(一):BFS,DFS,MST,Dijkstra</a></p>
-                            <p class="item-date"><time datetime="2017-04-24T15:36:29.000Z" itemprop="datePublished">2017-04-24</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/19/数据库索引/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/19/数据库索引/index1.png)" alt="数据库索引" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DataBase/">DataBase</a></p>
-                            <p class="item-title"><a href="/2017/04/19/数据库索引/" class="title">数据库索引</a></p>
-                            <p class="item-date"><time datetime="2017-04-19T02:27:24.000Z" itemprop="datePublished">2017-04-19</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/11/计算机网络协议/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2017/04/11/计算机网络协议/IP_format.jpg)" alt="计算机网络协议" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Computer-Network/">Computer Network</a></p>
-                            <p class="item-title"><a href="/2017/04/11/计算机网络协议/" class="title">计算机网络协议</a></p>
-                            <p class="item-date"><time datetime="2017-04-11T08:35:47.000Z" itemprop="datePublished">2017-04-11</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/08/c-虚函数/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/c/">c++</a></p>
-                            <p class="item-title"><a href="/2017/04/08/c-虚函数/" class="title">c++虚函数</a></p>
-                            <p class="item-date"><time datetime="2017-04-07T16:39:50.000Z" itemprop="datePublished">2017-04-08</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a></li></ul>
     </div>
+  </div>
 
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Network/">Computer Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">2</span></li></ul>
-        </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/">BFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/">Dijkstra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maximum-Flow/">Maximum Flow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitwise/">bitwise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a></li></ul>
     </div>
+  </div>
 
 
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li></ul>
-        </div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/Maximum-Flow/" style="font-size: 10px;">Maximum Flow</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/bitwise/" style="font-size: 10px;">bitwise</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a>
     </div>
+  </div>
 
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetes</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Collection/">Collection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maximum-Flow/">Maximum Flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Set/">Set</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitwise/">bitwise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li></ul>
-        </div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
+  </div>
 
 
-            
-                
-    <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Collection/" style="font-size: 10px;">Collection</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/Maximum-Flow/" style="font-size: 10px;">Maximum Flow</a> <a href="/tags/Set/" style="font-size: 10px;">Set</a> <a href="/tags/bitwise/" style="font-size: 10px;">bitwise</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-            
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
         
+          <li>
+            <a href="/2017/05/04/图论-二/">图论(二)Maximum Flow</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/图论-一/">图论(一):BFS,DFS,MST,Dijkstra</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/19/数据库索引/">数据库索引</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/11/计算机网络协议/">计算机网络协议</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/08/c-虚函数/">c++虚函数</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+
+  
 </aside>
-                </div>
-            </div>
-        </div>
-        <footer id="footer">
-    <div class="container">
-        <div class="container-inner">
-            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
-            <div class="credit">
-                <h1 class="logo-wrap">
-                    <a href="/" class="logo"></a>
-                </h1>
-                <p>&copy; 2017 Ziliang, Ken, Mo</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
         
-    
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    var disqus_url = 'https://mozi030.github.io/2017/04/19/数据库索引/';
-    
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-
-
-
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
-
-
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ziliang, Ken, Mo<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
 </html>
